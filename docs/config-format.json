@@ -1,0 +1,19 @@
+{
+  "strapi_version": "3.2.2",
+  "database": {
+    "database_type": "mysql",
+    "database_version": "5.8",
+    "database_name": "spm",
+    "host_information": {
+      "address": "127.0.0.1",
+      "port": "3306",
+      "username": "root",
+      "password": "password",
+      "ssl": true
+    }
+  },
+  "replicated": [
+    "users",
+    "permissions"
+  ]
+}

@@ -1,0 +1,163 @@
+name: release
+on:
+  workflow_dispatch:
+    inputs:
+      versionName:
+        description: "Name of version  (ie 5.5.0)"
+        required: true
+jobs:
+  upload_external:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/upload-artifact@master
+        with:
+          name: mysqldump
+          path: external/mysqldump
+      - uses: actions/upload-artifact@master
+        with:
+          name: mysqldump.exe
+          path: external/mysqldump.exe
+
+  build_linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Add musl target
+        run: rustup target add x86_64-unknown-linux-musl
+      - name: Install musl tools
+        run: sudo apt-get install musl-tools
+      - name: Build binary
+        run: cargo build --release
+      - name: Build static binary
+        run: cargo build --target=x86_64-unknown-linux-musl --features vendored --release
+      - name: Change name of musl binary
+        run: mv target/x86_64-unknown-linux-musl/release/strapi-data-replicator target/x86_64-unknown-linux-musl/release/strapi-data-replicator-musl
+      - uses: actions/upload-artifact@master
+        with:
+          name: strapi-data-replicator
+          path: target/release/strapi-data-replicator
+      - uses: actions/upload-artifact@master
+        with:
+          name: strapi-data-replicator-musl
+          path: target/x86_64-unknown-linux-musl/release/strapi-data-replicator-musl
+  build_windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install wixtoolset
+        run: choco install wixtoolset
+      - name: Install cargo-wix
+        run: cargo install cargo-wix
+      - name: Build windows binary
+        run: cargo build --release
+      - name: Build MSI
+        run: cargo-wix.exe wix -b "C:/Program Files (x86)/WiX Toolset v3.11/bin"
+      - name: Change wix msi name
+        run: mv target/wix/*.msi target/wix/strapi-data-replicator.msi
+      - uses: actions/upload-artifact@master
+        with:
+          name: strapi-data-replicator.msi
+          path: target/wix/strapi-data-replicator.msi
+      - uses: actions/upload-artifact@master
+        with:
+          name: strapi-data-replicator.exe
+          path: target/release/strapi-data-replicator.exe
+  release:
+    needs: [ build_windows, build_linux, upload_external ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@master
+        with:
+          name: strapi-data-replicator
+          path: ./
+      - uses: actions/download-artifact@master
+        with:
+          name: strapi-data-replicator-musl
+          path: ./
+      - uses: actions/download-artifact@master
+        with:
+          name: strapi-data-replicator.exe
+          path: ./
+      - uses: actions/download-artifact@master
+        with:
+          name: strapi-data-replicator.msi
+          path: ./
+      - uses: actions/download-artifact@master
+        with:
+          name: mysqldump
+          path: ./
+      - uses: actions/download-artifact@master
+        with:
+          name: mysqldump.exe
+          path: ./
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ github.event.inputs.versionName }}
+          release_name: Release v${{ github.event.inputs.versionName }}
+          draft: false
+          prerelease: false
+      - name: Upload Release Asset strapi-data-replicator
+        id: strapi-data-replicator
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: strapi-data-replicator
+          asset_name: strapi-data-replicator
+          asset_content_type: application/octet-stream
+      - name: Upload Release Asset strapi-data-replicator-musl
+        id: strapi-data-replicator-musl
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: strapi-data-replicator-musl
+          asset_name: strapi-data-replicator-musl
+          asset_content_type: application/octet-stream
+      - name: Upload Release Asset strapi-data-replicator.exe
+        id: strapi-data-replicator-exe
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: strapi-data-replicator.exe
+          asset_name: strapi-data-replicator.exe
+          asset_content_type: application/octet-stream
+      - name: Upload Release Asset strapi-data-replicator.msi
+        id: strapi-data-replicator-msi
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: strapi-data-replicator.msi
+          asset_name: strapi-data-replicator.msi
+          asset_content_type: application/octet-stream
+      - name: Upload Release Asset mysqldump
+        id: mysqldump
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: mysqldump
+          asset_name: mysqldump
+          asset_content_type: application/octet-stream
+      - name: Upload Release Asset mysqldump.exe
+        id: mysqldump-exe
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: mysqldump.exe
+          asset_name: mysqldump.exe
+          asset_content_type: application/octet-stream
