@@ -1,5 +1,7 @@
 # Strapi Data Replicator
 
+[![build](https://github.com/jabali2004/strapi-data-replicator/actions/workflows/build.yml/badge.svg)](https://github.com/jabali2004/strapi-data-replicator/actions/workflows/build.yml)
+
 > Simple command line utility for replicating and migrating persistent tables or collections for Strapi applications.
 
 The project is currently still in beta phase and more a conceptual proof than a finished product.
