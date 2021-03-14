@@ -1,3 +1,4 @@
+
 # Strapi Data Replicator
 
 [![build](https://github.com/jabali2004/strapi-data-replicator/actions/workflows/build.yml/badge.svg)](https://github.com/jabali2004/strapi-data-replicator/actions/workflows/build.yml)
@@ -12,6 +13,8 @@ The Strapi Data Replicator is a Tool provided as a binary or windows installer a
 syncing specific database tables or collections.
 
 The main goal is to simplify development with Strapi and enable easy and automated deployment.
+
+[Documentation (Rust specific)](https://jabali2004.github.io/strapi-data-replicator/strapi_data_replicator/index.html)
 
 ## Requirements
 

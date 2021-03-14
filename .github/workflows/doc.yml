@@ -28,12 +28,6 @@ jobs:
           command: doc
           args: --all --no-deps
 
-      - name: Create index html
-        run: touch ./target/doc/index.html
-
-      - name: Add redirect to index html
-        run: echo '<meta http-equiv="refresh" content="0; url=strapi_data_replicator/index.html"> <a href="strapi_data_replicator/index.html">Redirect</a>' > ./target/doc/index.html
-
       - name: Deploy Documentation
         uses: peaceiris/actions-gh-pages@v3
         with:
