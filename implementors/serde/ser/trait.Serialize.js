@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["strapi_data_replicator"] = [{"text":"impl Serialize for Cli","synthetic":false,"types":[]},{"text":"impl Serialize for Config","synthetic":false,"types":[]},{"text":"impl Serialize for DatabaseConfig","synthetic":false,"types":[]},{"text":"impl Serialize for HostInformation","synthetic":false,"types":[]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

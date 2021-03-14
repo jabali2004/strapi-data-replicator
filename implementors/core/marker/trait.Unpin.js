@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["strapi_data_replicator"] = [{"text":"impl Unpin for DATABASES","synthetic":true,"types":[]},{"text":"impl Unpin for Cli","synthetic":true,"types":[]},{"text":"impl Unpin for Config","synthetic":true,"types":[]},{"text":"impl Unpin for DatabaseConfig","synthetic":true,"types":[]},{"text":"impl Unpin for HostInformation","synthetic":true,"types":[]},{"text":"impl Unpin for PackageJson","synthetic":true,"types":[]},{"text":"impl Unpin for Dependencies","synthetic":true,"types":[]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

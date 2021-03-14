@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["strapi_data_replicator"] = [{"text":"impl Sync for DATABASES","synthetic":true,"types":[]},{"text":"impl Sync for Cli","synthetic":true,"types":[]},{"text":"impl Sync for Config","synthetic":true,"types":[]},{"text":"impl Sync for DatabaseConfig","synthetic":true,"types":[]},{"text":"impl Sync for HostInformation","synthetic":true,"types":[]},{"text":"impl Sync for PackageJson","synthetic":true,"types":[]},{"text":"impl Sync for Dependencies","synthetic":true,"types":[]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

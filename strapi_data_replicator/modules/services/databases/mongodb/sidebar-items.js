@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["get_connection","Create database connection with mongodb server and return ref"],["get_opts","Get mongodb connection configuration"],["get_table","Return table as json string"],["import_table",""],["list_tables","List all tables for given database"]]});

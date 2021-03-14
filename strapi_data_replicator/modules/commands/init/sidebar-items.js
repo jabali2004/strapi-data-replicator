@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["get_tables","Print all tables / collections in database"],["override_config","Override data manually"],["print_generated_config","Print generated config"],["run_init","Run init command logic"],["select_tables","Start table selection dialog"]]});

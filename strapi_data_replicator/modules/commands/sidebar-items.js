@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["init","Init new replicator"],["migrate","Migrate persistent data to database"],["replicate","Replicate persistent data"]],"mod":[["init",""],["migrate",""],["replicate",""]]});

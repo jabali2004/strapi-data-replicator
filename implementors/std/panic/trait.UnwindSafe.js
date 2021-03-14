@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["strapi_data_replicator"] = [{"text":"impl UnwindSafe for DATABASES","synthetic":true,"types":[]},{"text":"impl UnwindSafe for Cli","synthetic":true,"types":[]},{"text":"impl UnwindSafe for Config","synthetic":true,"types":[]},{"text":"impl UnwindSafe for DatabaseConfig","synthetic":true,"types":[]},{"text":"impl UnwindSafe for HostInformation","synthetic":true,"types":[]},{"text":"impl UnwindSafe for PackageJson","synthetic":true,"types":[]},{"text":"impl UnwindSafe for Dependencies","synthetic":true,"types":[]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

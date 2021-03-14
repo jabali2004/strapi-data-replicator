@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["strapi_data_replicator"] = [{"text":"impl Clone for Config","synthetic":false,"types":[]},{"text":"impl Clone for DatabaseConfig","synthetic":false,"types":[]},{"text":"impl Clone for HostInformation","synthetic":false,"types":[]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

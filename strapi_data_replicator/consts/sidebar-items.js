@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["CONFIG_FILE","Path used for storing configuration information"],["DATA_PATH","Path used for storing persistent data"]],"enum":[["DATABASES","Databases"]]});
