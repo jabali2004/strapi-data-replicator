@@ -1,3 +1,3 @@
 (function() {var implementors = {};
-implementors["strapi_data_replicator"] = [{"text":"impl StructOpt for Cli","synthetic":false,"types":[]}];
+implementors["strapi_data_replicator"] = [{"text":"impl StructOpt for <a class=\"struct\" href=\"strapi_data_replicator/modules/types/cli/struct.Cli.html\" title=\"struct strapi_data_replicator::modules::types::cli::Cli\">Cli</a>","synthetic":false,"types":["strapi_data_replicator::modules::types::cli::Cli"]}];
 if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
