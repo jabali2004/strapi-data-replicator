@@ -56,7 +56,7 @@ pub fn get_table(table_name: String, config: Config) -> Option<String> {
             .output()
             .expect("Error not able to run command!");
     } else {
-        dump_command = Command::new("mysqldump.exe")
+        dump_command = Command::new(program_name)
             .args(&[
                 format!("-u{}", host_information.username).as_str(),
                 format!("--host={}", host_information.address).as_str(),
