@@ -67,30 +67,7 @@ jobs:
     needs: [build_windows, build_linux, upload_external]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@master
-        with:
-          name: strapi-data-replicator
-          path: ./
-      - uses: actions/download-artifact@master
-        with:
-          name: strapi-data-replicator-musl
-          path: ./
-      - uses: actions/download-artifact@master
-        with:
-          name: strapi-data-replicator.exe
-          path: ./
-      - uses: actions/download-artifact@master
-        with:
-          name: strapi-data-replicator.msi
-          path: ./
-      - uses: actions/download-artifact@master
-        with:
-          name: mysqldump
-          path: ./
-      - uses: actions/download-artifact@master
-        with:
-          name: mysqldump.exe
-          path: ./
+      - uses: actions/checkout@v2
       - name: Use Node.js 14.x
         uses: actions/setup-node@v1
         with:
@@ -124,6 +101,30 @@ jobs:
           base: main
           title: v${{ github.event.inputs.versionName }} into main
           reviewers: ${{ github.event.issue.user.login }}
+      - uses: actions/download-artifact@master
+        with:
+          name: strapi-data-replicator
+          path: ./
+      - uses: actions/download-artifact@master
+        with:
+          name: strapi-data-replicator-musl
+          path: ./
+      - uses: actions/download-artifact@master
+        with:
+          name: strapi-data-replicator.exe
+          path: ./
+      - uses: actions/download-artifact@master
+        with:
+          name: strapi-data-replicator.msi
+          path: ./
+      - uses: actions/download-artifact@master
+        with:
+          name: mysqldump
+          path: ./
+      - uses: actions/download-artifact@master
+        with:
+          name: mysqldump.exe
+          path: ./
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
