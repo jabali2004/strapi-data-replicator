@@ -23,6 +23,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Install Cargo updater
+        run: cargo install set-cargo-version
+      - name: Set Cargo version
+        run: set-cargo-version ./Cargo.toml ${{ github.event.inputs.versionName }}
       - name: Add musl target
         run: rustup target add x86_64-unknown-linux-musl
       - name: Install musl tools
@@ -45,6 +49,10 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Install Cargo updater
+        run: cargo install set-cargo-version
+      - name: Set Cargo version
+        run: set-cargo-version ./Cargo.toml ${{ github.event.inputs.versionName }}
       - name: Install wixtoolset
         run: choco install wixtoolset
       - name: Install cargo-wix
