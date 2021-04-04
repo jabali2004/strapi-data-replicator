@@ -64,7 +64,7 @@ jobs:
           name: strapi-data-replicator.exe
           path: target/release/strapi-data-replicator.exe
   release:
-    needs: [ build_windows, build_linux, upload_external ]
+    needs: [build_windows, build_linux, upload_external]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@master
@@ -91,6 +91,39 @@ jobs:
         with:
           name: mysqldump.exe
           path: ./
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - name: Install global deps
+        run: |
+          npm install -g standard-version
+      - name: Create release branch
+        run: git checkout -b release/v${{ github.event.inputs.versionName }}
+      - name: Initialize mandatory git config
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Update Changelog
+        run: standard-version --release-as v${{ github.event.inputs.versionName }} --skip.commit
+      - name: Install Cargo updater
+        run: cargo install set-cargo-version
+      - name: Set Cargo version
+        run: set-cargo-version ./Cargo.toml ${{ github.event.inputs.versionName }}
+      - name: Stage files
+        run: git add .
+      - name: Commit files
+        run: git commit -m "chore(release):${{ github.event.inputs.versionName }}"
+      - name: Push new branch
+        run: git push origin release/v${{ github.event.inputs.versionName }}
+      - name: Create pull request into main
+        uses: thomaseizinger/create-pull-request@1.0.0
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          head: release/v${{ github.event.inputs.versionName }}
+          base: main
+          title: v${{ github.event.inputs.versionName }} into main
+          reviewers: ${{ github.event.issue.user.login }}
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
