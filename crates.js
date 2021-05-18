@@ -1,0 +1,1 @@
+window.ALL_CRATES = ["strapi_data_replicator"];
