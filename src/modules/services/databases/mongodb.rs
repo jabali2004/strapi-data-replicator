@@ -37,7 +37,7 @@ pub fn get_table(table_name: String, config: Config) -> Option<String> {
     let data_json = serde_json::to_string_pretty(&documents_bson).unwrap();
 
     if data_json.is_empty() {
-        return Option::from("".to_string());
+        return None;
     }
 
     return Option::from(data_json);

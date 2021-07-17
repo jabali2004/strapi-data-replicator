@@ -14,10 +14,11 @@ use crate::modules::types::config::Config;
 
 pub fn run_migrate(args: Cli) {
     let config: Config;
-    if !args.use_env {
-        config = read_config_file();
-    } else {
+
+    if args.use_env == true {
         config = get_config_using_env();
+    } else {
+        config = read_config_file();
     }
 
     let replication_version: String;

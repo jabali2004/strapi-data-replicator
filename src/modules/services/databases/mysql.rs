@@ -52,6 +52,7 @@ pub fn get_table(table_name: String, config: Config) -> Option<String> {
                 "--skip-triggers",
                 "--no-create-db",
                 "--compact",
+                "--column-statistics=0",
             ])
             .output()
             .expect("Error not able to run command!");
@@ -67,6 +68,7 @@ pub fn get_table(table_name: String, config: Config) -> Option<String> {
                 "--skip-triggers",
                 "--no-create-db",
                 "--compact",
+                "--column-statistics=0",
             ])
             .output()
             .expect("Error not able to run command!");
@@ -82,8 +84,7 @@ pub fn get_table(table_name: String, config: Config) -> Option<String> {
     if dump.len() > 0 {
         return Option::from(dump.to_string());
     }
-
-    return Option::from("".to_string());
+    return None;
 }
 
 // Import table given as sql string
