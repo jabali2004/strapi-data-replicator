@@ -121,7 +121,7 @@ Replication config file (**replicate.json**):
   "database": {
     "database_type": "mysql",
     "database_version": "5.8",
-    "database_name": "spm",
+    "database_name": "database_name",
     "host_information": {
       "address": "127.0.0.1",
       "port": "3306",
@@ -131,8 +131,10 @@ Replication config file (**replicate.json**):
     }
   },
   "replicated": [
-    "users",
-    "permissions"
+    "strapi_role",
+    "strapi_permission",
+    "users-permissions_permission",
+    "users-permissions_role"
   ]
 }
 
