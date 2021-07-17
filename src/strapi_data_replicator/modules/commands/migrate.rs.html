@@ -66,6 +66,7 @@
 <span id="63">63</span>
 <span id="64">64</span>
 <span id="65">65</span>
+<span id="66">66</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std::borrow::Borrow</span>;
 
@@ -83,10 +84,11 @@
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">run_migrate</span>(<span class="ident">args</span>: <span class="ident">Cli</span>) {
     <span class="kw">let</span> <span class="ident">config</span>: <span class="ident">Config</span>;
-    <span class="kw">if</span> <span class="op">!</span><span class="ident">args</span>.<span class="ident">use_env</span> {
-        <span class="ident">config</span> <span class="op">=</span> <span class="ident">read_config_file</span>();
-    } <span class="kw">else</span> {
+
+    <span class="kw">if</span> <span class="ident">args</span>.<span class="ident">use_env</span> <span class="op">=</span><span class="op">=</span> <span class="bool-val">true</span> {
         <span class="ident">config</span> <span class="op">=</span> <span class="ident">get_config_using_env</span>();
+    } <span class="kw">else</span> {
+        <span class="ident">config</span> <span class="op">=</span> <span class="ident">read_config_file</span>();
     }
 
     <span class="kw">let</span> <span class="ident">replication_version</span>: <span class="ident">String</span>;
