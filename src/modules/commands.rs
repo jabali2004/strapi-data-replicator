@@ -33,7 +33,7 @@ pub fn replicate(args: Cli) -> () {
     if init_state {
         run_replicate(args);
     } else {
-        println!("{}", "Replicator config does not exist! Init first!".red());
+        println!("{}", "Replicator config does not exist. Init first!".red());
     }
 }
 
@@ -44,7 +44,7 @@ pub fn migrate(args: Cli) -> () {
     if init_state {
         run_migrate(args);
     } else {
-        println!("{}", "Replicator config does not exist! Init first!".red());
+        println!("{}", "Replicator config does not exist. Init first!".red());
     }
 }
 
