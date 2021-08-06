@@ -1,5 +1,5 @@
 
-# Strapi Data Replicator
+# StrapiDataReplicator
 
 [![build](https://github.com/jabali2004/strapi-data-replicator/actions/workflows/build.yml/badge.svg)](https://github.com/jabali2004/strapi-data-replicator/actions/workflows/build.yml)
 
