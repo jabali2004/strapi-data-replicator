@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.6 (2021-08-21)
+
+
+### Bug Fixes
+
+* remove increment functions for using semver ([b782f7c](https://github.com/jabali2004/strapi-data-replicator/commit/b782f7c5348b741043d5c8b3ab096a717a6dcfd7))
+
 ### [0.0.5](https://github.com/jabali2004/strapi-data-replicator/compare/v0.0.4...v0.0.5) (2021-07-17)
 
 
