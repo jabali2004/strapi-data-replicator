@@ -6,10 +6,10 @@ use std::path::Path;
 use colored::Colorize;
 use humanesort::prelude::*;
 use regex::Regex;
-use semver::Version;
 
 use crate::consts::{CONFIG_FILE, DATA_PATH};
 use crate::modules::types::config::{Config, DatabaseConfig, HostInformation};
+use semver::{BuildMetadata, Prerelease, Version};
 
 /// Get next replication version
 pub fn get_next_version() -> String {
@@ -23,8 +23,8 @@ pub fn get_next_version() -> String {
             major: 0,
             minor: 0,
             patch: 1,
-            pre: vec![],
-            build: vec![],
+            pre: Prerelease::EMPTY,
+            build: BuildMetadata::EMPTY,
         };
 
         return version.to_string();
@@ -41,12 +41,12 @@ pub fn get_next_version() -> String {
         version.patch = 0;
         if version.minor == 10 {
             version.minor = 0;
-            version.increment_major()
+            version.major += 1;
         } else {
-            version.increment_minor();
+            version.minor += 1;
         }
     } else {
-        version.increment_patch();
+        version.patch += 1;
     }
 
     return version.to_string();
