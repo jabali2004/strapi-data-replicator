@@ -1,32 +1,35 @@
 {
-  "types": [
+    "types": [
     {
       "type": "feat",
-      "section": "Features"
+      "section": "Features",
+      "hidden": false
     },
     {
       "type": "fix",
-      "section": "Bug Fixes"
+      "section": "Bug Fixes",
+      "hidden": false
     },
     {
       "type": "chore",
-      "hidden": true
+      "section":"Chores"
+      "hidden": false
     },
     {
       "type": "docs",
-      "hidden": true
+      "hidden": false
     },
     {
       "type": "style",
-      "hidden": true
+      "hidden": false
     },
     {
       "type": "refactor",
-      "hidden": true
+      "hidden": false
     },
     {
       "type": "perf",
-      "hidden": true
+      "hidden": false
     },
     {
       "type": "test",
