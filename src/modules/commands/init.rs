@@ -205,7 +205,7 @@ fn override_config(new_config: &mut Config) {
 
     new_config.database.database_type = match database_type.to_lowercase().as_str() {
         "mysql" => "mysql".to_string(),
-        "mongodb" => "mysql".to_string(),
+        "mongodb" => "mongodb".to_string(),
         _ => "mysql".to_string(),
     };
 
