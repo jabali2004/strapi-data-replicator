@@ -1,7 +1,7 @@
 [package]
 name = "strapi-data-replicator"
 description = "Command line tool for replicate data in strapi!"
-version = "0.0.6"
+version = "0.0.7"
 authors = ["jabali2004 <32802935+jabali2004@users.noreply.github.com>"]
 edition = "2018"
 
