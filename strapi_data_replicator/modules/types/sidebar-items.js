@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["cli",""],["config",""],["package_json",""]]});
+initSidebarItems({"mod":[["build_info",""],["cli",""],["config",""],["package_json",""]]});

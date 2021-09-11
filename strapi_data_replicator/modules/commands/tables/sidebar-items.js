@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["get_tables","Return vec with table names"],["run_tables","Print all tables"]]});
