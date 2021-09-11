@@ -30,6 +30,11 @@ This can be achieved with the help of KnexJS migrations.
 
 > PostgreSQL is currently not supported.
 
+### Supported databases
+
+* MySQL
+* MongoDB (3.x.x)
+
 ## Features
 
 Currently implemented features:

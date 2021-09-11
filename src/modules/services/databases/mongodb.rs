@@ -116,11 +116,16 @@ fn get_connection(config: Config) -> Database {
     let database = client.database(config.database.database_name.as_str());
 
     // Get mongodb server version and check compatibility
-    let build_info_doc: Document = database.run_command(doc! {"buildInfo": 1}, None).unwrap();
-    let build_info: BuildInfo = bson::from_bson(Bson::Document(build_info_doc)).unwrap();
+    let build_info_doc: Document = database
+        .run_command(doc! {"buildInfo": 1}, None)
+        .expect("Error while getting mongodb server version!");
+    let build_info: BuildInfo = bson::from_bson(Bson::Document(build_info_doc))
+        .expect("Error while converting BuildInfo document to bson!");
 
     // Warn user if mongodb server version is greater than or equal 4.x.x
-    let server_version = Version::parse(build_info.version.as_str()).unwrap();
+    let server_version = Version::parse(build_info.version.as_str())
+        .expect("Error while parsing mongodb server version!");
+
     if server_version.major > SUPPORTED_MONGODB_MAJOR_VERSION {
         println!("Your mongodb server version is: {}", build_info.version);
         println!("{}", "Currently only version 3.x.x is supported!".red());
