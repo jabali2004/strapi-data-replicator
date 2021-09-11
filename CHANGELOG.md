@@ -1,7 +1,13 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
-See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### 0.0.7 (2021-09-11)
+
+
+### Bug Fixes
+
+* .versionrc ([25517fa](https://github.com/jabali2004/strapi-data-replicator/commit/25517fa43fbca1d6a68d7a85016d70df35925ccf))
 
 ### 0.0.6 (2021-08-21)
 
