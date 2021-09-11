@@ -7,15 +7,13 @@ use structopt::StructOpt;
 
 use modules::types::cli::Cli;
 
-use crate::modules::commands::{init, migrate, replicate};
+use crate::modules::commands::{init, migrate, replicate, tables};
 
 mod consts;
 mod modules;
 
 fn main() -> () {
     let args: Cli = Cli::from_args();
-
-    // let serialized_args = serde_json::to_string_pretty(&args).unwrap();
 
     match args.path.is_empty() {
         false => {
@@ -41,8 +39,7 @@ fn main() -> () {
         "init" | "Init" => init(args),
         "replicate" | "Replicate" => replicate(args),
         "migrate" | "Migrate" => migrate(args),
+        "tables" | "Tables" => tables(args),
         _ => {}
     }
-
-    // println!("{}", serialized_args);
 }

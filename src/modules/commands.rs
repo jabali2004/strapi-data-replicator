@@ -3,12 +3,14 @@ use colored::*;
 use crate::modules::commands::init::run_init;
 use crate::modules::commands::migrate::run_migrate;
 use crate::modules::commands::replicate::run_replicate;
+use crate::modules::commands::tables::run_tables;
 use crate::modules::services::utils::init_check;
 use crate::modules::types::cli::Cli;
 
 pub mod init;
 pub mod migrate;
 pub mod replicate;
+pub mod tables;
 
 /// Init new replicator
 pub fn init(args: Cli) -> () {
@@ -43,6 +45,17 @@ pub fn migrate(args: Cli) -> () {
 
     if init_state {
         run_migrate(args);
+    } else {
+        println!("{}", "Replicator config does not exist. Init first!".red());
+    }
+}
+
+/// List all tables or collections
+pub fn tables(args: Cli) -> () {
+    let init_state: bool = init_check(false);
+
+    if init_state {
+        run_tables(args);
     } else {
         println!("{}", "Replicator config does not exist. Init first!".red());
     }

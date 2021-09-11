@@ -6,10 +6,10 @@ use std::path::Path;
 use colored::Colorize;
 use humanesort::prelude::*;
 use regex::Regex;
+use semver::{BuildMetadata, Prerelease, Version};
 
 use crate::consts::{CONFIG_FILE, DATA_PATH};
 use crate::modules::types::config::{Config, DatabaseConfig, HostInformation};
-use semver::{BuildMetadata, Prerelease, Version};
 
 /// Get next replication version
 pub fn get_next_version() -> String {

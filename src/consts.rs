@@ -9,3 +9,5 @@ pub enum DATABASES {
     MySQL,
     MongoDB,
 }
+
+pub const SUPPORTED_MONGODB_MAJOR_VERSION: u64 = 3;

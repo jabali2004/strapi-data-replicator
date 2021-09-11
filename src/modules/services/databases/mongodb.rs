@@ -1,13 +1,17 @@
 use std::convert::TryFrom;
 use std::iter::FromIterator;
 
+use colored::Colorize;
 use mongodb::bson::doc;
 use mongodb::bson::Bson;
 use mongodb::bson::Document;
-use mongodb::options::{ClientOptions, Credential, StreamAddress, Tls, TlsOptions};
+use mongodb::options::{ClientOptions, Credential, ServerAddress, Tls, TlsOptions};
 use mongodb::sync::{Client, Database};
+use semver::Version;
 use serde_json::{Map, Value};
 
+use crate::consts::SUPPORTED_MONGODB_MAJOR_VERSION;
+use crate::modules::types::build_info::BuildInfo;
 use crate::modules::types::config::Config;
 
 /// List all tables for given database
@@ -27,11 +31,15 @@ pub fn get_table(table_name: String, config: Config) -> Option<String> {
     let database = get_connection(config);
     let collection = database.collection(&table_name);
 
-    let documents = collection
-        .find(None, None)
-        .expect("Could not get all documents from collection!");
+    let documents = collection.find(None, None).unwrap();
 
-    let documents_vec: Vec<_> = documents.map(|doc| doc.unwrap()).collect();
+    let mut documents_vec: Vec<Document> = vec![];
+
+    for result in documents {
+        let doc: Document = result.expect("Received network error during cursor operations.");
+        documents_vec.push(doc);
+    }
+
     let documents_bson = Bson::from_iter(documents_vec);
 
     let data_json = serde_json::to_string_pretty(&documents_bson).unwrap();
@@ -79,10 +87,12 @@ fn get_opts(config: Config) -> ClientOptions {
         .parse()
         .expect("Could not parse port!");
 
-    options.hosts = vec![StreamAddress {
-        hostname: config.database.host_information.address,
+    let server_address: ServerAddress = ServerAddress::Tcp {
+        host: config.database.host_information.address,
         port: Option::from(port),
-    }];
+    };
+
+    options.hosts = vec![server_address];
 
     let mut credentials = Credential::default();
 
@@ -104,6 +114,17 @@ fn get_connection(config: Config) -> Database {
     let client = Client::with_options(options).expect("Error while connecting to mongodb server!");
 
     let database = client.database(config.database.database_name.as_str());
+
+    // Get mongodb server version and check compatibility
+    let build_info_doc: Document = database.run_command(doc! {"buildInfo": 1}, None).unwrap();
+    let build_info: BuildInfo = bson::from_bson(Bson::Document(build_info_doc)).unwrap();
+
+    // Warn user if mongodb server version is greater than or equal 4.x.x
+    let server_version = Version::parse(build_info.version.as_str()).unwrap();
+    if server_version.major > SUPPORTED_MONGODB_MAJOR_VERSION {
+        println!("Your mongodb server version is: {}", build_info.version);
+        println!("{}", "Currently only version 3.x.x is supported!".red());
+    }
 
     return database;
 }

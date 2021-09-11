@@ -1,4 +1,3 @@
-
 # StrapiDataReplicator
 
 [![build](https://github.com/jabali2004/strapi-data-replicator/actions/workflows/build.yml/badge.svg)](https://github.com/jabali2004/strapi-data-replicator/actions/workflows/build.yml)
@@ -9,8 +8,8 @@ The project is currently still in beta phase and more a conceptual proof than a 
 
 ## About
 
-The Strapi Data Replicator is a Tool provided as a binary or windows installer and is written in Rust for
-syncing specific database tables or collections.
+The Strapi Data Replicator is a Tool provided as a binary or windows installer and is written in Rust for syncing
+specific database tables or collections.
 
 The main goal is to simplify development with Strapi and enable easy and automated deployment.
 
@@ -18,14 +17,14 @@ The main goal is to simplify development with Strapi and enable easy and automat
 
 ## Requirements
 
-> Supported environments are Linux (amd64) and Windows.
-The tool has not yet been tested under MacOS.
+> Supported environments are Linux (amd64) and Windows. The tool has not yet been tested under MacOS.
 
 A statically linked binary is also available to ensure use within a container.
 
 > Currently supported databases are MySQL, MariaDB and MongoDB
 
-A strict config schema is needed for the automatic configuration creation when using sql databases. Cleanup your tables and remove unused or wrongly ordered columns before replicating.
+A strict config schema is needed for the automatic configuration creation when using sql databases. Cleanup your tables
+and remove unused or wrongly ordered columns before replicating.
 
 This can be achieved with the help of KnexJS migrations.
 
@@ -44,7 +43,8 @@ Currently implemented features:
 Planned features:
 
 - Add Prostgres support.
-- Calculate delta of persistent data or see if the data are exactly the same. Then the data do not have to be to be stored again.
+- Calculate delta of persistent data or see if the data are exactly the same. Then the data do not have to be to be
+  stored again.
 - Switching to sqlx and removing the mysqldump dependencies.
 - Enable MySQL and MariaDB connection over Unix sockets.
 
@@ -94,7 +94,8 @@ cargo build --target=x86_64-unknown-linux-musl --features vendored --release
 
 ## Config File
 
-For the automatic creation of the project configuration, certain environment variables are required in the environment files.
+For the automatic creation of the project configuration, certain environment variables are required in the environment
+files.
 
 There is also a mode using **--env** where only environment variables are used, which is suitable for deployments.
 

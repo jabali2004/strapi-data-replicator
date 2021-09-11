@@ -72,7 +72,7 @@ jobs:
           name: strapi-data-replicator.exe
           path: target/release/strapi-data-replicator.exe
   release:
-    needs: [build_windows, build_linux, upload_external]
+    needs: [ build_windows, build_linux, upload_external ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

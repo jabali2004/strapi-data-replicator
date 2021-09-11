@@ -4,7 +4,7 @@ use structopt::StructOpt;
 #[derive(Debug, StructOpt, Serialize)]
 pub struct Cli {
     /// Available commands:
-    /// init, replicate, migrate, info
+    /// init, replicate, migrate, info, tables
     pub command: String,
     /// Overwrite existing project configuration
     #[structopt(short = "f", long = "force")]
