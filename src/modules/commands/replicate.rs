@@ -41,13 +41,22 @@ pub fn run_replicate(args: Cli) {
         let table_data = databases::replicate_table(table.clone(), config.clone());
 
         if table_data.is_some() {
-            write_to_file(
-                format!("{}{}/{}.{}", path, next_version, table.clone(), file_ending),
-                &table_data.unwrap(),
-            )
-            .expect("Error while writing to file!");
-            let replicated_message = format!("{} replicated", &table);
-            println!("{}", replicated_message.green());
+            let data = &table_data.unwrap();
+
+            if data.len() > 0 {
+                write_to_file(
+                    format!("{}{}/{}.{}", path, next_version, table.clone(), file_ending),
+                    &data,
+                )
+                .expect("Error while writing to file!");
+
+                let replicated_message = format!("{} replicated", &table);
+                println!("{}", replicated_message.green());
+            } else {
+                // Print message if table is empty
+                let empty_message = format!("{} is empty!", &table);
+                println!("{}", empty_message.yellow());
+            }
         } else {
             // Set error flag
             error_flag = true;

@@ -79,12 +79,10 @@ pub fn get_table(table_name: String, config: Config) -> Option<String> {
     let dump_error = String::from_utf8_lossy(&dump_command.stderr);
     if dump_error.len() > 0 {
         println!("{} {}", "Error:".red(), dump_error);
+        return None;
     }
 
-    if dump.len() > 0 {
-        return Option::from(dump.to_string());
-    }
-    return None;
+    return Option::from(dump.to_string());
 }
 
 // Import table given as sql string
