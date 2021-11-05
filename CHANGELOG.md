@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.8 (2021-11-05)
+
+
+### Bug Fixes
+
+* Error when replicating empty table [#26](https://github.com/jabali2004/strapi-data-replicator/issues/26) ([debb489](https://github.com/jabali2004/strapi-data-replicator/commit/debb4892907e7b431d7b99bdbd5b16677cadfc73))
+
 ### [0.0.7](https://github.com/jabali2004/strapi-data-replicator/compare/v0.0.6...v0.0.7) (2021-09-11)
 
 
