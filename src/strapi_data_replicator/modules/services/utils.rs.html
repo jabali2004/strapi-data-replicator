@@ -230,7 +230,7 @@
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::modules::types::config</span>::{<span class="ident">Config</span>, <span class="ident">DatabaseConfig</span>, <span class="ident">HostInformation</span>};
 
 <span class="doccomment">/// Get next replication version</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_next_version</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_next_version</span>() -&gt; <span class="ident">String</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">version</span>: <span class="ident">Version</span>;
 
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">legit_paths</span> <span class="op">=</span> <span class="ident">get_legit_paths</span>();
@@ -255,9 +255,9 @@
     <span class="ident">version</span> <span class="op">=</span> <span class="ident">Version::parse</span>(<span class="ident">last_path</span>).<span class="ident">expect</span>(<span class="string">&quot;Could not parse version!&quot;</span>);
 
     <span class="comment">// Increment version | 10 is max</span>
-    <span class="kw">if</span> <span class="ident">version</span>.<span class="ident">patch</span> <span class="op">=</span><span class="op">=</span> <span class="number">10</span> {
+    <span class="kw">if</span> <span class="ident">version</span>.<span class="ident">patch</span> <span class="op">==</span> <span class="number">10</span> {
         <span class="ident">version</span>.<span class="ident">patch</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">if</span> <span class="ident">version</span>.<span class="ident">minor</span> <span class="op">=</span><span class="op">=</span> <span class="number">10</span> {
+        <span class="kw">if</span> <span class="ident">version</span>.<span class="ident">minor</span> <span class="op">==</span> <span class="number">10</span> {
             <span class="ident">version</span>.<span class="ident">minor</span> <span class="op">=</span> <span class="number">0</span>;
             <span class="ident">version</span>.<span class="ident">major</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
         } <span class="kw">else</span> {
@@ -271,7 +271,7 @@
 }
 
 <span class="doccomment">/// Return latest replication version</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_latest_replication_version</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_latest_replication_version</span>() -&gt; <span class="ident">String</span> {
     <span class="kw">let</span> <span class="ident">version</span>: <span class="ident">Version</span>;
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">legit_paths</span> <span class="op">=</span> <span class="ident">get_legit_paths</span>();
 
@@ -285,12 +285,12 @@
 }
 
 <span class="doccomment">/// Verify given replication version</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">verify_replication_version</span>(<span class="ident">version</span>: <span class="ident">String</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">verify_replication_version</span>(<span class="ident">version</span>: <span class="ident">String</span>) -&gt; <span class="ident">bool</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">version_exists</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="bool-val">false</span>;
     <span class="kw">let</span> <span class="ident">legit_paths</span> <span class="op">=</span> <span class="ident">get_legit_paths</span>();
 
     <span class="kw">for</span> <span class="ident">legit_path</span> <span class="kw">in</span> <span class="ident">legit_paths</span> {
-        <span class="kw">if</span> <span class="ident">legit_path</span> <span class="op">=</span><span class="op">=</span> <span class="ident">version</span> {
+        <span class="kw">if</span> <span class="ident">legit_path</span> <span class="op">==</span> <span class="ident">version</span> {
             <span class="ident">Version::parse</span>(<span class="ident">legit_path</span>.<span class="ident">as_str</span>()).<span class="ident">expect</span>(<span class="string">&quot;Could not parse version!&quot;</span>);
             <span class="ident">version_exists</span> <span class="op">=</span> <span class="bool-val">true</span>;
             <span class="kw">break</span>;
@@ -301,7 +301,7 @@
 }
 
 <span class="doccomment">/// Return ReadDir for all replications files of specific version</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_replication_file_paths</span>(<span class="ident">version</span>: <span class="ident">String</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ReadDir</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_replication_file_paths</span>(<span class="ident">version</span>: <span class="ident">String</span>) -&gt; <span class="ident">ReadDir</span> {
     <span class="kw">let</span> <span class="ident">paths</span> <span class="op">=</span> <span class="ident">read_dir</span>(<span class="macro">format!</span>(<span class="string">&quot;{}{}&quot;</span>, <span class="ident">DATA_PATH</span>, <span class="ident">version</span>)).<span class="ident">expect</span>(<span class="string">&quot;Cannot read directory!&quot;</span>);
 
     <span class="kw">return</span> <span class="ident">paths</span>;
@@ -315,7 +315,7 @@
 }
 
 <span class="doccomment">/// Check if project is already existent</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init_check</span>(<span class="ident">print_message</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init_check</span>(<span class="ident">print_message</span>: <span class="ident">bool</span>) -&gt; <span class="ident">bool</span> {
     <span class="kw">if</span> <span class="op">!</span><span class="ident">check_path_existence</span>(<span class="ident">CONFIG_FILE</span>, <span class="ident">print_message</span>) {
         <span class="kw">return</span> <span class="bool-val">false</span>;
     }
@@ -326,14 +326,14 @@
 }
 
 <span class="doccomment">/// Read config file and return config</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_config_file</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Config</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_config_file</span>() -&gt; <span class="ident">Config</span> {
     <span class="comment">// Open the file in read-only mode with buffer.</span>
     <span class="comment">// let file = File::open(CONFIG_FILE).expect(&quot;Unable to read file!&quot;);</span>
     <span class="kw">let</span> <span class="ident">file</span> <span class="op">=</span> <span class="ident">File::open</span>(<span class="ident">CONFIG_FILE</span>);
 
     <span class="kw">let</span> <span class="ident">file</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">file</span> {
-        <span class="prelude-val">Ok</span>(<span class="ident">file</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">file</span>,
-        <span class="prelude-val">Err</span>(<span class="ident">error</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">panic!</span>(<span class="string">&quot;Problem with opening the file: {:?}&quot;</span>, <span class="ident">error</span>),
+        <span class="prelude-val">Ok</span>(<span class="ident">file</span>) =&gt; <span class="ident">file</span>,
+        <span class="prelude-val">Err</span>(<span class="ident">error</span>) =&gt; <span class="macro">panic!</span>(<span class="string">&quot;Problem with opening the file: {:?}&quot;</span>, <span class="ident">error</span>),
     };
 
     <span class="kw">let</span> <span class="ident">reader</span> <span class="op">=</span> <span class="ident">BufReader::new</span>(<span class="ident">file</span>);
@@ -346,7 +346,7 @@
 
 <span class="doccomment">/// Return config using environment variables</span>
 <span class="doccomment">/// and the config file for replicated tables</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_config_using_env</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Config</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_config_using_env</span>() -&gt; <span class="ident">Config</span> {
     <span class="kw">let</span> <span class="ident">file_config</span> <span class="op">=</span> <span class="ident">read_config_file</span>();
 
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">config</span> <span class="op">=</span> <span class="ident">Config</span> {
@@ -361,8 +361,8 @@
                 <span class="ident">username</span>: <span class="ident">get_config_string</span>(<span class="string">&quot;DATABASE_USERNAME&quot;</span>),
                 <span class="ident">password</span>: <span class="ident">get_config_string</span>(<span class="string">&quot;DATABASE_PASSWORD&quot;</span>),
                 <span class="ident">ssl</span>: <span class="kw">match</span> <span class="ident">get_config_string</span>(<span class="string">&quot;DATABASE_SSL&quot;</span>).<span class="ident">parse</span>() {
-                    <span class="prelude-val">Ok</span>(<span class="ident">value</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">value</span>,
-                    <span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="bool-val">false</span>,
+                    <span class="prelude-val">Ok</span>(<span class="ident">value</span>) =&gt; <span class="ident">value</span>,
+                    <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="bool-val">false</span>,
                 },
             },
         },
@@ -376,7 +376,7 @@
 
 <span class="doccomment">/// Request user input with given string as explanation</span>
 <span class="doccomment">/// and return it</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_config_input</span>(<span class="ident">variable_text</span>: <span class="ident">String</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_config_input</span>(<span class="ident">variable_text</span>: <span class="ident">String</span>) -&gt; <span class="ident">String</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">String::new</span>();
     <span class="macro">print!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">variable_text</span>);
     <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">stdout</span>().<span class="ident">flush</span>();
@@ -388,14 +388,14 @@
 }
 
 <span class="doccomment">/// Make environment variable to lowercase and remove whitespaces</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_config_string</span>(<span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_config_string</span>(<span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">String</span> {
     <span class="kw">let</span> <span class="ident">formatted_string</span>: <span class="ident">String</span>;
 
     <span class="kw">let</span> <span class="ident">option_string</span> <span class="op">=</span> <span class="ident">env::var</span>(<span class="ident">key</span>);
 
     <span class="ident">formatted_string</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">option_string</span> {
-        <span class="prelude-val">Ok</span>(<span class="ident">env</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">env</span>,
-        <span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">String::new</span>(),
+        <span class="prelude-val">Ok</span>(<span class="ident">env</span>) =&gt; <span class="ident">env</span>,
+        <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="ident">String::new</span>(),
     }
     .<span class="ident">split_whitespace</span>()
     .<span class="ident">collect</span>();
@@ -404,7 +404,7 @@
 }
 
 <span class="doccomment">/// Check if given file exists</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">check_path_existence</span>(<span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">print_message</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">check_path_existence</span>(<span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">print_message</span>: <span class="ident">bool</span>) -&gt; <span class="ident">bool</span> {
     <span class="comment">// Check if path and file exists</span>
     <span class="kw">if</span> <span class="op">!</span><span class="ident">Path::new</span>(<span class="ident">path</span>).<span class="ident">exists</span>() {
         <span class="kw">if</span> <span class="ident">print_message</span> {
@@ -419,7 +419,7 @@
 }
 
 <span class="doccomment">/// Get legit paths in data dir</span>
-<span class="kw">fn</span> <span class="ident">get_legit_paths</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
+<span class="kw">fn</span> <span class="ident">get_legit_paths</span>() -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">regex</span> <span class="op">=</span> <span class="ident">Regex::new</span>(<span class="string">&quot;^(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)$&quot;</span>).<span class="ident">unwrap</span>();
     <span class="kw">let</span> <span class="ident">paths</span> <span class="op">=</span> <span class="ident">read_dir</span>(<span class="ident">DATA_PATH</span>).<span class="ident">expect</span>(<span class="string">&quot;Cannot read directory!&quot;</span>);
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">legit_paths</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];

@@ -148,7 +148,7 @@
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::modules::types::config::Config</span>;
 
 <span class="doccomment">/// List all tables for given database</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">list_tables</span>(<span class="ident">config</span>: <span class="ident">Config</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">list_tables</span>(<span class="ident">config</span>: <span class="ident">Config</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">conn</span> <span class="op">=</span>
         <span class="ident">get_connection</span>(<span class="ident">config</span>.<span class="ident">clone</span>()).<span class="ident">expect</span>(<span class="string">&quot;Error while trying to connect to mysql database!&quot;</span>);
 
@@ -166,7 +166,7 @@
 }
 
 <span class="doccomment">/// Return table as sql string using mysqldump</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_table</span>(<span class="ident">table_name</span>: <span class="ident">String</span>, <span class="ident">config</span>: <span class="ident">Config</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_table</span>(<span class="ident">table_name</span>: <span class="ident">String</span>, <span class="ident">config</span>: <span class="ident">Config</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">host_information</span> <span class="op">=</span> <span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">host_information</span>.<span class="ident">clone</span>();
 
     <span class="kw">let</span> <span class="ident">dump_command</span>;
@@ -226,7 +226,7 @@
 }
 
 <span class="comment">// Import table given as sql string</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">import_table</span>(<span class="ident">sql</span>: <span class="ident">String</span>, <span class="ident">table_name</span>: <span class="ident">String</span>, <span class="ident">config</span>: <span class="ident">Config</span>) <span class="op">-</span><span class="op">&gt;</span> () {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">import_table</span>(<span class="ident">sql</span>: <span class="ident">String</span>, <span class="ident">table_name</span>: <span class="ident">String</span>, <span class="ident">config</span>: <span class="ident">Config</span>) -&gt; () {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">conn</span> <span class="op">=</span>
         <span class="ident">get_connection</span>(<span class="ident">config</span>.<span class="ident">clone</span>()).<span class="ident">expect</span>(<span class="string">&quot;Error while trying to connect to mysql database!&quot;</span>);
     <span class="kw">let</span> <span class="ident">params</span> <span class="op">=</span> <span class="ident">Params::from</span>(());
@@ -245,10 +245,10 @@
 }
 
 <span class="doccomment">/// Get mysql connection configuration</span>
-<span class="kw">fn</span> <span class="ident">get_opts</span>(<span class="ident">config</span>: <span class="ident">Config</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">OptsBuilder</span> {
+<span class="kw">fn</span> <span class="ident">get_opts</span>(<span class="ident">config</span>: <span class="ident">Config</span>) -&gt; <span class="ident">OptsBuilder</span> {
     <span class="kw">let</span> <span class="ident">tcp_port</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">host_information</span>.<span class="ident">port</span>.<span class="ident">parse</span>() {
-        <span class="prelude-val">Ok</span>(<span class="ident">value</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">value</span>,
-        <span class="prelude-val">Err</span>(<span class="kw">_</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="number">3306</span>,
+        <span class="prelude-val">Ok</span>(<span class="ident">value</span>) =&gt; <span class="ident">value</span>,
+        <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="number">3306</span>,
     };
 
     <span class="kw">let</span> <span class="ident">ssl_opts</span> <span class="op">=</span> <span class="ident">SslOpts::default</span>();
@@ -263,15 +263,15 @@
         .<span class="ident">pass</span>(<span class="ident">Option::from</span>(<span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">host_information</span>.<span class="ident">password</span>))
         .<span class="ident">db_name</span>(<span class="ident">Option::from</span>(<span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">database_name</span>))
         .<span class="ident">ssl_opts</span>(<span class="kw">match</span> <span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">host_information</span>.<span class="ident">ssl</span> {
-            <span class="bool-val">false</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
-            <span class="bool-val">true</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="ident">ssl_opts</span>),
+            <span class="bool-val">false</span> =&gt; <span class="prelude-val">None</span>,
+            <span class="bool-val">true</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">ssl_opts</span>),
         });
 
     <span class="kw">return</span> <span class="ident">opts</span>;
 }
 
 <span class="doccomment">/// Create connection with mysql server and return ref</span>
-<span class="kw">fn</span> <span class="ident">get_connection</span>(<span class="ident">config</span>: <span class="ident">Config</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">PooledConn</span><span class="op">&gt;</span> {
+<span class="kw">fn</span> <span class="ident">get_connection</span>(<span class="ident">config</span>: <span class="ident">Config</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">PooledConn</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">pool</span> <span class="op">=</span> <span class="ident">Pool::new</span>(<span class="ident">get_opts</span>(<span class="ident">config</span>))<span class="question-mark">?</span>;
 
     <span class="kw">let</span> <span class="ident">conn</span> <span class="op">=</span> <span class="ident">pool</span>.<span class="ident">get_conn</span>();

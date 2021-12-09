@@ -77,7 +77,7 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">tables</span>;
 
 <span class="doccomment">/// Init new replicator</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init</span>(<span class="ident">args</span>: <span class="ident">Cli</span>) <span class="op">-</span><span class="op">&gt;</span> () {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init</span>(<span class="ident">args</span>: <span class="ident">Cli</span>) -&gt; () {
     <span class="kw">if</span> <span class="ident">args</span>.<span class="ident">overwrite</span> {
         <span class="ident">run_init</span>(<span class="ident">args</span>);
     } <span class="kw">else</span> {
@@ -93,7 +93,7 @@
 }
 
 <span class="doccomment">/// Replicate persistent data</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">replicate</span>(<span class="ident">args</span>: <span class="ident">Cli</span>) <span class="op">-</span><span class="op">&gt;</span> () {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">replicate</span>(<span class="ident">args</span>: <span class="ident">Cli</span>) -&gt; () {
     <span class="kw">let</span> <span class="ident">init_state</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="ident">init_check</span>(<span class="bool-val">false</span>);
 
     <span class="kw">if</span> <span class="ident">init_state</span> {
@@ -104,7 +104,7 @@
 }
 
 <span class="doccomment">/// Migrate persistent data to database</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">migrate</span>(<span class="ident">args</span>: <span class="ident">Cli</span>) <span class="op">-</span><span class="op">&gt;</span> () {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">migrate</span>(<span class="ident">args</span>: <span class="ident">Cli</span>) -&gt; () {
     <span class="kw">let</span> <span class="ident">init_state</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="ident">init_check</span>(<span class="bool-val">false</span>);
 
     <span class="kw">if</span> <span class="ident">init_state</span> {
@@ -115,7 +115,7 @@
 }
 
 <span class="doccomment">/// List all tables or collections</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tables</span>(<span class="ident">args</span>: <span class="ident">Cli</span>) <span class="op">-</span><span class="op">&gt;</span> () {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">tables</span>(<span class="ident">args</span>: <span class="ident">Cli</span>) -&gt; () {
     <span class="kw">let</span> <span class="ident">init_state</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="ident">init_check</span>(<span class="bool-val">false</span>);
 
     <span class="kw">if</span> <span class="ident">init_state</span> {

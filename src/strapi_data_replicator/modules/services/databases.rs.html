@@ -51,21 +51,21 @@
 <span class="kw">mod</span> <span class="ident">mysql</span>;
 
 <span class="doccomment">/// List all tables / collection for given database</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">list</span>(<span class="ident">config</span>: <span class="ident">Config</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">list</span>(<span class="ident">config</span>: <span class="ident">Config</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">database_type</span>: <span class="ident">DATABASES</span> <span class="op">=</span> <span class="ident">get_database_type</span>(<span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">database_type</span>.<span class="ident">clone</span>());
     <span class="kw">return</span> <span class="kw">match</span> <span class="ident">database_type</span> {
-        <span class="ident">DATABASES::MongoDB</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">mongodb::list_tables</span>(<span class="ident">config</span>),
-        <span class="ident">DATABASES::MySQL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">mysql::list_tables</span>(<span class="ident">config</span>),
+        <span class="ident">DATABASES::MongoDB</span> =&gt; <span class="ident">mongodb::list_tables</span>(<span class="ident">config</span>),
+        <span class="ident">DATABASES::MySQL</span> =&gt; <span class="ident">mysql::list_tables</span>(<span class="ident">config</span>),
     };
 }
 
 <span class="doccomment">/// Replicate table or collection</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">replicate_table</span>(<span class="ident">table_name</span>: <span class="ident">String</span>, <span class="ident">config</span>: <span class="ident">Config</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">replicate_table</span>(<span class="ident">table_name</span>: <span class="ident">String</span>, <span class="ident">config</span>: <span class="ident">Config</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">database_type</span>: <span class="ident">DATABASES</span> <span class="op">=</span> <span class="ident">get_database_type</span>(<span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">database_type</span>.<span class="ident">clone</span>());
 
     <span class="kw">return</span> <span class="kw">match</span> <span class="ident">database_type</span> {
-        <span class="ident">DATABASES::MongoDB</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">mongodb::get_table</span>(<span class="ident">table_name</span>, <span class="ident">config</span>),
-        <span class="ident">DATABASES::MySQL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">mysql::get_table</span>(<span class="ident">table_name</span>, <span class="ident">config</span>),
+        <span class="ident">DATABASES::MongoDB</span> =&gt; <span class="ident">mongodb::get_table</span>(<span class="ident">table_name</span>, <span class="ident">config</span>),
+        <span class="ident">DATABASES::MySQL</span> =&gt; <span class="ident">mysql::get_table</span>(<span class="ident">table_name</span>, <span class="ident">config</span>),
     };
 }
 
@@ -74,17 +74,17 @@
     <span class="kw">let</span> <span class="ident">database_type</span>: <span class="ident">DATABASES</span> <span class="op">=</span> <span class="ident">get_database_type</span>(<span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">database_type</span>.<span class="ident">clone</span>());
 
     <span class="kw">return</span> <span class="kw">match</span> <span class="ident">database_type</span> {
-        <span class="ident">DATABASES::MongoDB</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">mongodb::import_table</span>(<span class="ident">data</span>, <span class="ident">table</span>, <span class="ident">config</span>),
-        <span class="ident">DATABASES::MySQL</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">mysql::import_table</span>(<span class="ident">data</span>, <span class="ident">table</span>, <span class="ident">config</span>),
+        <span class="ident">DATABASES::MongoDB</span> =&gt; <span class="ident">mongodb::import_table</span>(<span class="ident">data</span>, <span class="ident">table</span>, <span class="ident">config</span>),
+        <span class="ident">DATABASES::MySQL</span> =&gt; <span class="ident">mysql::import_table</span>(<span class="ident">data</span>, <span class="ident">table</span>, <span class="ident">config</span>),
     };
 }
 
 <span class="doccomment">/// Return typ of database</span>
-<span class="kw">fn</span> <span class="ident">get_database_type</span>(<span class="ident">string</span>: <span class="ident">String</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DATABASES</span> {
+<span class="kw">fn</span> <span class="ident">get_database_type</span>(<span class="ident">string</span>: <span class="ident">String</span>) -&gt; <span class="ident">DATABASES</span> {
     <span class="kw">return</span> <span class="kw">match</span> <span class="ident">string</span>.<span class="ident">as_str</span>() {
-        <span class="string">&quot;mysql&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">DATABASES::MySQL</span>,
-        <span class="string">&quot;mongodb&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">DATABASES::MongoDB</span>,
-        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">DATABASES::MySQL</span>,
+        <span class="string">&quot;mysql&quot;</span> =&gt; <span class="ident">DATABASES::MySQL</span>,
+        <span class="string">&quot;mongodb&quot;</span> =&gt; <span class="ident">DATABASES::MongoDB</span>,
+        <span class="kw">_</span> =&gt; <span class="ident">DATABASES::MySQL</span>,
     };
 }
 

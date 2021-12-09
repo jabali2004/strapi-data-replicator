@@ -96,7 +96,7 @@
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">run_replicate</span>(<span class="ident">args</span>: <span class="ident">Cli</span>) {
     <span class="kw">let</span> <span class="ident">config</span>: <span class="ident">Config</span>;
 
-    <span class="kw">if</span> <span class="ident">args</span>.<span class="ident">use_env</span> <span class="op">=</span><span class="op">=</span> <span class="bool-val">true</span> {
+    <span class="kw">if</span> <span class="ident">args</span>.<span class="ident">use_env</span> <span class="op">==</span> <span class="bool-val">true</span> {
         <span class="ident">config</span> <span class="op">=</span> <span class="ident">get_config_using_env</span>();
     } <span class="kw">else</span> {
         <span class="ident">config</span> <span class="op">=</span> <span class="ident">read_config_file</span>();
@@ -108,9 +108,9 @@
     <span class="kw">let</span> <span class="ident">next_version</span> <span class="op">=</span> <span class="ident">get_next_version</span>();
 
     <span class="kw">let</span> <span class="ident">file_ending</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">database_type</span>.<span class="ident">as_str</span>() {
-        <span class="string">&quot;mongodb&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">String::from</span>(<span class="string">&quot;json&quot;</span>),
-        <span class="string">&quot;mysql&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">String::from</span>(<span class="string">&quot;sql&quot;</span>),
-        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">String::from</span>(<span class="string">&quot;sql&quot;</span>),
+        <span class="string">&quot;mongodb&quot;</span> =&gt; <span class="ident">String::from</span>(<span class="string">&quot;json&quot;</span>),
+        <span class="string">&quot;mysql&quot;</span> =&gt; <span class="ident">String::from</span>(<span class="string">&quot;sql&quot;</span>),
+        <span class="kw">_</span> =&gt; <span class="ident">String::from</span>(<span class="string">&quot;sql&quot;</span>),
     };
 
     <span class="ident">create_dir</span>(<span class="macro">format!</span>(<span class="string">&quot;{}{}&quot;</span>, <span class="ident">path</span>, <span class="ident">next_version</span>)).<span class="ident">expect</span>(<span class="string">&quot;Could not create directory!&quot;</span>);

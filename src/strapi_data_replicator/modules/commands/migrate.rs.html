@@ -81,7 +81,7 @@
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">run_migrate</span>(<span class="ident">args</span>: <span class="ident">Cli</span>) {
     <span class="kw">let</span> <span class="ident">config</span>: <span class="ident">Config</span>;
 
-    <span class="kw">if</span> <span class="ident">args</span>.<span class="ident">use_env</span> <span class="op">=</span><span class="op">=</span> <span class="bool-val">true</span> {
+    <span class="kw">if</span> <span class="ident">args</span>.<span class="ident">use_env</span> <span class="op">==</span> <span class="bool-val">true</span> {
         <span class="ident">config</span> <span class="op">=</span> <span class="ident">get_config_using_env</span>();
     } <span class="kw">else</span> {
         <span class="ident">config</span> <span class="op">=</span> <span class="ident">read_config_file</span>();
@@ -115,9 +115,9 @@
                 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">filename</span> <span class="op">=</span> <span class="ident">_path</span>.<span class="ident">file_name</span>().<span class="ident">to_string_lossy</span>().<span class="ident">to_string</span>();
                 <span class="comment">// remove &#39;.sql&#39; / &#39;.json&#39;</span>
                 <span class="kw">match</span> <span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">database_type</span>.<span class="ident">borrow</span>() {
-                    <span class="string">&quot;mongodb&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">filename</span>.<span class="ident">truncate</span>(<span class="ident">filename</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="number">5</span>),
-                    <span class="string">&quot;mysql&quot;</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">filename</span>.<span class="ident">truncate</span>(<span class="ident">filename</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="number">4</span>),
-                    <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">filename</span>.<span class="ident">truncate</span>(<span class="ident">filename</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="number">4</span>),
+                    <span class="string">&quot;mongodb&quot;</span> =&gt; <span class="ident">filename</span>.<span class="ident">truncate</span>(<span class="ident">filename</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="number">5</span>),
+                    <span class="string">&quot;mysql&quot;</span> =&gt; <span class="ident">filename</span>.<span class="ident">truncate</span>(<span class="ident">filename</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="number">4</span>),
+                    <span class="kw">_</span> =&gt; <span class="ident">filename</span>.<span class="ident">truncate</span>(<span class="ident">filename</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="number">4</span>),
                 }
 
                 <span class="ident">databases::migrate_table</span>(<span class="ident">data</span>.<span class="ident">unwrap</span>(), <span class="ident">filename</span>.<span class="ident">clone</span>(), <span class="ident">config</span>.<span class="ident">clone</span>());

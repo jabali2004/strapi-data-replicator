@@ -150,7 +150,7 @@
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::modules::types::config::Config</span>;
 
 <span class="doccomment">/// List all tables for given database</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">list_tables</span>(<span class="ident">config</span>: <span class="ident">Config</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">list_tables</span>(<span class="ident">config</span>: <span class="ident">Config</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">database</span> <span class="op">=</span> <span class="ident">get_connection</span>(<span class="ident">config</span>);
     <span class="kw">let</span> <span class="ident">collections</span> <span class="op">=</span> <span class="ident">database</span>.<span class="ident">list_collection_names</span>(<span class="prelude-val">None</span>).<span class="ident">expect</span>(<span class="string">&quot;Error!&quot;</span>);
 
@@ -162,7 +162,7 @@
 }
 
 <span class="doccomment">/// Return table as json string</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_table</span>(<span class="ident">table_name</span>: <span class="ident">String</span>, <span class="ident">config</span>: <span class="ident">Config</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_table</span>(<span class="ident">table_name</span>: <span class="ident">String</span>, <span class="ident">config</span>: <span class="ident">Config</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">database</span> <span class="op">=</span> <span class="ident">get_connection</span>(<span class="ident">config</span>);
     <span class="kw">let</span> <span class="ident">collection</span> <span class="op">=</span> <span class="ident">database</span>.<span class="ident">collection</span>(<span class="kw-2">&amp;</span><span class="ident">table_name</span>);
 
@@ -187,7 +187,7 @@
 }
 
 <span class="comment">// Import collection given as json string</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">import_table</span>(<span class="ident">json</span>: <span class="ident">String</span>, <span class="ident">table_name</span>: <span class="ident">String</span>, <span class="ident">config</span>: <span class="ident">Config</span>) <span class="op">-</span><span class="op">&gt;</span> () {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">import_table</span>(<span class="ident">json</span>: <span class="ident">String</span>, <span class="ident">table_name</span>: <span class="ident">String</span>, <span class="ident">config</span>: <span class="ident">Config</span>) -&gt; () {
     <span class="kw">let</span> <span class="ident">database</span> <span class="op">=</span> <span class="ident">get_connection</span>(<span class="ident">config</span>);
     <span class="kw">let</span> <span class="ident">collection</span> <span class="op">=</span> <span class="ident">database</span>.<span class="ident">collection</span>(<span class="kw-2">&amp;</span><span class="ident">table_name</span>);
 
@@ -212,7 +212,7 @@
 }
 
 <span class="doccomment">/// Get mongodb connection configuration</span>
-<span class="kw">fn</span> <span class="ident">get_opts</span>(<span class="ident">config</span>: <span class="ident">Config</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ClientOptions</span> {
+<span class="kw">fn</span> <span class="ident">get_opts</span>(<span class="ident">config</span>: <span class="ident">Config</span>) -&gt; <span class="ident">ClientOptions</span> {
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">ClientOptions::default</span>();
 
     <span class="kw">let</span> <span class="ident">port</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="ident">config</span>
@@ -236,15 +236,15 @@
     <span class="ident">credentials</span>.<span class="ident">password</span> <span class="op">=</span> <span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">host_information</span>.<span class="ident">password</span>.<span class="ident">into</span>();
 
     <span class="ident">options</span>.<span class="ident">tls</span> <span class="op">=</span> <span class="ident">Option::from</span>(<span class="kw">match</span> <span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">host_information</span>.<span class="ident">ssl</span> {
-        <span class="bool-val">true</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Tls::Enabled</span>(<span class="ident">TlsOptions::default</span>()),
-        <span class="bool-val">false</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">Tls::Disabled</span>,
+        <span class="bool-val">true</span> =&gt; <span class="ident">Tls::Enabled</span>(<span class="ident">TlsOptions::default</span>()),
+        <span class="bool-val">false</span> =&gt; <span class="ident">Tls::Disabled</span>,
     });
 
     <span class="kw">return</span> <span class="ident">options</span>;
 }
 
 <span class="doccomment">/// Create database connection with mongodb server and return ref</span>
-<span class="kw">fn</span> <span class="ident">get_connection</span>(<span class="ident">config</span>: <span class="ident">Config</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Database</span> {
+<span class="kw">fn</span> <span class="ident">get_connection</span>(<span class="ident">config</span>: <span class="ident">Config</span>) -&gt; <span class="ident">Database</span> {
     <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">get_opts</span>(<span class="ident">config</span>.<span class="ident">clone</span>());
     <span class="kw">let</span> <span class="ident">client</span> <span class="op">=</span> <span class="ident">Client::with_options</span>(<span class="ident">options</span>).<span class="ident">expect</span>(<span class="string">&quot;Error while connecting to mongodb server!&quot;</span>);
 

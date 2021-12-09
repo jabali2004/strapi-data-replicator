@@ -37,10 +37,10 @@
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::modules::types::config::Config</span>;
 
 <span class="doccomment">/// Print all tables</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">run_tables</span>(<span class="ident">args</span>: <span class="ident">Cli</span>) <span class="op">-</span><span class="op">&gt;</span> () {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">run_tables</span>(<span class="ident">args</span>: <span class="ident">Cli</span>) -&gt; () {
     <span class="kw">let</span> <span class="ident">config</span>: <span class="ident">Config</span>;
 
-    <span class="kw">if</span> <span class="ident">args</span>.<span class="ident">use_env</span> <span class="op">=</span><span class="op">=</span> <span class="bool-val">true</span> {
+    <span class="kw">if</span> <span class="ident">args</span>.<span class="ident">use_env</span> <span class="op">==</span> <span class="bool-val">true</span> {
         <span class="ident">config</span> <span class="op">=</span> <span class="ident">get_config_using_env</span>();
     } <span class="kw">else</span> {
         <span class="ident">config</span> <span class="op">=</span> <span class="ident">read_config_file</span>();
@@ -55,7 +55,7 @@
 }
 
 <span class="doccomment">/// Return vec with table names</span>
-<span class="kw">fn</span> <span class="ident">get_tables</span>(<span class="ident">config</span>: <span class="ident">Config</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
+<span class="kw">fn</span> <span class="ident">get_tables</span>(<span class="ident">config</span>: <span class="ident">Config</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">raw_tables</span> <span class="op">=</span> <span class="ident">databases::list</span>(<span class="ident">config</span>.<span class="ident">clone</span>());
     <span class="kw">if</span> <span class="ident">raw_tables</span>.<span class="ident">is_some</span>() {
         <span class="kw">let</span> <span class="ident">tables</span> <span class="op">=</span> <span class="ident">raw_tables</span>.<span class="ident">unwrap</span>();
