@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Config",""],["DatabaseConfig",""],["HostInformation",""]]});
+window.SIDEBAR_ITEMS = {"struct":[["Config",""],["DatabaseConfig",""],["HostInformation",""]]};

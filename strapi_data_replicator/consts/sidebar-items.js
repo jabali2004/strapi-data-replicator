@@ -1,1 +1,1 @@
-initSidebarItems({"constant":[["CONFIG_FILE","Path used for storing configuration information"],["DATA_PATH","Path used for storing persistent data"],["SUPPORTED_MONGODB_MAJOR_VERSION",""]],"enum":[["DATABASES","Databases"]]});
+window.SIDEBAR_ITEMS = {"constant":[["CONFIG_FILE","Path used for storing configuration information"],["DATA_PATH","Path used for storing persistent data"],["SUPPORTED_MONGODB_MAJOR_VERSION",""]],"enum":[["DATABASES","Databases"]]};

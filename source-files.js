@@ -1,3 +1,4 @@
-var sourcesIndex = {};
-sourcesIndex["strapi_data_replicator"] = {"name":"","dirs":[{"name":"modules","dirs":[{"name":"commands","files":["init.rs","migrate.rs","replicate.rs","tables.rs"]},{"name":"services","dirs":[{"name":"databases","files":["mongodb.rs","mysql.rs"]}],"files":["databases.rs","utils.rs"]},{"name":"types","files":["build_info.rs","cli.rs","config.rs","package_json.rs"]}],"files":["commands.rs","services.rs","types.rs"]}],"files":["consts.rs","main.rs","modules.rs"]};
+var sourcesIndex = JSON.parse('{\
+"strapi_data_replicator":["",[["modules",[["commands",[],["init.rs","migrate.rs","replicate.rs","tables.rs"]],["services",[["databases",[],["mongodb.rs","mysql.rs"]]],["databases.rs","utils.rs"]],["types",[],["build_info.rs","cli.rs","config.rs","package_json.rs"]]],["commands.rs","services.rs","types.rs"]]],["consts.rs","main.rs","modules.rs"]]\
+}');
 createSourceSidebar();

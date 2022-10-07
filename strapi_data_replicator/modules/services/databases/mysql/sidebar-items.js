@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["get_connection","Create connection with mysql server and return ref"],["get_opts","Get mysql connection configuration"],["get_table","Return table as sql string using mysqldump"],["import_table",""],["list_tables","List all tables for given database"]]});
+window.SIDEBAR_ITEMS = {"fn":[["get_connection","Create connection with mysql server and return ref"],["get_opts","Get mysql connection configuration"],["get_table","Return table as sql string using mysqldump"],["import_table",""],["list_tables","List all tables for given database"]]};
