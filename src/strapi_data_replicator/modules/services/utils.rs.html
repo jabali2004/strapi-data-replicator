@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/modules/services/utils.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>utils.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../strapi_data_replicator/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../../strapi_data_replicator/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../strapi_data_replicator/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/modules/services/utils.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>utils.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../../normalize.css"><link rel="stylesheet" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../../ayu.css" disabled><link rel="stylesheet" href="../../../../dark.css" disabled><link rel="stylesheet" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../strapi_data_replicator/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../../strapi_data_replicator/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../strapi_data_replicator/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -216,223 +216,223 @@
 <span id="216">216</span>
 <span id="217">217</span>
 <span id="218">218</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::env</span>;
-<span class="kw">use</span> <span class="ident">std::fs</span>::{<span class="ident">create_dir</span>, <span class="ident">read_dir</span>, <span class="ident">File</span>, <span class="ident">ReadDir</span>};
-<span class="kw">use</span> <span class="ident">std::io</span>::{<span class="ident">stdin</span>, <span class="ident">stdout</span>, <span class="ident">BufReader</span>, <span class="ident">Write</span>};
-<span class="kw">use</span> <span class="ident">std::path::Path</span>;
+</pre><pre class="rust"><code><span class="kw">use </span>std::env;
+<span class="kw">use </span>std::fs::{create_dir, read_dir, File, ReadDir};
+<span class="kw">use </span>std::io::{stdin, stdout, BufReader, Write};
+<span class="kw">use </span>std::path::Path;
 
-<span class="kw">use</span> <span class="ident">colored::Colorize</span>;
-<span class="kw">use</span> <span class="ident">humanesort::prelude</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">regex::Regex</span>;
-<span class="kw">use</span> <span class="ident">semver</span>::{<span class="ident">BuildMetadata</span>, <span class="ident">Prerelease</span>, <span class="ident">Version</span>};
+<span class="kw">use </span>colored::Colorize;
+<span class="kw">use </span>humanesort::prelude::<span class="kw-2">*</span>;
+<span class="kw">use </span>regex::Regex;
+<span class="kw">use </span>semver::{BuildMetadata, Prerelease, Version};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::consts</span>::{<span class="ident">CONFIG_FILE</span>, <span class="ident">DATA_PATH</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::modules::types::config</span>::{<span class="ident">Config</span>, <span class="ident">DatabaseConfig</span>, <span class="ident">HostInformation</span>};
+<span class="kw">use </span><span class="kw">crate</span>::consts::{CONFIG_FILE, DATA_PATH};
+<span class="kw">use </span><span class="kw">crate</span>::modules::types::config::{Config, DatabaseConfig, HostInformation};
 
-<span class="doccomment">/// Get next replication version</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_next_version</span>() -&gt; <span class="ident">String</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">version</span>: <span class="ident">Version</span>;
+<span class="doccomment">/// Get next replication version
+</span><span class="kw">pub fn </span>get_next_version() -&gt; String {
+    <span class="kw">let </span><span class="kw-2">mut </span>version: Version;
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">legit_paths</span> <span class="op">=</span> <span class="ident">get_legit_paths</span>();
+    <span class="kw">let </span><span class="kw-2">mut </span>legit_paths = get_legit_paths();
 
-    <span class="comment">// Return first version</span>
-    <span class="kw">if</span> <span class="ident">legit_paths</span>.<span class="ident">is_empty</span>() {
-        <span class="ident">version</span> <span class="op">=</span> <span class="ident">Version</span> {
-            <span class="ident">major</span>: <span class="number">0</span>,
-            <span class="ident">minor</span>: <span class="number">0</span>,
-            <span class="ident">patch</span>: <span class="number">1</span>,
-            <span class="ident">pre</span>: <span class="ident">Prerelease::EMPTY</span>,
-            <span class="ident">build</span>: <span class="ident">BuildMetadata::EMPTY</span>,
+    <span class="comment">// Return first version
+    </span><span class="kw">if </span>legit_paths.is_empty() {
+        version = Version {
+            major: <span class="number">0</span>,
+            minor: <span class="number">0</span>,
+            patch: <span class="number">1</span>,
+            pre: Prerelease::EMPTY,
+            build: BuildMetadata::EMPTY,
         };
 
-        <span class="kw">return</span> <span class="ident">version</span>.<span class="ident">to_string</span>();
+        <span class="kw">return </span>version.to_string();
     }
 
-    <span class="ident">legit_paths</span>.<span class="ident">humane_sort</span>();
+    legit_paths.humane_sort();
 
-    <span class="kw">let</span> <span class="ident">last_path</span> <span class="op">=</span> <span class="ident">legit_paths</span>.<span class="ident">last</span>().<span class="ident">unwrap</span>();
+    <span class="kw">let </span>last_path = legit_paths.last().unwrap();
 
-    <span class="ident">version</span> <span class="op">=</span> <span class="ident">Version::parse</span>(<span class="ident">last_path</span>).<span class="ident">expect</span>(<span class="string">&quot;Could not parse version!&quot;</span>);
+    version = Version::parse(last_path).expect(<span class="string">&quot;Could not parse version!&quot;</span>);
 
-    <span class="comment">// Increment version | 10 is max</span>
-    <span class="kw">if</span> <span class="ident">version</span>.<span class="ident">patch</span> <span class="op">==</span> <span class="number">10</span> {
-        <span class="ident">version</span>.<span class="ident">patch</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">if</span> <span class="ident">version</span>.<span class="ident">minor</span> <span class="op">==</span> <span class="number">10</span> {
-            <span class="ident">version</span>.<span class="ident">minor</span> <span class="op">=</span> <span class="number">0</span>;
-            <span class="ident">version</span>.<span class="ident">major</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-        } <span class="kw">else</span> {
-            <span class="ident">version</span>.<span class="ident">minor</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+    <span class="comment">// Increment version | 10 is max
+    </span><span class="kw">if </span>version.patch == <span class="number">10 </span>{
+        version.patch = <span class="number">0</span>;
+        <span class="kw">if </span>version.minor == <span class="number">10 </span>{
+            version.minor = <span class="number">0</span>;
+            version.major += <span class="number">1</span>;
+        } <span class="kw">else </span>{
+            version.minor += <span class="number">1</span>;
         }
-    } <span class="kw">else</span> {
-        <span class="ident">version</span>.<span class="ident">patch</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
+    } <span class="kw">else </span>{
+        version.patch += <span class="number">1</span>;
     }
 
-    <span class="kw">return</span> <span class="ident">version</span>.<span class="ident">to_string</span>();
+    <span class="kw">return </span>version.to_string();
 }
 
-<span class="doccomment">/// Return latest replication version</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_latest_replication_version</span>() -&gt; <span class="ident">String</span> {
-    <span class="kw">let</span> <span class="ident">version</span>: <span class="ident">Version</span>;
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">legit_paths</span> <span class="op">=</span> <span class="ident">get_legit_paths</span>();
+<span class="doccomment">/// Return latest replication version
+</span><span class="kw">pub fn </span>get_latest_replication_version() -&gt; String {
+    <span class="kw">let </span>version: Version;
+    <span class="kw">let </span><span class="kw-2">mut </span>legit_paths = get_legit_paths();
 
-    <span class="ident">legit_paths</span>.<span class="ident">humane_sort</span>();
+    legit_paths.humane_sort();
 
-    <span class="kw">let</span> <span class="ident">last_path</span> <span class="op">=</span> <span class="ident">legit_paths</span>.<span class="ident">last</span>().<span class="ident">unwrap</span>();
+    <span class="kw">let </span>last_path = legit_paths.last().unwrap();
 
-    <span class="ident">version</span> <span class="op">=</span> <span class="ident">Version::parse</span>(<span class="ident">last_path</span>).<span class="ident">expect</span>(<span class="string">&quot;Could not parse version!&quot;</span>);
+    version = Version::parse(last_path).expect(<span class="string">&quot;Could not parse version!&quot;</span>);
 
-    <span class="kw">return</span> <span class="ident">version</span>.<span class="ident">to_string</span>();
+    <span class="kw">return </span>version.to_string();
 }
 
-<span class="doccomment">/// Verify given replication version</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">verify_replication_version</span>(<span class="ident">version</span>: <span class="ident">String</span>) -&gt; <span class="ident">bool</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">version_exists</span>: <span class="ident">bool</span> <span class="op">=</span> <span class="bool-val">false</span>;
-    <span class="kw">let</span> <span class="ident">legit_paths</span> <span class="op">=</span> <span class="ident">get_legit_paths</span>();
+<span class="doccomment">/// Verify given replication version
+</span><span class="kw">pub fn </span>verify_replication_version(version: String) -&gt; bool {
+    <span class="kw">let </span><span class="kw-2">mut </span>version_exists: bool = <span class="bool-val">false</span>;
+    <span class="kw">let </span>legit_paths = get_legit_paths();
 
-    <span class="kw">for</span> <span class="ident">legit_path</span> <span class="kw">in</span> <span class="ident">legit_paths</span> {
-        <span class="kw">if</span> <span class="ident">legit_path</span> <span class="op">==</span> <span class="ident">version</span> {
-            <span class="ident">Version::parse</span>(<span class="ident">legit_path</span>.<span class="ident">as_str</span>()).<span class="ident">expect</span>(<span class="string">&quot;Could not parse version!&quot;</span>);
-            <span class="ident">version_exists</span> <span class="op">=</span> <span class="bool-val">true</span>;
+    <span class="kw">for </span>legit_path <span class="kw">in </span>legit_paths {
+        <span class="kw">if </span>legit_path == version {
+            Version::parse(legit_path.as_str()).expect(<span class="string">&quot;Could not parse version!&quot;</span>);
+            version_exists = <span class="bool-val">true</span>;
             <span class="kw">break</span>;
         }
     }
 
-    <span class="kw">return</span> <span class="ident">version_exists</span>;
+    <span class="kw">return </span>version_exists;
 }
 
-<span class="doccomment">/// Return ReadDir for all replications files of specific version</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_replication_file_paths</span>(<span class="ident">version</span>: <span class="ident">String</span>) -&gt; <span class="ident">ReadDir</span> {
-    <span class="kw">let</span> <span class="ident">paths</span> <span class="op">=</span> <span class="ident">read_dir</span>(<span class="macro">format!</span>(<span class="string">&quot;{}{}&quot;</span>, <span class="ident">DATA_PATH</span>, <span class="ident">version</span>)).<span class="ident">expect</span>(<span class="string">&quot;Cannot read directory!&quot;</span>);
+<span class="doccomment">/// Return ReadDir for all replications files of specific version
+</span><span class="kw">pub fn </span>read_replication_file_paths(version: String) -&gt; ReadDir {
+    <span class="kw">let </span>paths = read_dir(<span class="macro">format!</span>(<span class="string">&quot;{}{}&quot;</span>, DATA_PATH, version)).expect(<span class="string">&quot;Cannot read directory!&quot;</span>);
 
-    <span class="kw">return</span> <span class="ident">paths</span>;
+    <span class="kw">return </span>paths;
 }
 
-<span class="doccomment">/// Create data dir if directory does not exist</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">create_data_dir</span>() {
-    <span class="kw">if</span> <span class="op">!</span><span class="ident">Path::new</span>(<span class="ident">DATA_PATH</span>).<span class="ident">exists</span>() {
-        <span class="ident">create_dir</span>(<span class="ident">DATA_PATH</span>).<span class="ident">expect</span>(<span class="string">&quot;Could not create directory!&quot;</span>);
+<span class="doccomment">/// Create data dir if directory does not exist
+</span><span class="kw">pub fn </span>create_data_dir() {
+    <span class="kw">if </span>!Path::new(DATA_PATH).exists() {
+        create_dir(DATA_PATH).expect(<span class="string">&quot;Could not create directory!&quot;</span>);
     }
 }
 
-<span class="doccomment">/// Check if project is already existent</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">init_check</span>(<span class="ident">print_message</span>: <span class="ident">bool</span>) -&gt; <span class="ident">bool</span> {
-    <span class="kw">if</span> <span class="op">!</span><span class="ident">check_path_existence</span>(<span class="ident">CONFIG_FILE</span>, <span class="ident">print_message</span>) {
-        <span class="kw">return</span> <span class="bool-val">false</span>;
+<span class="doccomment">/// Check if project is already existent
+</span><span class="kw">pub fn </span>init_check(print_message: bool) -&gt; bool {
+    <span class="kw">if </span>!check_path_existence(CONFIG_FILE, print_message) {
+        <span class="kw">return </span><span class="bool-val">false</span>;
     }
-    <span class="comment">// Check if config file already exists</span>
-    <span class="ident">read_config_file</span>();
+    <span class="comment">// Check if config file already exists
+    </span>read_config_file();
 
-    <span class="kw">return</span> <span class="bool-val">true</span>;
+    <span class="kw">return </span><span class="bool-val">true</span>;
 }
 
-<span class="doccomment">/// Read config file and return config</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">read_config_file</span>() -&gt; <span class="ident">Config</span> {
-    <span class="comment">// Open the file in read-only mode with buffer.</span>
-    <span class="comment">// let file = File::open(CONFIG_FILE).expect(&quot;Unable to read file!&quot;);</span>
-    <span class="kw">let</span> <span class="ident">file</span> <span class="op">=</span> <span class="ident">File::open</span>(<span class="ident">CONFIG_FILE</span>);
+<span class="doccomment">/// Read config file and return config
+</span><span class="kw">pub fn </span>read_config_file() -&gt; Config {
+    <span class="comment">// Open the file in read-only mode with buffer.
+    // let file = File::open(CONFIG_FILE).expect(&quot;Unable to read file!&quot;);
+    </span><span class="kw">let </span>file = File::open(CONFIG_FILE);
 
-    <span class="kw">let</span> <span class="ident">file</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">file</span> {
-        <span class="prelude-val">Ok</span>(<span class="ident">file</span>) =&gt; <span class="ident">file</span>,
-        <span class="prelude-val">Err</span>(<span class="ident">error</span>) =&gt; <span class="macro">panic!</span>(<span class="string">&quot;Problem with opening the file: {:?}&quot;</span>, <span class="ident">error</span>),
+    <span class="kw">let </span>file = <span class="kw">match </span>file {
+        <span class="prelude-val">Ok</span>(file) =&gt; file,
+        <span class="prelude-val">Err</span>(error) =&gt; <span class="macro">panic!</span>(<span class="string">&quot;Problem with opening the file: {:?}&quot;</span>, error),
     };
 
-    <span class="kw">let</span> <span class="ident">reader</span> <span class="op">=</span> <span class="ident">BufReader::new</span>(<span class="ident">file</span>);
+    <span class="kw">let </span>reader = BufReader::new(file);
 
-    <span class="comment">// Read the JSON contents of the file as an instance of `Config`.</span>
-    <span class="kw">let</span> <span class="ident">config</span>: <span class="ident">Config</span> <span class="op">=</span> <span class="ident">serde_json::from_reader</span>(<span class="ident">reader</span>).<span class="ident">expect</span>(<span class="string">&quot;Unable to parse string to json!&quot;</span>);
+    <span class="comment">// Read the JSON contents of the file as an instance of `Config`.
+    </span><span class="kw">let </span>config: Config = serde_json::from_reader(reader).expect(<span class="string">&quot;Unable to parse string to json!&quot;</span>);
 
-    <span class="kw">return</span> <span class="ident">config</span>;
+    <span class="kw">return </span>config;
 }
 
-<span class="doccomment">/// Return config using environment variables</span>
-<span class="doccomment">/// and the config file for replicated tables</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_config_using_env</span>() -&gt; <span class="ident">Config</span> {
-    <span class="kw">let</span> <span class="ident">file_config</span> <span class="op">=</span> <span class="ident">read_config_file</span>();
+<span class="doccomment">/// Return config using environment variables
+/// and the config file for replicated tables
+</span><span class="kw">pub fn </span>get_config_using_env() -&gt; Config {
+    <span class="kw">let </span>file_config = read_config_file();
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">config</span> <span class="op">=</span> <span class="ident">Config</span> {
-        <span class="ident">strapi_version</span>: <span class="string">&quot;&quot;</span>.<span class="ident">to_string</span>(),
-        <span class="ident">database</span>: <span class="ident">DatabaseConfig</span> {
-            <span class="ident">database_type</span>: <span class="ident">get_config_string</span>(<span class="string">&quot;DATABASE_TYPE&quot;</span>),
-            <span class="ident">database_version</span>: <span class="ident">get_config_string</span>(<span class="string">&quot;DATABASE_VERSION&quot;</span>),
-            <span class="ident">database_name</span>: <span class="ident">get_config_string</span>(<span class="string">&quot;DATABASE_NAME&quot;</span>),
-            <span class="ident">host_information</span>: <span class="ident">HostInformation</span> {
-                <span class="ident">address</span>: <span class="ident">get_config_string</span>(<span class="string">&quot;DATABASE_HOST&quot;</span>),
-                <span class="ident">port</span>: <span class="ident">get_config_string</span>(<span class="string">&quot;DATABASE_PORT&quot;</span>),
-                <span class="ident">username</span>: <span class="ident">get_config_string</span>(<span class="string">&quot;DATABASE_USERNAME&quot;</span>),
-                <span class="ident">password</span>: <span class="ident">get_config_string</span>(<span class="string">&quot;DATABASE_PASSWORD&quot;</span>),
-                <span class="ident">ssl</span>: <span class="kw">match</span> <span class="ident">get_config_string</span>(<span class="string">&quot;DATABASE_SSL&quot;</span>).<span class="ident">parse</span>() {
-                    <span class="prelude-val">Ok</span>(<span class="ident">value</span>) =&gt; <span class="ident">value</span>,
+    <span class="kw">let </span><span class="kw-2">mut </span>config = Config {
+        strapi_version: <span class="string">&quot;&quot;</span>.to_string(),
+        database: DatabaseConfig {
+            database_type: get_config_string(<span class="string">&quot;DATABASE_TYPE&quot;</span>),
+            database_version: get_config_string(<span class="string">&quot;DATABASE_VERSION&quot;</span>),
+            database_name: get_config_string(<span class="string">&quot;DATABASE_NAME&quot;</span>),
+            host_information: HostInformation {
+                address: get_config_string(<span class="string">&quot;DATABASE_HOST&quot;</span>),
+                port: get_config_string(<span class="string">&quot;DATABASE_PORT&quot;</span>),
+                username: get_config_string(<span class="string">&quot;DATABASE_USERNAME&quot;</span>),
+                password: get_config_string(<span class="string">&quot;DATABASE_PASSWORD&quot;</span>),
+                ssl: <span class="kw">match </span>get_config_string(<span class="string">&quot;DATABASE_SSL&quot;</span>).parse() {
+                    <span class="prelude-val">Ok</span>(value) =&gt; value,
                     <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="bool-val">false</span>,
                 },
             },
         },
-        <span class="ident">replicated</span>: <span class="macro">vec!</span>[],
+        replicated: <span class="macro">vec!</span>[],
     };
 
-    <span class="ident">config</span>.<span class="ident">replicated</span> <span class="op">=</span> <span class="ident">file_config</span>.<span class="ident">replicated</span>.<span class="ident">clone</span>();
+    config.replicated = file_config.replicated.clone();
 
-    <span class="kw">return</span> <span class="ident">config</span>;
+    <span class="kw">return </span>config;
 }
 
-<span class="doccomment">/// Request user input with given string as explanation</span>
-<span class="doccomment">/// and return it</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_config_input</span>(<span class="ident">variable_text</span>: <span class="ident">String</span>) -&gt; <span class="ident">String</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">String::new</span>();
-    <span class="macro">print!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">variable_text</span>);
-    <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">stdout</span>().<span class="ident">flush</span>();
-    <span class="ident">stdin</span>()
-        .<span class="ident">read_line</span>(<span class="kw-2">&amp;mut</span> <span class="ident">s</span>)
-        .<span class="ident">expect</span>(<span class="string">&quot;Did not enter a correct string&quot;</span>);
+<span class="doccomment">/// Request user input with given string as explanation
+/// and return it
+</span><span class="kw">pub fn </span>get_config_input(variable_text: String) -&gt; String {
+    <span class="kw">let </span><span class="kw-2">mut </span>s = String::new();
+    <span class="macro">print!</span>(<span class="string">&quot;{}&quot;</span>, variable_text);
+    <span class="kw">let _ </span>= stdout().flush();
+    stdin()
+        .read_line(<span class="kw-2">&amp;mut </span>s)
+        .expect(<span class="string">&quot;Did not enter a correct string&quot;</span>);
 
-    <span class="kw">return</span> <span class="ident">s</span>.<span class="ident">split_whitespace</span>().<span class="ident">collect</span>();
+    <span class="kw">return </span>s.split_whitespace().collect();
 }
 
-<span class="doccomment">/// Make environment variable to lowercase and remove whitespaces</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_config_string</span>(<span class="ident">key</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">String</span> {
-    <span class="kw">let</span> <span class="ident">formatted_string</span>: <span class="ident">String</span>;
+<span class="doccomment">/// Make environment variable to lowercase and remove whitespaces
+</span><span class="kw">pub fn </span>get_config_string(key: <span class="kw-2">&amp;</span>str) -&gt; String {
+    <span class="kw">let </span>formatted_string: String;
 
-    <span class="kw">let</span> <span class="ident">option_string</span> <span class="op">=</span> <span class="ident">env::var</span>(<span class="ident">key</span>);
+    <span class="kw">let </span>option_string = env::var(key);
 
-    <span class="ident">formatted_string</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">option_string</span> {
-        <span class="prelude-val">Ok</span>(<span class="ident">env</span>) =&gt; <span class="ident">env</span>,
-        <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="ident">String::new</span>(),
+    formatted_string = <span class="kw">match </span>option_string {
+        <span class="prelude-val">Ok</span>(env) =&gt; env,
+        <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; String::new(),
     }
-    .<span class="ident">split_whitespace</span>()
-    .<span class="ident">collect</span>();
+    .split_whitespace()
+    .collect();
 
-    <span class="kw">return</span> <span class="ident">formatted_string</span>;
+    <span class="kw">return </span>formatted_string;
 }
 
-<span class="doccomment">/// Check if given file exists</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">check_path_existence</span>(<span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">print_message</span>: <span class="ident">bool</span>) -&gt; <span class="ident">bool</span> {
-    <span class="comment">// Check if path and file exists</span>
-    <span class="kw">if</span> <span class="op">!</span><span class="ident">Path::new</span>(<span class="ident">path</span>).<span class="ident">exists</span>() {
-        <span class="kw">if</span> <span class="ident">print_message</span> {
-            <span class="kw">let</span> <span class="ident">error_message</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;Path {} does not exist!&quot;</span>, <span class="ident">path</span>);
-            <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">error_message</span>.<span class="ident">red</span>());
+<span class="doccomment">/// Check if given file exists
+</span><span class="kw">pub fn </span>check_path_existence(path: <span class="kw-2">&amp;</span>str, print_message: bool) -&gt; bool {
+    <span class="comment">// Check if path and file exists
+    </span><span class="kw">if </span>!Path::new(path).exists() {
+        <span class="kw">if </span>print_message {
+            <span class="kw">let </span>error_message = <span class="macro">format!</span>(<span class="string">&quot;Path {} does not exist!&quot;</span>, path);
+            <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, error_message.red());
         }
 
-        <span class="kw">return</span> <span class="bool-val">false</span>;
+        <span class="kw">return </span><span class="bool-val">false</span>;
     }
 
-    <span class="kw">return</span> <span class="bool-val">true</span>;
+    <span class="kw">return </span><span class="bool-val">true</span>;
 }
 
-<span class="doccomment">/// Get legit paths in data dir</span>
-<span class="kw">fn</span> <span class="ident">get_legit_paths</span>() -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">regex</span> <span class="op">=</span> <span class="ident">Regex::new</span>(<span class="string">&quot;^(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)$&quot;</span>).<span class="ident">unwrap</span>();
-    <span class="kw">let</span> <span class="ident">paths</span> <span class="op">=</span> <span class="ident">read_dir</span>(<span class="ident">DATA_PATH</span>).<span class="ident">expect</span>(<span class="string">&quot;Cannot read directory!&quot;</span>);
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">legit_paths</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
+<span class="doccomment">/// Get legit paths in data dir
+</span><span class="kw">fn </span>get_legit_paths() -&gt; Vec&lt;String&gt; {
+    <span class="kw">let </span>regex = Regex::new(<span class="string">&quot;^(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)$&quot;</span>).unwrap();
+    <span class="kw">let </span>paths = read_dir(DATA_PATH).expect(<span class="string">&quot;Cannot read directory!&quot;</span>);
+    <span class="kw">let </span><span class="kw-2">mut </span>legit_paths: Vec&lt;String&gt; = <span class="macro">vec!</span>[];
 
-    <span class="kw">for</span> <span class="ident">path</span> <span class="kw">in</span> <span class="ident">paths</span> {
-        <span class="kw">let</span> <span class="ident">file_name</span> <span class="op">=</span> <span class="ident">path</span>.<span class="ident">unwrap</span>().<span class="ident">file_name</span>().<span class="ident">to_string_lossy</span>().<span class="ident">to_string</span>();
+    <span class="kw">for </span>path <span class="kw">in </span>paths {
+        <span class="kw">let </span>file_name = path.unwrap().file_name().to_string_lossy().to_string();
 
-        <span class="kw">if</span> <span class="ident">regex</span>.<span class="ident">is_match</span>(<span class="kw-2">&amp;</span><span class="ident">file_name</span>.<span class="ident">as_str</span>()) {
-            <span class="ident">legit_paths</span>.<span class="ident">push</span>(<span class="ident">file_name</span>)
+        <span class="kw">if </span>regex.is_match(<span class="kw-2">&amp;</span>file_name.as_str()) {
+            legit_paths.push(file_name)
         }
     }
 
-    <span class="kw">return</span> <span class="ident">legit_paths</span>;
+    <span class="kw">return </span>legit_paths;
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="strapi_data_replicator" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="strapi_data_replicator" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

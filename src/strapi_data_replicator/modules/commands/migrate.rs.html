@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/modules/commands/migrate.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>migrate.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../strapi_data_replicator/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../../strapi_data_replicator/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../strapi_data_replicator/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/modules/commands/migrate.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>migrate.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../../normalize.css"><link rel="stylesheet" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../../ayu.css" disabled><link rel="stylesheet" href="../../../../dark.css" disabled><link rel="stylesheet" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../strapi_data_replicator/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../../strapi_data_replicator/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../strapi_data_replicator/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -64,71 +64,71 @@
 <span id="64">64</span>
 <span id="65">65</span>
 <span id="66">66</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::borrow::Borrow</span>;
+</pre><pre class="rust"><code><span class="kw">use </span>std::borrow::Borrow;
 
-<span class="kw">use</span> <span class="ident">colored::Colorize</span>;
-<span class="kw">use</span> <span class="ident">quicli::fs::read_file</span>;
+<span class="kw">use </span>colored::Colorize;
+<span class="kw">use </span>quicli::fs::read_file;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::consts::DATA_PATH</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::modules::services::databases</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::modules::services::utils</span>::{
-    <span class="ident">check_path_existence</span>, <span class="ident">get_config_using_env</span>, <span class="ident">get_latest_replication_version</span>, <span class="ident">read_config_file</span>,
-    <span class="ident">read_replication_file_paths</span>, <span class="ident">verify_replication_version</span>,
+<span class="kw">use </span><span class="kw">crate</span>::consts::DATA_PATH;
+<span class="kw">use </span><span class="kw">crate</span>::modules::services::databases;
+<span class="kw">use </span><span class="kw">crate</span>::modules::services::utils::{
+    check_path_existence, get_config_using_env, get_latest_replication_version, read_config_file,
+    read_replication_file_paths, verify_replication_version,
 };
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::modules::types::cli::Cli</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::modules::types::config::Config</span>;
+<span class="kw">use </span><span class="kw">crate</span>::modules::types::cli::Cli;
+<span class="kw">use </span><span class="kw">crate</span>::modules::types::config::Config;
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">run_migrate</span>(<span class="ident">args</span>: <span class="ident">Cli</span>) {
-    <span class="kw">let</span> <span class="ident">config</span>: <span class="ident">Config</span>;
+<span class="kw">pub fn </span>run_migrate(args: Cli) {
+    <span class="kw">let </span>config: Config;
 
-    <span class="kw">if</span> <span class="ident">args</span>.<span class="ident">use_env</span> <span class="op">==</span> <span class="bool-val">true</span> {
-        <span class="ident">config</span> <span class="op">=</span> <span class="ident">get_config_using_env</span>();
-    } <span class="kw">else</span> {
-        <span class="ident">config</span> <span class="op">=</span> <span class="ident">read_config_file</span>();
+    <span class="kw">if </span>args.use_env == <span class="bool-val">true </span>{
+        config = get_config_using_env();
+    } <span class="kw">else </span>{
+        config = read_config_file();
     }
 
-    <span class="kw">let</span> <span class="ident">replication_version</span>: <span class="ident">String</span>;
-    <span class="kw">let</span> <span class="ident">data_path_exists</span> <span class="op">=</span> <span class="ident">check_path_existence</span>(<span class="ident">DATA_PATH</span>, <span class="bool-val">true</span>);
+    <span class="kw">let </span>replication_version: String;
+    <span class="kw">let </span>data_path_exists = check_path_existence(DATA_PATH, <span class="bool-val">true</span>);
 
-    <span class="kw">if</span> <span class="op">!</span><span class="ident">data_path_exists</span> {
+    <span class="kw">if </span>!data_path_exists {
         <span class="kw">return</span>;
     }
 
-    <span class="kw">if</span> <span class="ident">args</span>.<span class="ident">replication_version</span>.<span class="ident">is_empty</span>() {
-        <span class="ident">replication_version</span> <span class="op">=</span> <span class="ident">get_latest_replication_version</span>();
-    } <span class="kw">else</span> {
-        <span class="ident">replication_version</span> <span class="op">=</span> <span class="ident">args</span>.<span class="ident">replication_version</span>;
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">verify_replication_version</span>(<span class="ident">replication_version</span>.<span class="ident">clone</span>()) {
-            <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Version to migrate does not exist!&quot;</span>.<span class="ident">red</span>());
+    <span class="kw">if </span>args.replication_version.is_empty() {
+        replication_version = get_latest_replication_version();
+    } <span class="kw">else </span>{
+        replication_version = args.replication_version;
+        <span class="kw">if </span>!verify_replication_version(replication_version.clone()) {
+            <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Version to migrate does not exist!&quot;</span>.red());
             <span class="kw">return</span>;
         }
     }
 
-    <span class="kw">let</span> <span class="ident">paths</span> <span class="op">=</span> <span class="ident">read_replication_file_paths</span>(<span class="ident">replication_version</span>.<span class="ident">clone</span>());
+    <span class="kw">let </span>paths = read_replication_file_paths(replication_version.clone());
 
-    <span class="kw">for</span> <span class="ident">path</span> <span class="kw">in</span> <span class="ident">paths</span> {
-        <span class="kw">if</span> <span class="ident">path</span>.<span class="ident">is_ok</span>() {
-            <span class="kw">let</span> <span class="ident">_path</span> <span class="op">=</span> <span class="ident">path</span>.<span class="ident">unwrap</span>();
-            <span class="kw">let</span> <span class="ident">data</span> <span class="op">=</span> <span class="ident">read_file</span>(<span class="ident">_path</span>.<span class="ident">path</span>());
+    <span class="kw">for </span>path <span class="kw">in </span>paths {
+        <span class="kw">if </span>path.is_ok() {
+            <span class="kw">let </span>_path = path.unwrap();
+            <span class="kw">let </span>data = read_file(_path.path());
 
-            <span class="kw">if</span> <span class="ident">data</span>.<span class="ident">is_ok</span>() {
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">filename</span> <span class="op">=</span> <span class="ident">_path</span>.<span class="ident">file_name</span>().<span class="ident">to_string_lossy</span>().<span class="ident">to_string</span>();
-                <span class="comment">// remove &#39;.sql&#39; / &#39;.json&#39;</span>
-                <span class="kw">match</span> <span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">database_type</span>.<span class="ident">borrow</span>() {
-                    <span class="string">&quot;mongodb&quot;</span> =&gt; <span class="ident">filename</span>.<span class="ident">truncate</span>(<span class="ident">filename</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="number">5</span>),
-                    <span class="string">&quot;mysql&quot;</span> =&gt; <span class="ident">filename</span>.<span class="ident">truncate</span>(<span class="ident">filename</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="number">4</span>),
-                    <span class="kw">_</span> =&gt; <span class="ident">filename</span>.<span class="ident">truncate</span>(<span class="ident">filename</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="number">4</span>),
+            <span class="kw">if </span>data.is_ok() {
+                <span class="kw">let </span><span class="kw-2">mut </span>filename = _path.file_name().to_string_lossy().to_string();
+                <span class="comment">// remove &#39;.sql&#39; / &#39;.json&#39;
+                </span><span class="kw">match </span>config.database.database_type.borrow() {
+                    <span class="string">&quot;mongodb&quot; </span>=&gt; filename.truncate(filename.len() - <span class="number">5</span>),
+                    <span class="string">&quot;mysql&quot; </span>=&gt; filename.truncate(filename.len() - <span class="number">4</span>),
+                    <span class="kw">_ </span>=&gt; filename.truncate(filename.len() - <span class="number">4</span>),
                 }
 
-                <span class="ident">databases::migrate_table</span>(<span class="ident">data</span>.<span class="ident">unwrap</span>(), <span class="ident">filename</span>.<span class="ident">clone</span>(), <span class="ident">config</span>.<span class="ident">clone</span>());
+                databases::migrate_table(data.unwrap(), filename.clone(), config.clone());
 
-                <span class="kw">let</span> <span class="ident">migrated_message</span> <span class="op">=</span> <span class="macro">format!</span>(<span class="string">&quot;{} migrated&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">filename</span>);
-                <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">migrated_message</span>.<span class="ident">green</span>());
+                <span class="kw">let </span>migrated_message = <span class="macro">format!</span>(<span class="string">&quot;{} migrated&quot;</span>, <span class="kw-2">&amp;</span>filename);
+                <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, migrated_message.green());
             }
         }
     }
 
-    <span class="macro">println!</span>(<span class="string">&quot;Successfully migrated to version {}!&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">replication_version</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;Successfully migrated to version {}!&quot;</span>, <span class="kw-2">&amp;</span>replication_version);
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="strapi_data_replicator" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="strapi_data_replicator" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

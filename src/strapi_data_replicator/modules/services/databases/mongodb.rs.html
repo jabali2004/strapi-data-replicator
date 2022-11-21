@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/modules/services/databases/mongodb.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mongodb.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../../storage.js"></script><script defer src="../../../../../source-script.js"></script><script defer src="../../../../../source-files.js"></script><script defer src="../../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../../strapi_data_replicator/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../../../strapi_data_replicator/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../../strapi_data_replicator/index.html"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/modules/services/databases/mongodb.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mongodb.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../../../normalize.css"><link rel="stylesheet" href="../../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../../../ayu.css" disabled><link rel="stylesheet" href="../../../../../dark.css" disabled><link rel="stylesheet" href="../../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../../storage.js"></script><script defer src="../../../../../source-script.js"></script><script defer src="../../../../../source-files.js"></script><script defer src="../../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../../strapi_data_replicator/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../../../strapi_data_replicator/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../../strapi_data_replicator/index.html"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -133,140 +133,140 @@
 <span id="133">133</span>
 <span id="134">134</span>
 <span id="135">135</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::convert::TryFrom</span>;
-<span class="kw">use</span> <span class="ident">std::iter::FromIterator</span>;
+</pre><pre class="rust"><code><span class="kw">use </span>std::convert::TryFrom;
+<span class="kw">use </span>std::iter::FromIterator;
 
-<span class="kw">use</span> <span class="ident">colored::Colorize</span>;
-<span class="kw">use</span> <span class="ident">mongodb::bson::doc</span>;
-<span class="kw">use</span> <span class="ident">mongodb::bson::Bson</span>;
-<span class="kw">use</span> <span class="ident">mongodb::bson::Document</span>;
-<span class="kw">use</span> <span class="ident">mongodb::options</span>::{<span class="ident">ClientOptions</span>, <span class="ident">Credential</span>, <span class="ident">ServerAddress</span>, <span class="ident">Tls</span>, <span class="ident">TlsOptions</span>};
-<span class="kw">use</span> <span class="ident">mongodb::sync</span>::{<span class="ident">Client</span>, <span class="ident">Database</span>};
-<span class="kw">use</span> <span class="ident">semver::Version</span>;
-<span class="kw">use</span> <span class="ident">serde_json</span>::{<span class="ident">Map</span>, <span class="ident">Value</span>};
+<span class="kw">use </span>colored::Colorize;
+<span class="kw">use </span>mongodb::bson::doc;
+<span class="kw">use </span>mongodb::bson::Bson;
+<span class="kw">use </span>mongodb::bson::Document;
+<span class="kw">use </span>mongodb::options::{ClientOptions, Credential, ServerAddress, Tls, TlsOptions};
+<span class="kw">use </span>mongodb::sync::{Client, Database};
+<span class="kw">use </span>semver::Version;
+<span class="kw">use </span>serde_json::{Map, Value};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::consts::SUPPORTED_MONGODB_MAJOR_VERSION</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::modules::types::build_info::BuildInfo</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::modules::types::config::Config</span>;
+<span class="kw">use </span><span class="kw">crate</span>::consts::SUPPORTED_MONGODB_MAJOR_VERSION;
+<span class="kw">use </span><span class="kw">crate</span>::modules::types::build_info::BuildInfo;
+<span class="kw">use </span><span class="kw">crate</span>::modules::types::config::Config;
 
-<span class="doccomment">/// List all tables for given database</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">list_tables</span>(<span class="ident">config</span>: <span class="ident">Config</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">database</span> <span class="op">=</span> <span class="ident">get_connection</span>(<span class="ident">config</span>);
-    <span class="kw">let</span> <span class="ident">collections</span> <span class="op">=</span> <span class="ident">database</span>.<span class="ident">list_collection_names</span>(<span class="prelude-val">None</span>).<span class="ident">expect</span>(<span class="string">&quot;Error!&quot;</span>);
+<span class="doccomment">/// List all tables for given database
+</span><span class="kw">pub fn </span>list_tables(config: Config) -&gt; <span class="prelude-ty">Option</span>&lt;Vec&lt;String&gt;&gt; {
+    <span class="kw">let </span>database = get_connection(config);
+    <span class="kw">let </span>collections = database.list_collection_names(<span class="prelude-val">None</span>).expect(<span class="string">&quot;Error!&quot;</span>);
 
-    <span class="kw">if</span> <span class="ident">collections</span>.<span class="ident">is_empty</span>() {
-        <span class="kw">return</span> <span class="ident">Option::from</span>(<span class="macro">vec!</span>[]);
+    <span class="kw">if </span>collections.is_empty() {
+        <span class="kw">return </span>Option::from(<span class="macro">vec!</span>[]);
     }
 
-    <span class="kw">return</span> <span class="ident">Option::from</span>(<span class="ident">collections</span>);
+    <span class="kw">return </span>Option::from(collections);
 }
 
-<span class="doccomment">/// Return table as json string</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_table</span>(<span class="ident">table_name</span>: <span class="ident">String</span>, <span class="ident">config</span>: <span class="ident">Config</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">database</span> <span class="op">=</span> <span class="ident">get_connection</span>(<span class="ident">config</span>);
-    <span class="kw">let</span> <span class="ident">collection</span> <span class="op">=</span> <span class="ident">database</span>.<span class="ident">collection</span>(<span class="kw-2">&amp;</span><span class="ident">table_name</span>);
+<span class="doccomment">/// Return table as json string
+</span><span class="kw">pub fn </span>get_table(table_name: String, config: Config) -&gt; <span class="prelude-ty">Option</span>&lt;String&gt; {
+    <span class="kw">let </span>database = get_connection(config);
+    <span class="kw">let </span>collection = database.collection(<span class="kw-2">&amp;</span>table_name);
 
-    <span class="kw">let</span> <span class="ident">documents</span> <span class="op">=</span> <span class="ident">collection</span>.<span class="ident">find</span>(<span class="prelude-val">None</span>, <span class="prelude-val">None</span>).<span class="ident">unwrap</span>();
+    <span class="kw">let </span>documents = collection.find(<span class="prelude-val">None</span>, <span class="prelude-val">None</span>).unwrap();
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">documents_vec</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Document</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
+    <span class="kw">let </span><span class="kw-2">mut </span>documents_vec: Vec&lt;Document&gt; = <span class="macro">vec!</span>[];
 
-    <span class="kw">for</span> <span class="ident">result</span> <span class="kw">in</span> <span class="ident">documents</span> {
-        <span class="kw">let</span> <span class="ident">doc</span>: <span class="ident">Document</span> <span class="op">=</span> <span class="ident">result</span>.<span class="ident">expect</span>(<span class="string">&quot;Received network error during cursor operations.&quot;</span>);
-        <span class="ident">documents_vec</span>.<span class="ident">push</span>(<span class="ident">doc</span>);
+    <span class="kw">for </span>result <span class="kw">in </span>documents {
+        <span class="kw">let </span>doc: Document = result.expect(<span class="string">&quot;Received network error during cursor operations.&quot;</span>);
+        documents_vec.push(doc);
     }
 
-    <span class="kw">let</span> <span class="ident">documents_bson</span> <span class="op">=</span> <span class="ident">Bson::from_iter</span>(<span class="ident">documents_vec</span>);
+    <span class="kw">let </span>documents_bson = Bson::from_iter(documents_vec);
 
-    <span class="kw">let</span> <span class="ident">data_json</span> <span class="op">=</span> <span class="ident">serde_json::to_string_pretty</span>(<span class="kw-2">&amp;</span><span class="ident">documents_bson</span>).<span class="ident">unwrap</span>();
+    <span class="kw">let </span>data_json = serde_json::to_string_pretty(<span class="kw-2">&amp;</span>documents_bson).unwrap();
 
-    <span class="kw">if</span> <span class="ident">data_json</span>.<span class="ident">is_empty</span>() {
-        <span class="kw">return</span> <span class="prelude-val">None</span>;
+    <span class="kw">if </span>data_json.is_empty() {
+        <span class="kw">return </span><span class="prelude-val">None</span>;
     }
 
-    <span class="kw">return</span> <span class="ident">Option::from</span>(<span class="ident">data_json</span>);
+    <span class="kw">return </span>Option::from(data_json);
 }
 
-<span class="comment">// Import collection given as json string</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">import_table</span>(<span class="ident">json</span>: <span class="ident">String</span>, <span class="ident">table_name</span>: <span class="ident">String</span>, <span class="ident">config</span>: <span class="ident">Config</span>) -&gt; () {
-    <span class="kw">let</span> <span class="ident">database</span> <span class="op">=</span> <span class="ident">get_connection</span>(<span class="ident">config</span>);
-    <span class="kw">let</span> <span class="ident">collection</span> <span class="op">=</span> <span class="ident">database</span>.<span class="ident">collection</span>(<span class="kw-2">&amp;</span><span class="ident">table_name</span>);
+<span class="comment">// Import collection given as json string
+</span><span class="kw">pub fn </span>import_table(json: String, table_name: String, config: Config) -&gt; () {
+    <span class="kw">let </span>database = get_connection(config);
+    <span class="kw">let </span>collection = database.collection(<span class="kw-2">&amp;</span>table_name);
 
-    <span class="comment">// delete all documents in given collection</span>
-    <span class="ident">collection</span>
-        .<span class="ident">delete_many</span>(<span class="macro">doc!</span> {}, <span class="prelude-val">None</span>)
-        .<span class="ident">expect</span>(<span class="string">&quot;Could not delete documents of collection!&quot;</span>);
+    <span class="comment">// delete all documents in given collection
+    </span>collection
+        .delete_many(<span class="macro">doc! </span>{}, <span class="prelude-val">None</span>)
+        .expect(<span class="string">&quot;Could not delete documents of collection!&quot;</span>);
 
-    <span class="kw">let</span> <span class="ident">json_vec</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Map</span><span class="op">&lt;</span><span class="ident">String</span>, <span class="ident">Value</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span>
-        <span class="ident">serde_json::from_str</span>(<span class="kw-2">&amp;</span><span class="ident">json</span>).<span class="ident">expect</span>(<span class="string">&quot;Could not parse json file!&quot;</span>);
+    <span class="kw">let </span>json_vec: Vec&lt;Map&lt;String, Value&gt;&gt; =
+        serde_json::from_str(<span class="kw-2">&amp;</span>json).expect(<span class="string">&quot;Could not parse json file!&quot;</span>);
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">documents</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Document</span><span class="op">&gt;</span> <span class="op">=</span> <span class="macro">vec!</span>[];
+    <span class="kw">let </span><span class="kw-2">mut </span>documents: Vec&lt;Document&gt; = <span class="macro">vec!</span>[];
 
-    <span class="kw">for</span> <span class="ident">j</span> <span class="kw">in</span> <span class="ident">json_vec</span> {
-        <span class="kw">let</span> <span class="ident">document</span>: <span class="ident">Document</span> <span class="op">=</span> <span class="ident">Document::try_from</span>(<span class="ident">j</span>).<span class="ident">expect</span>(<span class="string">&quot;Could not convert map to document!&quot;</span>);
-        <span class="ident">documents</span>.<span class="ident">push</span>(<span class="ident">document</span>);
+    <span class="kw">for </span>j <span class="kw">in </span>json_vec {
+        <span class="kw">let </span>document: Document = Document::try_from(j).expect(<span class="string">&quot;Could not convert map to document!&quot;</span>);
+        documents.push(document);
     }
 
-    <span class="ident">collection</span>
-        .<span class="ident">insert_many</span>(<span class="ident">documents</span>, <span class="prelude-val">None</span>)
-        .<span class="ident">expect</span>(<span class="string">&quot;Error while inserting multiple collections!&quot;</span>);
+    collection
+        .insert_many(documents, <span class="prelude-val">None</span>)
+        .expect(<span class="string">&quot;Error while inserting multiple collections!&quot;</span>);
 }
 
-<span class="doccomment">/// Get mongodb connection configuration</span>
-<span class="kw">fn</span> <span class="ident">get_opts</span>(<span class="ident">config</span>: <span class="ident">Config</span>) -&gt; <span class="ident">ClientOptions</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">ClientOptions::default</span>();
+<span class="doccomment">/// Get mongodb connection configuration
+</span><span class="kw">fn </span>get_opts(config: Config) -&gt; ClientOptions {
+    <span class="kw">let </span><span class="kw-2">mut </span>options = ClientOptions::default();
 
-    <span class="kw">let</span> <span class="ident">port</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="ident">config</span>
-        .<span class="ident">database</span>
-        .<span class="ident">host_information</span>
-        .<span class="ident">port</span>
-        .<span class="ident">parse</span>()
-        .<span class="ident">expect</span>(<span class="string">&quot;Could not parse port!&quot;</span>);
+    <span class="kw">let </span>port: u16 = config
+        .database
+        .host_information
+        .port
+        .parse()
+        .expect(<span class="string">&quot;Could not parse port!&quot;</span>);
 
-    <span class="kw">let</span> <span class="ident">server_address</span>: <span class="ident">ServerAddress</span> <span class="op">=</span> <span class="ident">ServerAddress::Tcp</span> {
-        <span class="ident">host</span>: <span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">host_information</span>.<span class="ident">address</span>,
-        <span class="ident">port</span>: <span class="ident">Option::from</span>(<span class="ident">port</span>),
+    <span class="kw">let </span>server_address: ServerAddress = ServerAddress::Tcp {
+        host: config.database.host_information.address,
+        port: Option::from(port),
     };
 
-    <span class="ident">options</span>.<span class="ident">hosts</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="ident">server_address</span>];
+    options.hosts = <span class="macro">vec!</span>[server_address];
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">credentials</span> <span class="op">=</span> <span class="ident">Credential::default</span>();
+    <span class="kw">let </span><span class="kw-2">mut </span>credentials = Credential::default();
 
-    <span class="ident">credentials</span>.<span class="ident">username</span> <span class="op">=</span> <span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">host_information</span>.<span class="ident">username</span>.<span class="ident">into</span>();
-    <span class="ident">credentials</span>.<span class="ident">source</span> <span class="op">=</span> <span class="ident">Option::from</span>(<span class="string">&quot;admin&quot;</span>.<span class="ident">to_string</span>());
-    <span class="ident">credentials</span>.<span class="ident">password</span> <span class="op">=</span> <span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">host_information</span>.<span class="ident">password</span>.<span class="ident">into</span>();
+    credentials.username = config.database.host_information.username.into();
+    credentials.source = Option::from(<span class="string">&quot;admin&quot;</span>.to_string());
+    credentials.password = config.database.host_information.password.into();
 
-    <span class="ident">options</span>.<span class="ident">tls</span> <span class="op">=</span> <span class="ident">Option::from</span>(<span class="kw">match</span> <span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">host_information</span>.<span class="ident">ssl</span> {
-        <span class="bool-val">true</span> =&gt; <span class="ident">Tls::Enabled</span>(<span class="ident">TlsOptions::default</span>()),
-        <span class="bool-val">false</span> =&gt; <span class="ident">Tls::Disabled</span>,
+    options.tls = Option::from(<span class="kw">match </span>config.database.host_information.ssl {
+        <span class="bool-val">true </span>=&gt; Tls::Enabled(TlsOptions::default()),
+        <span class="bool-val">false </span>=&gt; Tls::Disabled,
     });
 
-    <span class="kw">return</span> <span class="ident">options</span>;
+    <span class="kw">return </span>options;
 }
 
-<span class="doccomment">/// Create database connection with mongodb server and return ref</span>
-<span class="kw">fn</span> <span class="ident">get_connection</span>(<span class="ident">config</span>: <span class="ident">Config</span>) -&gt; <span class="ident">Database</span> {
-    <span class="kw">let</span> <span class="ident">options</span> <span class="op">=</span> <span class="ident">get_opts</span>(<span class="ident">config</span>.<span class="ident">clone</span>());
-    <span class="kw">let</span> <span class="ident">client</span> <span class="op">=</span> <span class="ident">Client::with_options</span>(<span class="ident">options</span>).<span class="ident">expect</span>(<span class="string">&quot;Error while connecting to mongodb server!&quot;</span>);
+<span class="doccomment">/// Create database connection with mongodb server and return ref
+</span><span class="kw">fn </span>get_connection(config: Config) -&gt; Database {
+    <span class="kw">let </span>options = get_opts(config.clone());
+    <span class="kw">let </span>client = Client::with_options(options).expect(<span class="string">&quot;Error while connecting to mongodb server!&quot;</span>);
 
-    <span class="kw">let</span> <span class="ident">database</span> <span class="op">=</span> <span class="ident">client</span>.<span class="ident">database</span>(<span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">database_name</span>.<span class="ident">as_str</span>());
+    <span class="kw">let </span>database = client.database(config.database.database_name.as_str());
 
-    <span class="comment">// Get mongodb server version and check compatibility</span>
-    <span class="kw">let</span> <span class="ident">build_info_doc</span>: <span class="ident">Document</span> <span class="op">=</span> <span class="ident">database</span>
-        .<span class="ident">run_command</span>(<span class="macro">doc!</span> {<span class="string">&quot;buildInfo&quot;</span>: <span class="number">1</span>}, <span class="prelude-val">None</span>)
-        .<span class="ident">expect</span>(<span class="string">&quot;Error while getting mongodb server version!&quot;</span>);
-    <span class="kw">let</span> <span class="ident">build_info</span>: <span class="ident">BuildInfo</span> <span class="op">=</span> <span class="ident">bson::from_bson</span>(<span class="ident">Bson::Document</span>(<span class="ident">build_info_doc</span>))
-        .<span class="ident">expect</span>(<span class="string">&quot;Error while converting BuildInfo document to bson!&quot;</span>);
+    <span class="comment">// Get mongodb server version and check compatibility
+    </span><span class="kw">let </span>build_info_doc: Document = database
+        .run_command(<span class="macro">doc! </span>{<span class="string">&quot;buildInfo&quot;</span>: <span class="number">1</span>}, <span class="prelude-val">None</span>)
+        .expect(<span class="string">&quot;Error while getting mongodb server version!&quot;</span>);
+    <span class="kw">let </span>build_info: BuildInfo = bson::from_bson(Bson::Document(build_info_doc))
+        .expect(<span class="string">&quot;Error while converting BuildInfo document to bson!&quot;</span>);
 
-    <span class="comment">// Warn user if mongodb server version is greater than or equal 4.x.x</span>
-    <span class="kw">let</span> <span class="ident">server_version</span> <span class="op">=</span> <span class="ident">Version::parse</span>(<span class="ident">build_info</span>.<span class="ident">version</span>.<span class="ident">as_str</span>())
-        .<span class="ident">expect</span>(<span class="string">&quot;Error while parsing mongodb server version!&quot;</span>);
+    <span class="comment">// Warn user if mongodb server version is greater than or equal 4.x.x
+    </span><span class="kw">let </span>server_version = Version::parse(build_info.version.as_str())
+        .expect(<span class="string">&quot;Error while parsing mongodb server version!&quot;</span>);
 
-    <span class="kw">if</span> <span class="ident">server_version</span>.<span class="ident">major</span> <span class="op">&gt;</span> <span class="ident">SUPPORTED_MONGODB_MAJOR_VERSION</span> {
-        <span class="macro">println!</span>(<span class="string">&quot;Your mongodb server version is: {}&quot;</span>, <span class="ident">build_info</span>.<span class="ident">version</span>);
-        <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Currently only version 3.x.x is supported!&quot;</span>.<span class="ident">red</span>());
+    <span class="kw">if </span>server_version.major &gt; SUPPORTED_MONGODB_MAJOR_VERSION {
+        <span class="macro">println!</span>(<span class="string">&quot;Your mongodb server version is: {}&quot;</span>, build_info.version);
+        <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Currently only version 3.x.x is supported!&quot;</span>.red());
     }
 
-    <span class="kw">return</span> <span class="ident">database</span>;
+    <span class="kw">return </span>database;
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../../../" data-current-crate="strapi_data_replicator" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../../" data-current-crate="strapi_data_replicator" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

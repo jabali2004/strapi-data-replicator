@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/modules/commands/init.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>init.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../strapi_data_replicator/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../../strapi_data_replicator/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../strapi_data_replicator/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/modules/commands/init.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>init.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../../normalize.css"><link rel="stylesheet" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../../ayu.css" disabled><link rel="stylesheet" href="../../../../dark.css" disabled><link rel="stylesheet" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script defer src="../../../../source-script.js"></script><script defer src="../../../../source-files.js"></script><script defer src="../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../strapi_data_replicator/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../../strapi_data_replicator/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../strapi_data_replicator/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -253,260 +253,260 @@
 <span id="253">253</span>
 <span id="254">254</span>
 <span id="255">255</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::fs::read_to_string</span>;
-<span class="kw">use</span> <span class="ident">std::io</span>::{<span class="ident">stdin</span>, <span class="ident">stdout</span>, <span class="ident">Write</span>};
+</pre><pre class="rust"><code><span class="kw">use </span>std::fs::read_to_string;
+<span class="kw">use </span>std::io::{stdin, stdout, Write};
 
-<span class="kw">use</span> <span class="ident">colored::Colorize</span>;
-<span class="kw">use</span> <span class="ident">quicli::fs::write_to_file</span>;
-<span class="kw">use</span> <span class="ident">regex::Regex</span>;
+<span class="kw">use </span>colored::Colorize;
+<span class="kw">use </span>quicli::fs::write_to_file;
+<span class="kw">use </span>regex::Regex;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::consts::CONFIG_FILE</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::modules::commands::replicate::run_replicate</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::modules::services::databases</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::modules::services::utils</span>::{<span class="ident">get_config_input</span>, <span class="ident">get_config_string</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::modules::types::cli::Cli</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::modules::types::config</span>::{<span class="ident">Config</span>, <span class="ident">DatabaseConfig</span>, <span class="ident">HostInformation</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::modules::types::package_json::PackageJson</span>;
+<span class="kw">use </span><span class="kw">crate</span>::consts::CONFIG_FILE;
+<span class="kw">use </span><span class="kw">crate</span>::modules::commands::replicate::run_replicate;
+<span class="kw">use </span><span class="kw">crate</span>::modules::services::databases;
+<span class="kw">use </span><span class="kw">crate</span>::modules::services::utils::{get_config_input, get_config_string};
+<span class="kw">use </span><span class="kw">crate</span>::modules::types::cli::Cli;
+<span class="kw">use </span><span class="kw">crate</span>::modules::types::config::{Config, DatabaseConfig, HostInformation};
+<span class="kw">use </span><span class="kw">crate</span>::modules::types::package_json::PackageJson;
 
-<span class="doccomment">/// Run init command logic</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">run_init</span>(<span class="ident">args</span>: <span class="ident">Cli</span>) {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">new_config</span>: <span class="ident">Config</span>;
+<span class="doccomment">/// Run init command logic
+</span><span class="kw">pub fn </span>run_init(args: Cli) {
+    <span class="kw">let </span><span class="kw-2">mut </span>new_config: Config;
 
-    <span class="ident">new_config</span> <span class="op">=</span> <span class="ident">Config</span> {
-        <span class="ident">strapi_version</span>: <span class="string">&quot;&quot;</span>.<span class="ident">to_string</span>(),
-        <span class="ident">database</span>: <span class="ident">DatabaseConfig</span> {
-            <span class="ident">database_type</span>: <span class="ident">get_config_string</span>(<span class="string">&quot;DATABASE_TYPE&quot;</span>),
-            <span class="ident">database_version</span>: <span class="ident">get_config_string</span>(<span class="string">&quot;DATABASE_VERSION&quot;</span>),
-            <span class="ident">database_name</span>: <span class="ident">get_config_string</span>(<span class="string">&quot;DATABASE_NAME&quot;</span>),
-            <span class="ident">host_information</span>: <span class="ident">HostInformation</span> {
-                <span class="ident">address</span>: <span class="ident">get_config_string</span>(<span class="string">&quot;DATABASE_HOST&quot;</span>),
-                <span class="ident">port</span>: <span class="ident">get_config_string</span>(<span class="string">&quot;DATABASE_PORT&quot;</span>),
-                <span class="ident">username</span>: <span class="ident">get_config_string</span>(<span class="string">&quot;DATABASE_USERNAME&quot;</span>),
-                <span class="ident">password</span>: <span class="ident">get_config_string</span>(<span class="string">&quot;DATABASE_PASSWORD&quot;</span>),
-                <span class="ident">ssl</span>: <span class="kw">match</span> <span class="ident">get_config_string</span>(<span class="string">&quot;DATABASE_SSL&quot;</span>).<span class="ident">parse</span>() {
-                    <span class="prelude-val">Ok</span>(<span class="ident">value</span>) =&gt; <span class="ident">value</span>,
+    new_config = Config {
+        strapi_version: <span class="string">&quot;&quot;</span>.to_string(),
+        database: DatabaseConfig {
+            database_type: get_config_string(<span class="string">&quot;DATABASE_TYPE&quot;</span>),
+            database_version: get_config_string(<span class="string">&quot;DATABASE_VERSION&quot;</span>),
+            database_name: get_config_string(<span class="string">&quot;DATABASE_NAME&quot;</span>),
+            host_information: HostInformation {
+                address: get_config_string(<span class="string">&quot;DATABASE_HOST&quot;</span>),
+                port: get_config_string(<span class="string">&quot;DATABASE_PORT&quot;</span>),
+                username: get_config_string(<span class="string">&quot;DATABASE_USERNAME&quot;</span>),
+                password: get_config_string(<span class="string">&quot;DATABASE_PASSWORD&quot;</span>),
+                ssl: <span class="kw">match </span>get_config_string(<span class="string">&quot;DATABASE_SSL&quot;</span>).parse() {
+                    <span class="prelude-val">Ok</span>(value) =&gt; value,
                     <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="bool-val">false</span>,
                 },
             },
         },
-        <span class="ident">replicated</span>: <span class="macro">vec!</span>[
-            <span class="string">&quot;strapi_role&quot;</span>.<span class="ident">to_string</span>(),
-            <span class="string">&quot;strapi_permission&quot;</span>.<span class="ident">to_string</span>(),
-            <span class="string">&quot;users-permissions_permission&quot;</span>.<span class="ident">to_string</span>(),
-            <span class="string">&quot;users-permissions_role&quot;</span>.<span class="ident">to_string</span>(),
+        replicated: <span class="macro">vec!</span>[
+            <span class="string">&quot;strapi_role&quot;</span>.to_string(),
+            <span class="string">&quot;strapi_permission&quot;</span>.to_string(),
+            <span class="string">&quot;users-permissions_permission&quot;</span>.to_string(),
+            <span class="string">&quot;users-permissions_role&quot;</span>.to_string(),
         ],
     };
 
-    <span class="kw">let</span> <span class="ident">package_json</span> <span class="op">=</span> <span class="ident">read_to_string</span>(<span class="string">&quot;package.json&quot;</span>);
+    <span class="kw">let </span>package_json = read_to_string(<span class="string">&quot;package.json&quot;</span>);
 
-    <span class="kw">if</span> <span class="ident">package_json</span>.<span class="ident">is_ok</span>() {
-        <span class="kw">let</span> <span class="ident">package_json_obj</span>: <span class="ident">PackageJson</span> <span class="op">=</span> <span class="ident">serde_json::from_str</span>(<span class="kw-2">&amp;</span><span class="ident">package_json</span>.<span class="ident">unwrap</span>().<span class="ident">as_str</span>())
-            .<span class="ident">expect</span>(<span class="string">&quot;Unable to parse package.json!&quot;</span>);
+    <span class="kw">if </span>package_json.is_ok() {
+        <span class="kw">let </span>package_json_obj: PackageJson = serde_json::from_str(<span class="kw-2">&amp;</span>package_json.unwrap().as_str())
+            .expect(<span class="string">&quot;Unable to parse package.json!&quot;</span>);
 
-        <span class="ident">new_config</span>.<span class="ident">strapi_version</span> <span class="op">=</span> <span class="ident">package_json_obj</span>.<span class="ident">dependencies</span>.<span class="ident">strapi</span>;
+        new_config.strapi_version = package_json_obj.dependencies.strapi;
     }
 
-    <span class="ident">print_generated_config</span>(<span class="kw-2">&amp;mut</span> <span class="ident">new_config</span>);
+    print_generated_config(<span class="kw-2">&amp;mut </span>new_config);
 
     <span class="macro">println!</span>(<span class="string">&quot;[Y] - Accept all  [N] - Overwrite configuration&quot;</span>);
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">configuration_input</span>: <span class="ident">String</span> <span class="op">=</span> <span class="ident">String::new</span>();
+    <span class="kw">let </span><span class="kw-2">mut </span>configuration_input: String = String::new();
 
-    <span class="ident">stdin</span>()
-        .<span class="ident">read_line</span>(<span class="kw-2">&amp;mut</span> <span class="ident">configuration_input</span>)
-        .<span class="ident">expect</span>(<span class="string">&quot;Failed to read from stdin&quot;</span>);
+    stdin()
+        .read_line(<span class="kw-2">&amp;mut </span>configuration_input)
+        .expect(<span class="string">&quot;Failed to read from stdin&quot;</span>);
 
-    <span class="ident">configuration_input</span> <span class="op">=</span> <span class="ident">configuration_input</span>
-        .<span class="ident">to_lowercase</span>()
-        .<span class="ident">split_whitespace</span>()
-        .<span class="ident">collect</span>();
+    configuration_input = configuration_input
+        .to_lowercase()
+        .split_whitespace()
+        .collect();
 
-    <span class="kw">if</span> <span class="op">!</span><span class="ident">configuration_input</span>.<span class="ident">is_empty</span>() {
-        <span class="kw">if</span> <span class="ident">configuration_input</span> <span class="op">==</span> <span class="string">&quot;n&quot;</span> <span class="op">&amp;&amp;</span> <span class="ident">configuration_input</span> <span class="op">!</span><span class="op">=</span> <span class="string">&quot;y&quot;</span> {
-            <span class="ident">override_config</span>(<span class="kw-2">&amp;mut</span> <span class="ident">new_config</span>);
+    <span class="kw">if </span>!configuration_input.is_empty() {
+        <span class="kw">if </span>configuration_input == <span class="string">&quot;n&quot; </span>&amp;&amp; configuration_input != <span class="string">&quot;y&quot; </span>{
+            override_config(<span class="kw-2">&amp;mut </span>new_config);
         }
-        <span class="kw">if</span> <span class="ident">configuration_input</span> <span class="op">!</span><span class="op">=</span> <span class="string">&quot;n&quot;</span> <span class="op">&amp;&amp;</span> <span class="ident">configuration_input</span> <span class="op">!</span><span class="op">=</span> <span class="string">&quot;y&quot;</span> {
-            <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Exited!&quot;</span>.<span class="ident">red</span>());
-            <span class="kw">return</span> ();
+        <span class="kw">if </span>configuration_input != <span class="string">&quot;n&quot; </span>&amp;&amp; configuration_input != <span class="string">&quot;y&quot; </span>{
+            <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Exited!&quot;</span>.red());
+            <span class="kw">return </span>();
         }
-    } <span class="kw">else</span> {
-        <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Exited!&quot;</span>.<span class="ident">red</span>());
-        <span class="kw">return</span> ();
+    } <span class="kw">else </span>{
+        <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Exited!&quot;</span>.red());
+        <span class="kw">return </span>();
     }
 
-    <span class="comment">// Choose tables</span>
-    <span class="kw">if</span> <span class="ident">select_tables</span>(<span class="kw-2">&amp;mut</span> <span class="ident">new_config</span>) {
-        <span class="kw">let</span> <span class="ident">config_json</span>: <span class="ident">String</span> <span class="op">=</span> <span class="ident">serde_json::to_string_pretty</span>(<span class="kw-2">&amp;</span><span class="ident">new_config</span>).<span class="ident">unwrap</span>();
-        <span class="ident">write_to_file</span>(<span class="ident">CONFIG_FILE</span>, <span class="ident">config_json</span>.<span class="ident">as_str</span>()).<span class="ident">ok</span>();
+    <span class="comment">// Choose tables
+    </span><span class="kw">if </span>select_tables(<span class="kw-2">&amp;mut </span>new_config) {
+        <span class="kw">let </span>config_json: String = serde_json::to_string_pretty(<span class="kw-2">&amp;</span>new_config).unwrap();
+        write_to_file(CONFIG_FILE, config_json.as_str()).ok();
     }
 
-    <span class="comment">// Ask if user wants to create replica</span>
-    <span class="macro">println!</span>();
+    <span class="comment">// Ask if user wants to create replica
+    </span><span class="macro">println!</span>();
     <span class="macro">println!</span>(<span class="string">&quot;Should a replication be created?&quot;</span>);
     <span class="macro">println!</span>(<span class="string">&quot;[Y] - Replicate  [N] - Do not replicate&quot;</span>);
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">configuration_input</span>: <span class="ident">String</span> <span class="op">=</span> <span class="ident">String::new</span>();
+    <span class="kw">let </span><span class="kw-2">mut </span>configuration_input: String = String::new();
 
-    <span class="ident">stdin</span>()
-        .<span class="ident">read_line</span>(<span class="kw-2">&amp;mut</span> <span class="ident">configuration_input</span>)
-        .<span class="ident">expect</span>(<span class="string">&quot;Failed to read from stdin&quot;</span>);
+    stdin()
+        .read_line(<span class="kw-2">&amp;mut </span>configuration_input)
+        .expect(<span class="string">&quot;Failed to read from stdin&quot;</span>);
 
-    <span class="ident">configuration_input</span> <span class="op">=</span> <span class="ident">configuration_input</span>
-        .<span class="ident">to_lowercase</span>()
-        .<span class="ident">split_whitespace</span>()
-        .<span class="ident">collect</span>();
+    configuration_input = configuration_input
+        .to_lowercase()
+        .split_whitespace()
+        .collect();
 
-    <span class="kw">if</span> <span class="ident">configuration_input</span> <span class="op">==</span> <span class="string">&quot;y&quot;</span> {
-        <span class="ident">run_replicate</span>(<span class="ident">args</span>);
+    <span class="kw">if </span>configuration_input == <span class="string">&quot;y&quot; </span>{
+        run_replicate(args);
     }
 
-    <span class="kw">return</span> ();
+    <span class="kw">return </span>();
 }
 
-<span class="doccomment">/// Start table selection dialog</span>
-<span class="kw">fn</span> <span class="ident">select_tables</span>(<span class="ident">new_config</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Config</span>) -&gt; <span class="ident">bool</span> {
+<span class="doccomment">/// Start table selection dialog
+</span><span class="kw">fn </span>select_tables(new_config: <span class="kw-2">&amp;mut </span>Config) -&gt; bool {
     <span class="macro">println!</span>();
-    <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Use standard selected tables?&quot;</span>.<span class="ident">green</span>());
-    <span class="kw">for</span> <span class="ident">table</span> <span class="kw">in</span> <span class="kw-2">&amp;</span><span class="ident">new_config</span>.<span class="ident">replicated</span> {
-        <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">table</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Use standard selected tables?&quot;</span>.green());
+    <span class="kw">for </span>table <span class="kw">in </span><span class="kw-2">&amp;</span>new_config.replicated {
+        <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, table);
     }
 
     <span class="macro">println!</span>();
     <span class="macro">println!</span>(<span class="string">&quot;[Y] - Accept Selection  [N] - Select manually&quot;</span>);
 
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">configuration_input</span>: <span class="ident">String</span> <span class="op">=</span> <span class="ident">String::new</span>();
+    <span class="kw">let </span><span class="kw-2">mut </span>configuration_input: String = String::new();
 
-    <span class="ident">stdin</span>()
-        .<span class="ident">read_line</span>(<span class="kw-2">&amp;mut</span> <span class="ident">configuration_input</span>)
-        .<span class="ident">expect</span>(<span class="string">&quot;Failed to read from stdin&quot;</span>);
+    stdin()
+        .read_line(<span class="kw-2">&amp;mut </span>configuration_input)
+        .expect(<span class="string">&quot;Failed to read from stdin&quot;</span>);
 
-    <span class="ident">configuration_input</span> <span class="op">=</span> <span class="ident">configuration_input</span>
-        .<span class="ident">to_lowercase</span>()
-        .<span class="ident">split_whitespace</span>()
-        .<span class="ident">collect</span>();
+    configuration_input = configuration_input
+        .to_lowercase()
+        .split_whitespace()
+        .collect();
 
-    <span class="kw">if</span> <span class="ident">configuration_input</span> <span class="op">!</span><span class="op">=</span> <span class="string">&quot;y&quot;</span> {
-        <span class="comment">// Connect to database</span>
-        <span class="comment">// List all tables / collections</span>
-        <span class="kw">let</span> <span class="ident">tables</span> <span class="op">=</span> <span class="ident">get_tables</span>(<span class="ident">new_config</span>).<span class="ident">clone</span>();
+    <span class="kw">if </span>configuration_input != <span class="string">&quot;y&quot; </span>{
+        <span class="comment">// Connect to database
+        // List all tables / collections
+        </span><span class="kw">let </span>tables = get_tables(new_config).clone();
 
         <span class="macro">println!</span>();
-        <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Tables / Collections: &quot;</span>.<span class="ident">green</span>());
+        <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Tables / Collections: &quot;</span>.green());
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">index</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">for</span> <span class="ident">table</span> <span class="kw">in</span> <span class="ident">tables</span>.<span class="ident">clone</span>() {
-            <span class="ident">index</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-            <span class="macro">println!</span>(<span class="string">&quot;({}) {}&quot;</span>, <span class="ident">index</span>, <span class="ident">table</span>);
+        <span class="kw">let </span><span class="kw-2">mut </span>index: i32 = <span class="number">0</span>;
+        <span class="kw">for </span>table <span class="kw">in </span>tables.clone() {
+            index += <span class="number">1</span>;
+            <span class="macro">println!</span>(<span class="string">&quot;({}) {}&quot;</span>, index, table);
         }
 
         <span class="macro">println!</span>();
         <span class="macro">println!</span>(<span class="string">&quot;Select tables/collections separated by &#39;,&#39;&quot;</span>);
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">selected_tables</span>: <span class="ident">String</span> <span class="op">=</span> <span class="ident">String::new</span>();
-        <span class="macro">print!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Selected tables/collections:&quot;</span>.<span class="ident">green</span>());
-        <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">stdout</span>().<span class="ident">flush</span>();
-        <span class="ident">stdin</span>()
-            .<span class="ident">read_line</span>(<span class="kw-2">&amp;mut</span> <span class="ident">selected_tables</span>)
-            .<span class="ident">expect</span>(<span class="string">&quot;Did not enter a correct string&quot;</span>);
+        <span class="kw">let </span><span class="kw-2">mut </span>selected_tables: String = String::new();
+        <span class="macro">print!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Selected tables/collections:&quot;</span>.green());
+        <span class="kw">let _ </span>= stdout().flush();
+        stdin()
+            .read_line(<span class="kw-2">&amp;mut </span>selected_tables)
+            .expect(<span class="string">&quot;Did not enter a correct string&quot;</span>);
 
-        <span class="kw">let</span> <span class="ident">regex</span> <span class="op">=</span> <span class="ident">Regex::new</span>(<span class="string">&quot;^[0-9]+(,[0-9]+)*$&quot;</span>).<span class="ident">unwrap</span>();
+        <span class="kw">let </span>regex = Regex::new(<span class="string">&quot;^[0-9]+(,[0-9]+)*$&quot;</span>).unwrap();
 
-        <span class="ident">selected_tables</span> <span class="op">=</span> <span class="ident">selected_tables</span>.<span class="ident">to_lowercase</span>().<span class="ident">split_whitespace</span>().<span class="ident">collect</span>();
+        selected_tables = selected_tables.to_lowercase().split_whitespace().collect();
 
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">regex</span>.<span class="ident">is_match</span>(<span class="kw-2">&amp;</span><span class="ident">selected_tables</span>) {
+        <span class="kw">if </span>!regex.is_match(<span class="kw-2">&amp;</span>selected_tables) {
             <span class="macro">println!</span>(
                 <span class="string">&quot;{}&quot;</span>,
-                <span class="string">&quot;Wrong format used for selecting tables/collections!&quot;</span>.<span class="ident">red</span>()
+                <span class="string">&quot;Wrong format used for selecting tables/collections!&quot;</span>.red()
             );
-            <span class="kw">return</span> <span class="bool-val">false</span>;
+            <span class="kw">return </span><span class="bool-val">false</span>;
         }
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">named_selected_tables</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
-        <span class="kw">for</span> <span class="ident">table_index</span> <span class="kw">in</span> <span class="ident">selected_tables</span>.<span class="ident">split</span>(<span class="string">&quot;,&quot;</span>) {
-            <span class="kw">let</span> <span class="ident">index</span>: <span class="ident">usize</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">table_index</span>.<span class="ident">parse</span>() {
-                <span class="prelude-val">Ok</span>(<span class="ident">value</span>) =&gt; <span class="ident">value</span>,
+        <span class="kw">let </span><span class="kw-2">mut </span>named_selected_tables: Vec&lt;String&gt; = Vec::new();
+        <span class="kw">for </span>table_index <span class="kw">in </span>selected_tables.split(<span class="string">&quot;,&quot;</span>) {
+            <span class="kw">let </span>index: usize = <span class="kw">match </span>table_index.parse() {
+                <span class="prelude-val">Ok</span>(value) =&gt; value,
                 <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="kw">continue</span>,
             };
 
-            <span class="kw">if</span> <span class="op">!</span><span class="kw-2">&amp;</span><span class="ident">tables</span>[<span class="ident">index</span> <span class="op">-</span> <span class="number">1</span>].<span class="ident">is_empty</span>() {
-                <span class="kw">let</span> <span class="ident">table_name</span>: <span class="ident">String</span> <span class="op">=</span> <span class="ident">String::from</span>(<span class="kw-2">&amp;</span><span class="ident">tables</span>[<span class="ident">index</span> <span class="op">-</span> <span class="number">1</span>]);
-                <span class="ident">named_selected_tables</span>.<span class="ident">push</span>(<span class="ident">table_name</span>);
+            <span class="kw">if </span>!<span class="kw-2">&amp;</span>tables[index - <span class="number">1</span>].is_empty() {
+                <span class="kw">let </span>table_name: String = String::from(<span class="kw-2">&amp;</span>tables[index - <span class="number">1</span>]);
+                named_selected_tables.push(table_name);
 
-                <span class="ident">new_config</span>.<span class="ident">replicated</span> <span class="op">=</span> <span class="ident">named_selected_tables</span>.<span class="ident">clone</span>();
+                new_config.replicated = named_selected_tables.clone();
             }
         }
     }
 
-    <span class="kw">return</span> <span class="bool-val">true</span>;
+    <span class="kw">return </span><span class="bool-val">true</span>;
 }
 
-<span class="doccomment">/// Print all tables / collections in database</span>
-<span class="kw">fn</span> <span class="ident">get_tables</span>(<span class="ident">new_config</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Config</span>) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">raw_tables</span> <span class="op">=</span> <span class="ident">databases::list</span>(<span class="ident">new_config</span>.<span class="ident">clone</span>());
-    <span class="kw">if</span> <span class="ident">raw_tables</span>.<span class="ident">is_some</span>() {
-        <span class="kw">let</span> <span class="ident">tables</span> <span class="op">=</span> <span class="ident">raw_tables</span>.<span class="ident">unwrap</span>();
+<span class="doccomment">/// Print all tables / collections in database
+</span><span class="kw">fn </span>get_tables(new_config: <span class="kw-2">&amp;mut </span>Config) -&gt; Vec&lt;String&gt; {
+    <span class="kw">let </span>raw_tables = databases::list(new_config.clone());
+    <span class="kw">if </span>raw_tables.is_some() {
+        <span class="kw">let </span>tables = raw_tables.unwrap();
 
-        <span class="kw">return</span> <span class="ident">tables</span>;
+        <span class="kw">return </span>tables;
     }
 
-    <span class="kw">return</span> <span class="macro">vec!</span>[];
+    <span class="kw">return </span><span class="macro">vec!</span>[];
 }
 
-<span class="doccomment">/// Override data manually</span>
-<span class="kw">fn</span> <span class="ident">override_config</span>(<span class="ident">new_config</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Config</span>) {
-    <span class="ident">new_config</span>.<span class="ident">strapi_version</span> <span class="op">=</span> <span class="ident">get_config_input</span>(<span class="string">&quot;Strapi version:&quot;</span>.<span class="ident">to_string</span>());
+<span class="doccomment">/// Override data manually
+</span><span class="kw">fn </span>override_config(new_config: <span class="kw-2">&amp;mut </span>Config) {
+    new_config.strapi_version = get_config_input(<span class="string">&quot;Strapi version:&quot;</span>.to_string());
 
-    <span class="kw">let</span> <span class="ident">database_type</span>: <span class="ident">String</span> <span class="op">=</span> <span class="ident">get_config_input</span>(<span class="string">&quot;Database type [mysql,mongodb]:&quot;</span>.<span class="ident">to_string</span>());
+    <span class="kw">let </span>database_type: String = get_config_input(<span class="string">&quot;Database type [mysql,mongodb]:&quot;</span>.to_string());
 
-    <span class="ident">new_config</span>.<span class="ident">database</span>.<span class="ident">database_type</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">database_type</span>.<span class="ident">to_lowercase</span>().<span class="ident">as_str</span>() {
-        <span class="string">&quot;mysql&quot;</span> =&gt; <span class="string">&quot;mysql&quot;</span>.<span class="ident">to_string</span>(),
-        <span class="string">&quot;mongodb&quot;</span> =&gt; <span class="string">&quot;mongodb&quot;</span>.<span class="ident">to_string</span>(),
-        <span class="kw">_</span> =&gt; <span class="string">&quot;mysql&quot;</span>.<span class="ident">to_string</span>(),
+    new_config.database.database_type = <span class="kw">match </span>database_type.to_lowercase().as_str() {
+        <span class="string">&quot;mysql&quot; </span>=&gt; <span class="string">&quot;mysql&quot;</span>.to_string(),
+        <span class="string">&quot;mongodb&quot; </span>=&gt; <span class="string">&quot;mongodb&quot;</span>.to_string(),
+        <span class="kw">_ </span>=&gt; <span class="string">&quot;mysql&quot;</span>.to_string(),
     };
 
-    <span class="ident">new_config</span>.<span class="ident">database</span>.<span class="ident">database_version</span> <span class="op">=</span> <span class="ident">get_config_input</span>(<span class="string">&quot;Database version:&quot;</span>.<span class="ident">to_string</span>());
-    <span class="ident">new_config</span>.<span class="ident">database</span>.<span class="ident">database_name</span> <span class="op">=</span> <span class="ident">get_config_input</span>(<span class="string">&quot;Database name:&quot;</span>.<span class="ident">to_string</span>());
+    new_config.database.database_version = get_config_input(<span class="string">&quot;Database version:&quot;</span>.to_string());
+    new_config.database.database_name = get_config_input(<span class="string">&quot;Database name:&quot;</span>.to_string());
 
-    <span class="ident">new_config</span>.<span class="ident">database</span>.<span class="ident">host_information</span>.<span class="ident">address</span> <span class="op">=</span> <span class="ident">get_config_input</span>(<span class="string">&quot;Address:&quot;</span>.<span class="ident">to_string</span>());
-    <span class="ident">new_config</span>.<span class="ident">database</span>.<span class="ident">host_information</span>.<span class="ident">port</span> <span class="op">=</span> <span class="ident">get_config_input</span>(<span class="string">&quot;Port:&quot;</span>.<span class="ident">to_string</span>());
-    <span class="ident">new_config</span>.<span class="ident">database</span>.<span class="ident">host_information</span>.<span class="ident">username</span> <span class="op">=</span> <span class="ident">get_config_input</span>(<span class="string">&quot;Username:&quot;</span>.<span class="ident">to_string</span>());
-    <span class="ident">new_config</span>.<span class="ident">database</span>.<span class="ident">host_information</span>.<span class="ident">password</span> <span class="op">=</span> <span class="ident">get_config_input</span>(<span class="string">&quot;Password:&quot;</span>.<span class="ident">to_string</span>());
+    new_config.database.host_information.address = get_config_input(<span class="string">&quot;Address:&quot;</span>.to_string());
+    new_config.database.host_information.port = get_config_input(<span class="string">&quot;Port:&quot;</span>.to_string());
+    new_config.database.host_information.username = get_config_input(<span class="string">&quot;Username:&quot;</span>.to_string());
+    new_config.database.host_information.password = get_config_input(<span class="string">&quot;Password:&quot;</span>.to_string());
 
-    <span class="ident">new_config</span>.<span class="ident">database</span>.<span class="ident">host_information</span>.<span class="ident">ssl</span> <span class="op">=</span>
-        <span class="kw">match</span> <span class="ident">get_config_input</span>(<span class="string">&quot;Enable ssl [true,false]:&quot;</span>.<span class="ident">to_string</span>()).<span class="ident">parse</span>() {
-            <span class="prelude-val">Ok</span>(<span class="ident">value</span>) =&gt; <span class="ident">value</span>,
+    new_config.database.host_information.ssl =
+        <span class="kw">match </span>get_config_input(<span class="string">&quot;Enable ssl [true,false]:&quot;</span>.to_string()).parse() {
+            <span class="prelude-val">Ok</span>(value) =&gt; value,
             <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="bool-val">false</span>,
         };
 }
 
-<span class="doccomment">/// Print generated config</span>
-<span class="kw">fn</span> <span class="ident">print_generated_config</span>(<span class="ident">new_config</span>: <span class="kw-2">&amp;mut</span> <span class="ident">Config</span>) {
-    <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Generated config:&quot;</span>.<span class="ident">green</span>());
+<span class="doccomment">/// Print generated config
+</span><span class="kw">fn </span>print_generated_config(new_config: <span class="kw-2">&amp;mut </span>Config) {
+    <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Generated config:&quot;</span>.green());
 
-    <span class="macro">println!</span>(<span class="string">&quot;Strapi version: {}&quot;</span>, <span class="ident">new_config</span>.<span class="ident">strapi_version</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;Strapi version: {}&quot;</span>, new_config.strapi_version);
     <span class="macro">println!</span>();
 
-    <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Database Information&quot;</span>.<span class="ident">blue</span>());
-    <span class="macro">println!</span>(<span class="string">&quot;Type: {}&quot;</span>, <span class="ident">new_config</span>.<span class="ident">database</span>.<span class="ident">database_type</span>);
-    <span class="macro">println!</span>(<span class="string">&quot;Version: {}&quot;</span>, <span class="ident">new_config</span>.<span class="ident">database</span>.<span class="ident">database_version</span>);
-    <span class="macro">println!</span>(<span class="string">&quot;Name: {}&quot;</span>, <span class="ident">new_config</span>.<span class="ident">database</span>.<span class="ident">database_name</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Database Information&quot;</span>.blue());
+    <span class="macro">println!</span>(<span class="string">&quot;Type: {}&quot;</span>, new_config.database.database_type);
+    <span class="macro">println!</span>(<span class="string">&quot;Version: {}&quot;</span>, new_config.database.database_version);
+    <span class="macro">println!</span>(<span class="string">&quot;Name: {}&quot;</span>, new_config.database.database_name);
 
     <span class="macro">println!</span>();
 
-    <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Hosting Information&quot;</span>.<span class="ident">blue</span>());
-    <span class="macro">println!</span>(<span class="string">&quot;Address: {}&quot;</span>, <span class="ident">new_config</span>.<span class="ident">database</span>.<span class="ident">host_information</span>.<span class="ident">address</span>);
-    <span class="macro">println!</span>(<span class="string">&quot;Port: {}&quot;</span>, <span class="ident">new_config</span>.<span class="ident">database</span>.<span class="ident">host_information</span>.<span class="ident">port</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Hosting Information&quot;</span>.blue());
+    <span class="macro">println!</span>(<span class="string">&quot;Address: {}&quot;</span>, new_config.database.host_information.address);
+    <span class="macro">println!</span>(<span class="string">&quot;Port: {}&quot;</span>, new_config.database.host_information.port);
     <span class="macro">println!</span>(
         <span class="string">&quot;Username: {}&quot;</span>,
-        <span class="ident">new_config</span>.<span class="ident">database</span>.<span class="ident">host_information</span>.<span class="ident">username</span>
+        new_config.database.host_information.username
     );
     <span class="macro">println!</span>(
         <span class="string">&quot;Password: {}&quot;</span>,
-        <span class="ident">new_config</span>.<span class="ident">database</span>.<span class="ident">host_information</span>.<span class="ident">password</span>
+        new_config.database.host_information.password
     );
-    <span class="macro">println!</span>(<span class="string">&quot;SSL Enabled: {}&quot;</span>, <span class="ident">new_config</span>.<span class="ident">database</span>.<span class="ident">host_information</span>.<span class="ident">ssl</span>);
+    <span class="macro">println!</span>(<span class="string">&quot;SSL Enabled: {}&quot;</span>, new_config.database.host_information.ssl);
 
     <span class="macro">println!</span>();
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="strapi_data_replicator" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="strapi_data_replicator" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

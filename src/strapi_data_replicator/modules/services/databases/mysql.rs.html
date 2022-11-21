@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/modules/services/databases/mysql.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mysql.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../../storage.js"></script><script defer src="../../../../../source-script.js"></script><script defer src="../../../../../source-files.js"></script><script defer src="../../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../../strapi_data_replicator/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../../../strapi_data_replicator/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../../strapi_data_replicator/index.html"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/modules/services/databases/mysql.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mysql.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../../../normalize.css"><link rel="stylesheet" href="../../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../../../ayu.css" disabled><link rel="stylesheet" href="../../../../../dark.css" disabled><link rel="stylesheet" href="../../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../../storage.js"></script><script defer src="../../../../../source-script.js"></script><script defer src="../../../../../source-files.js"></script><script defer src="../../../../../main.js"></script><noscript><link rel="stylesheet" href="../../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../../strapi_data_replicator/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../../../strapi_data_replicator/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../../strapi_data_replicator/index.html"><img class="rust-logo" src="../../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -138,145 +138,145 @@
 <span id="138">138</span>
 <span id="139">139</span>
 <span id="140">140</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::borrow::Cow</span>;
-<span class="kw">use</span> <span class="ident">std::process::Command</span>;
+</pre><pre class="rust"><code><span class="kw">use </span>std::borrow::Cow;
+<span class="kw">use </span>std::process::Command;
 
-<span class="kw">use</span> <span class="ident">colored::Colorize</span>;
-<span class="kw">use</span> <span class="ident">mysql::prelude</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">mysql</span>::<span class="kw-2">*</span>;
+<span class="kw">use </span>colored::Colorize;
+<span class="kw">use </span>mysql::prelude::<span class="kw-2">*</span>;
+<span class="kw">use </span>mysql::<span class="kw-2">*</span>;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::modules::types::config::Config</span>;
+<span class="kw">use </span><span class="kw">crate</span>::modules::types::config::Config;
 
-<span class="doccomment">/// List all tables for given database</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">list_tables</span>(<span class="ident">config</span>: <span class="ident">Config</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">conn</span> <span class="op">=</span>
-        <span class="ident">get_connection</span>(<span class="ident">config</span>.<span class="ident">clone</span>()).<span class="ident">expect</span>(<span class="string">&quot;Error while trying to connect to mysql database!&quot;</span>);
+<span class="doccomment">/// List all tables for given database
+</span><span class="kw">pub fn </span>list_tables(config: Config) -&gt; <span class="prelude-ty">Option</span>&lt;Vec&lt;String&gt;&gt; {
+    <span class="kw">let </span><span class="kw-2">mut </span>conn =
+        get_connection(config.clone()).expect(<span class="string">&quot;Error while trying to connect to mysql database!&quot;</span>);
 
-    <span class="kw">let</span> <span class="ident">select_tables_query</span> <span class="op">=</span> <span class="macro">format!</span>(
+    <span class="kw">let </span>select_tables_query = <span class="macro">format!</span>(
         <span class="string">&quot;SELECT table_name FROM information_schema.tables
                    WHERE table_schema = &#39;{}&#39;;&quot;</span>,
-        <span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">database_name</span>
+        config.database.database_name
     );
 
-    <span class="kw">let</span> <span class="ident">tables</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">conn</span>
-        .<span class="ident">query</span>(<span class="ident">select_tables_query</span>)
-        .<span class="ident">expect</span>(<span class="string">&quot;Error while running select query!&quot;</span>);
+    <span class="kw">let </span>tables: Vec&lt;String&gt; = conn
+        .query(select_tables_query)
+        .expect(<span class="string">&quot;Error while running select query!&quot;</span>);
 
-    <span class="kw">return</span> <span class="ident">Option::from</span>(<span class="ident">tables</span>);
+    <span class="kw">return </span>Option::from(tables);
 }
 
-<span class="doccomment">/// Return table as sql string using mysqldump</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_table</span>(<span class="ident">table_name</span>: <span class="ident">String</span>, <span class="ident">config</span>: <span class="ident">Config</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">host_information</span> <span class="op">=</span> <span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">host_information</span>.<span class="ident">clone</span>();
+<span class="doccomment">/// Return table as sql string using mysqldump
+</span><span class="kw">pub fn </span>get_table(table_name: String, config: Config) -&gt; <span class="prelude-ty">Option</span>&lt;String&gt; {
+    <span class="kw">let </span>host_information = config.database.host_information.clone();
 
-    <span class="kw">let</span> <span class="ident">dump_command</span>;
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">program_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;mysqldump&quot;</span>;
+    <span class="kw">let </span>dump_command;
+    <span class="kw">let </span><span class="kw-2">mut </span>program_name: <span class="kw-2">&amp;</span>str = <span class="string">&quot;mysqldump&quot;</span>;
 
-    <span class="kw">if</span> <span class="macro">cfg!</span>(<span class="ident">windows</span>) {
-        <span class="ident">program_name</span> <span class="op">=</span> <span class="string">&quot;mysqldump.exe&quot;</span>;
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="macro">cfg!</span>(<span class="ident">linux</span>) {
-        <span class="ident">program_name</span> <span class="op">=</span> <span class="string">&quot;mysqldump&quot;</span>;
+    <span class="kw">if </span><span class="macro">cfg!</span>(windows) {
+        program_name = <span class="string">&quot;mysqldump.exe&quot;</span>;
+    } <span class="kw">else if </span><span class="macro">cfg!</span>(linux) {
+        program_name = <span class="string">&quot;mysqldump&quot;</span>;
     }
 
-    <span class="kw">let</span> <span class="ident">password_len</span> <span class="op">=</span> <span class="ident">host_information</span>.<span class="ident">password</span>.<span class="ident">len</span>();
-    <span class="kw">if</span> <span class="ident">password_len</span> <span class="op">&gt;</span> <span class="number">0</span> {
-        <span class="ident">dump_command</span> <span class="op">=</span> <span class="ident">Command::new</span>(<span class="ident">program_name</span>)
-            .<span class="ident">args</span>(<span class="kw-2">&amp;</span>[
-                <span class="macro">format!</span>(<span class="string">&quot;-u{}&quot;</span>, <span class="ident">host_information</span>.<span class="ident">username</span>).<span class="ident">as_str</span>(),
-                <span class="macro">format!</span>(<span class="string">&quot;-p={}&quot;</span>, <span class="ident">host_information</span>.<span class="ident">password</span>).<span class="ident">as_str</span>(),
-                <span class="macro">format!</span>(<span class="string">&quot;--host={}&quot;</span>, <span class="ident">host_information</span>.<span class="ident">address</span>).<span class="ident">as_str</span>(),
-                <span class="macro">format!</span>(<span class="string">&quot;--port={}&quot;</span>, <span class="ident">host_information</span>.<span class="ident">port</span>).<span class="ident">as_str</span>(),
-                <span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">database_name</span>).<span class="ident">as_str</span>(),
-                <span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">table_name</span>).<span class="ident">as_str</span>(),
+    <span class="kw">let </span>password_len = host_information.password.len();
+    <span class="kw">if </span>password_len &gt; <span class="number">0 </span>{
+        dump_command = Command::new(program_name)
+            .args(<span class="kw-2">&amp;</span>[
+                <span class="macro">format!</span>(<span class="string">&quot;-u{}&quot;</span>, host_information.username).as_str(),
+                <span class="macro">format!</span>(<span class="string">&quot;-p={}&quot;</span>, host_information.password).as_str(),
+                <span class="macro">format!</span>(<span class="string">&quot;--host={}&quot;</span>, host_information.address).as_str(),
+                <span class="macro">format!</span>(<span class="string">&quot;--port={}&quot;</span>, host_information.port).as_str(),
+                <span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, config.database.database_name).as_str(),
+                <span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, table_name).as_str(),
                 <span class="string">&quot;--no-create-info&quot;</span>,
                 <span class="string">&quot;--skip-triggers&quot;</span>,
                 <span class="string">&quot;--no-create-db&quot;</span>,
                 <span class="string">&quot;--compact&quot;</span>,
                 <span class="string">&quot;--column-statistics=0&quot;</span>,
             ])
-            .<span class="ident">output</span>()
-            .<span class="ident">expect</span>(<span class="string">&quot;Error not able to run command!&quot;</span>);
-    } <span class="kw">else</span> {
-        <span class="ident">dump_command</span> <span class="op">=</span> <span class="ident">Command::new</span>(<span class="ident">program_name</span>)
-            .<span class="ident">args</span>(<span class="kw-2">&amp;</span>[
-                <span class="macro">format!</span>(<span class="string">&quot;-u{}&quot;</span>, <span class="ident">host_information</span>.<span class="ident">username</span>).<span class="ident">as_str</span>(),
-                <span class="macro">format!</span>(<span class="string">&quot;--host={}&quot;</span>, <span class="ident">host_information</span>.<span class="ident">address</span>).<span class="ident">as_str</span>(),
-                <span class="macro">format!</span>(<span class="string">&quot;--port={}&quot;</span>, <span class="ident">host_information</span>.<span class="ident">port</span>).<span class="ident">as_str</span>(),
-                <span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">database_name</span>).<span class="ident">as_str</span>(),
-                <span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">table_name</span>).<span class="ident">as_str</span>(),
+            .output()
+            .expect(<span class="string">&quot;Error not able to run command!&quot;</span>);
+    } <span class="kw">else </span>{
+        dump_command = Command::new(program_name)
+            .args(<span class="kw-2">&amp;</span>[
+                <span class="macro">format!</span>(<span class="string">&quot;-u{}&quot;</span>, host_information.username).as_str(),
+                <span class="macro">format!</span>(<span class="string">&quot;--host={}&quot;</span>, host_information.address).as_str(),
+                <span class="macro">format!</span>(<span class="string">&quot;--port={}&quot;</span>, host_information.port).as_str(),
+                <span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, config.database.database_name).as_str(),
+                <span class="macro">format!</span>(<span class="string">&quot;{}&quot;</span>, table_name).as_str(),
                 <span class="string">&quot;--no-create-info&quot;</span>,
                 <span class="string">&quot;--skip-triggers&quot;</span>,
                 <span class="string">&quot;--no-create-db&quot;</span>,
                 <span class="string">&quot;--compact&quot;</span>,
                 <span class="string">&quot;--column-statistics=0&quot;</span>,
             ])
-            .<span class="ident">output</span>()
-            .<span class="ident">expect</span>(<span class="string">&quot;Error not able to run command!&quot;</span>);
+            .output()
+            .expect(<span class="string">&quot;Error not able to run command!&quot;</span>);
     }
 
-    <span class="kw">let</span> <span class="ident">dump</span>: <span class="ident">Cow</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">String::from_utf8_lossy</span>(<span class="kw-2">&amp;</span><span class="ident">dump_command</span>.<span class="ident">stdout</span>);
+    <span class="kw">let </span>dump: Cow&lt;str&gt; = String::from_utf8_lossy(<span class="kw-2">&amp;</span>dump_command.stdout);
 
-    <span class="kw">let</span> <span class="ident">dump_error</span> <span class="op">=</span> <span class="ident">String::from_utf8_lossy</span>(<span class="kw-2">&amp;</span><span class="ident">dump_command</span>.<span class="ident">stderr</span>);
-    <span class="kw">if</span> <span class="ident">dump_error</span>.<span class="ident">len</span>() <span class="op">&gt;</span> <span class="number">0</span> {
-        <span class="macro">println!</span>(<span class="string">&quot;{} {}&quot;</span>, <span class="string">&quot;Error:&quot;</span>.<span class="ident">red</span>(), <span class="ident">dump_error</span>);
-        <span class="kw">return</span> <span class="prelude-val">None</span>;
+    <span class="kw">let </span>dump_error = String::from_utf8_lossy(<span class="kw-2">&amp;</span>dump_command.stderr);
+    <span class="kw">if </span>dump_error.len() &gt; <span class="number">0 </span>{
+        <span class="macro">println!</span>(<span class="string">&quot;{} {}&quot;</span>, <span class="string">&quot;Error:&quot;</span>.red(), dump_error);
+        <span class="kw">return </span><span class="prelude-val">None</span>;
     }
 
-    <span class="kw">return</span> <span class="ident">Option::from</span>(<span class="ident">dump</span>.<span class="ident">to_string</span>());
+    <span class="kw">return </span>Option::from(dump.to_string());
 }
 
-<span class="comment">// Import table given as sql string</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">import_table</span>(<span class="ident">sql</span>: <span class="ident">String</span>, <span class="ident">table_name</span>: <span class="ident">String</span>, <span class="ident">config</span>: <span class="ident">Config</span>) -&gt; () {
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">conn</span> <span class="op">=</span>
-        <span class="ident">get_connection</span>(<span class="ident">config</span>.<span class="ident">clone</span>()).<span class="ident">expect</span>(<span class="string">&quot;Error while trying to connect to mysql database!&quot;</span>);
-    <span class="kw">let</span> <span class="ident">params</span> <span class="op">=</span> <span class="ident">Params::from</span>(());
+<span class="comment">// Import table given as sql string
+</span><span class="kw">pub fn </span>import_table(sql: String, table_name: String, config: Config) -&gt; () {
+    <span class="kw">let </span><span class="kw-2">mut </span>conn =
+        get_connection(config.clone()).expect(<span class="string">&quot;Error while trying to connect to mysql database!&quot;</span>);
+    <span class="kw">let </span>params = Params::from(());
 
-    <span class="ident">conn</span>.<span class="ident">query</span>(<span class="macro">format!</span>(<span class="string">&quot;DELETE FROM `{}`;&quot;</span>, <span class="ident">table_name</span>))
-        .<span class="ident">expect</span>(<span class="string">&quot;Could not delete all rows of table!&quot;</span>)
-        .<span class="ident">to_value</span>();
+    conn.query(<span class="macro">format!</span>(<span class="string">&quot;DELETE FROM `{}`;&quot;</span>, table_name))
+        .expect(<span class="string">&quot;Could not delete all rows of table!&quot;</span>)
+        .to_value();
 
-    <span class="kw">let</span> <span class="ident">prepped_sql</span> <span class="op">=</span> <span class="ident">conn</span>
-        .<span class="ident">prep</span>(<span class="ident">sql</span>)
-        .<span class="ident">expect</span>(<span class="string">&quot;Could not convert file to valid stmt!&quot;</span>);
+    <span class="kw">let </span>prepped_sql = conn
+        .prep(sql)
+        .expect(<span class="string">&quot;Could not convert file to valid stmt!&quot;</span>);
 
-    <span class="ident">conn</span>.<span class="ident">exec</span>(<span class="ident">prepped_sql</span>, <span class="ident">params</span>)
-        .<span class="ident">expect</span>(<span class="string">&quot;Error while running select query!&quot;</span>)
-        .<span class="ident">to_value</span>();
+    conn.exec(prepped_sql, params)
+        .expect(<span class="string">&quot;Error while running select query!&quot;</span>)
+        .to_value();
 }
 
-<span class="doccomment">/// Get mysql connection configuration</span>
-<span class="kw">fn</span> <span class="ident">get_opts</span>(<span class="ident">config</span>: <span class="ident">Config</span>) -&gt; <span class="ident">OptsBuilder</span> {
-    <span class="kw">let</span> <span class="ident">tcp_port</span>: <span class="ident">u16</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">host_information</span>.<span class="ident">port</span>.<span class="ident">parse</span>() {
-        <span class="prelude-val">Ok</span>(<span class="ident">value</span>) =&gt; <span class="ident">value</span>,
+<span class="doccomment">/// Get mysql connection configuration
+</span><span class="kw">fn </span>get_opts(config: Config) -&gt; OptsBuilder {
+    <span class="kw">let </span>tcp_port: u16 = <span class="kw">match </span>config.database.host_information.port.parse() {
+        <span class="prelude-val">Ok</span>(value) =&gt; value,
         <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="number">3306</span>,
     };
 
-    <span class="kw">let</span> <span class="ident">ssl_opts</span> <span class="op">=</span> <span class="ident">SslOpts::default</span>();
+    <span class="kw">let </span>ssl_opts = SslOpts::default();
 
-    <span class="ident">SslOpts::accept_invalid_certs</span>(<span class="kw-2">&amp;</span><span class="ident">ssl_opts</span>);
-    <span class="ident">SslOpts::skip_domain_validation</span>(<span class="kw-2">&amp;</span><span class="ident">ssl_opts</span>);
+    SslOpts::accept_invalid_certs(<span class="kw-2">&amp;</span>ssl_opts);
+    SslOpts::skip_domain_validation(<span class="kw-2">&amp;</span>ssl_opts);
 
-    <span class="kw">let</span> <span class="ident">opts</span> <span class="op">=</span> <span class="ident">OptsBuilder::new</span>()
-        .<span class="ident">ip_or_hostname</span>(<span class="ident">Option::from</span>(<span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">host_information</span>.<span class="ident">address</span>))
-        .<span class="ident">tcp_port</span>(<span class="ident">tcp_port</span>)
-        .<span class="ident">user</span>(<span class="ident">Option::from</span>(<span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">host_information</span>.<span class="ident">username</span>))
-        .<span class="ident">pass</span>(<span class="ident">Option::from</span>(<span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">host_information</span>.<span class="ident">password</span>))
-        .<span class="ident">db_name</span>(<span class="ident">Option::from</span>(<span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">database_name</span>))
-        .<span class="ident">ssl_opts</span>(<span class="kw">match</span> <span class="ident">config</span>.<span class="ident">database</span>.<span class="ident">host_information</span>.<span class="ident">ssl</span> {
-            <span class="bool-val">false</span> =&gt; <span class="prelude-val">None</span>,
-            <span class="bool-val">true</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">ssl_opts</span>),
+    <span class="kw">let </span>opts = OptsBuilder::new()
+        .ip_or_hostname(Option::from(config.database.host_information.address))
+        .tcp_port(tcp_port)
+        .user(Option::from(config.database.host_information.username))
+        .pass(Option::from(config.database.host_information.password))
+        .db_name(Option::from(config.database.database_name))
+        .ssl_opts(<span class="kw">match </span>config.database.host_information.ssl {
+            <span class="bool-val">false </span>=&gt; <span class="prelude-val">None</span>,
+            <span class="bool-val">true </span>=&gt; <span class="prelude-val">Some</span>(ssl_opts),
         });
 
-    <span class="kw">return</span> <span class="ident">opts</span>;
+    <span class="kw">return </span>opts;
 }
 
-<span class="doccomment">/// Create connection with mysql server and return ref</span>
-<span class="kw">fn</span> <span class="ident">get_connection</span>(<span class="ident">config</span>: <span class="ident">Config</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">PooledConn</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">pool</span> <span class="op">=</span> <span class="ident">Pool::new</span>(<span class="ident">get_opts</span>(<span class="ident">config</span>))<span class="question-mark">?</span>;
+<span class="doccomment">/// Create connection with mysql server and return ref
+</span><span class="kw">fn </span>get_connection(config: Config) -&gt; <span class="prelude-ty">Result</span>&lt;PooledConn&gt; {
+    <span class="kw">let </span>pool = Pool::new(get_opts(config))<span class="question-mark">?</span>;
 
-    <span class="kw">let</span> <span class="ident">conn</span> <span class="op">=</span> <span class="ident">pool</span>.<span class="ident">get_conn</span>();
+    <span class="kw">let </span>conn = pool.get_conn();
 
-    <span class="kw">return</span> <span class="ident">conn</span>;
+    <span class="kw">return </span>conn;
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../../../" data-current-crate="strapi_data_replicator" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../../../" data-current-crate="strapi_data_replicator" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>
