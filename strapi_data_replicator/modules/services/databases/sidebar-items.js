@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"fn":[["get_database_type","Return typ of database"],["list","List all tables / collection for given database"],["migrate_table","Migrate table or collection"],["replicate_table","Replicate table or collection"]],"mod":[["mongodb",""],["mysql",""]]};
+window.SIDEBAR_ITEMS = {"fn":["get_database_type","list","migrate_table","replicate_table"],"mod":["mongodb","mysql"]};

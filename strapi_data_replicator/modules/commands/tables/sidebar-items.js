@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"fn":[["get_tables","Return vec with table names"],["run_tables","Print all tables"]]};
+window.SIDEBAR_ITEMS = {"fn":["get_tables","run_tables"]};

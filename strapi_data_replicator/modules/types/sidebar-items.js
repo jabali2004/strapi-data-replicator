@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"mod":[["build_info",""],["cli",""],["config",""],["package_json",""]]};
+window.SIDEBAR_ITEMS = {"mod":["build_info","cli","config","package_json"]};
