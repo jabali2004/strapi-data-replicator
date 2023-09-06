@@ -9,7 +9,7 @@ jobs:
   upload_external:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/upload-artifact@master
         with:
           name: mysqldump
@@ -22,7 +22,7 @@ jobs:
   build_linux:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install Cargo updater
         run: cargo install set-cargo-version
       - name: Set Cargo version
@@ -48,7 +48,7 @@ jobs:
   build_windows:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install Cargo updater
         run: cargo install set-cargo-version
       - name: Set Cargo version
@@ -75,7 +75,7 @@ jobs:
     needs: [ build_windows, build_linux, upload_external ]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use Node.js 14.x
         uses: actions/setup-node@v3.8.1
         with:
