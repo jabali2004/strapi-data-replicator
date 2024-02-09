@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/modules/commands/init.rs`."><title>init.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="strapi_data_replicator" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/modules/commands/init.rs`."><title>init.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="strapi_data_replicator" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -273,48 +274,48 @@
     <span class="kw">let </span><span class="kw-2">mut </span>new_config: Config;
 
     new_config = Config {
-        strapi_version: <span class="string">&quot;&quot;</span>.to_string(),
+        strapi_version: <span class="string">""</span>.to_string(),
         database: DatabaseConfig {
-            database_type: get_config_string(<span class="string">&quot;DATABASE_TYPE&quot;</span>),
-            database_version: get_config_string(<span class="string">&quot;DATABASE_VERSION&quot;</span>),
-            database_name: get_config_string(<span class="string">&quot;DATABASE_NAME&quot;</span>),
+            database_type: get_config_string(<span class="string">"DATABASE_TYPE"</span>),
+            database_version: get_config_string(<span class="string">"DATABASE_VERSION"</span>),
+            database_name: get_config_string(<span class="string">"DATABASE_NAME"</span>),
             host_information: HostInformation {
-                address: get_config_string(<span class="string">&quot;DATABASE_HOST&quot;</span>),
-                port: get_config_string(<span class="string">&quot;DATABASE_PORT&quot;</span>),
-                username: get_config_string(<span class="string">&quot;DATABASE_USERNAME&quot;</span>),
-                password: get_config_string(<span class="string">&quot;DATABASE_PASSWORD&quot;</span>),
-                ssl: <span class="kw">match </span>get_config_string(<span class="string">&quot;DATABASE_SSL&quot;</span>).parse() {
+                address: get_config_string(<span class="string">"DATABASE_HOST"</span>),
+                port: get_config_string(<span class="string">"DATABASE_PORT"</span>),
+                username: get_config_string(<span class="string">"DATABASE_USERNAME"</span>),
+                password: get_config_string(<span class="string">"DATABASE_PASSWORD"</span>),
+                ssl: <span class="kw">match </span>get_config_string(<span class="string">"DATABASE_SSL"</span>).parse() {
                     <span class="prelude-val">Ok</span>(value) =&gt; value,
                     <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="bool-val">false</span>,
                 },
             },
         },
         replicated: <span class="macro">vec!</span>[
-            <span class="string">&quot;strapi_role&quot;</span>.to_string(),
-            <span class="string">&quot;strapi_permission&quot;</span>.to_string(),
-            <span class="string">&quot;users-permissions_permission&quot;</span>.to_string(),
-            <span class="string">&quot;users-permissions_role&quot;</span>.to_string(),
+            <span class="string">"strapi_role"</span>.to_string(),
+            <span class="string">"strapi_permission"</span>.to_string(),
+            <span class="string">"users-permissions_permission"</span>.to_string(),
+            <span class="string">"users-permissions_role"</span>.to_string(),
         ],
     };
 
-    <span class="kw">let </span>package_json = read_to_string(<span class="string">&quot;package.json&quot;</span>);
+    <span class="kw">let </span>package_json = read_to_string(<span class="string">"package.json"</span>);
 
     <span class="kw">if </span>package_json.is_ok() {
         <span class="kw">let </span>package_json_obj: PackageJson = serde_json::from_str(<span class="kw-2">&amp;</span>package_json.unwrap().as_str())
-            .expect(<span class="string">&quot;Unable to parse package.json!&quot;</span>);
+            .expect(<span class="string">"Unable to parse package.json!"</span>);
 
         new_config.strapi_version = package_json_obj.dependencies.strapi;
     }
 
     print_generated_config(<span class="kw-2">&amp;mut </span>new_config);
 
-    <span class="macro">println!</span>(<span class="string">&quot;[Y] - Accept all  [N] - Overwrite configuration&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">"[Y] - Accept all  [N] - Overwrite configuration"</span>);
 
     <span class="kw">let </span><span class="kw-2">mut </span>configuration_input: String = String::new();
 
     stdin()
         .read_line(<span class="kw-2">&amp;mut </span>configuration_input)
-        .expect(<span class="string">&quot;Failed to read from stdin&quot;</span>);
+        .expect(<span class="string">"Failed to read from stdin"</span>);
 
     configuration_input = configuration_input
         .to_lowercase()
@@ -322,15 +323,15 @@
         .collect();
 
     <span class="kw">if </span>!configuration_input.is_empty() {
-        <span class="kw">if </span>configuration_input == <span class="string">&quot;n&quot; </span>&amp;&amp; configuration_input != <span class="string">&quot;y&quot; </span>{
+        <span class="kw">if </span>configuration_input == <span class="string">"n" </span>&amp;&amp; configuration_input != <span class="string">"y" </span>{
             override_config(<span class="kw-2">&amp;mut </span>new_config);
         }
-        <span class="kw">if </span>configuration_input != <span class="string">&quot;n&quot; </span>&amp;&amp; configuration_input != <span class="string">&quot;y&quot; </span>{
-            <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Exited!&quot;</span>.red());
+        <span class="kw">if </span>configuration_input != <span class="string">"n" </span>&amp;&amp; configuration_input != <span class="string">"y" </span>{
+            <span class="macro">println!</span>(<span class="string">"{}"</span>, <span class="string">"Exited!"</span>.red());
             <span class="kw">return </span>();
         }
     } <span class="kw">else </span>{
-        <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Exited!&quot;</span>.red());
+        <span class="macro">println!</span>(<span class="string">"{}"</span>, <span class="string">"Exited!"</span>.red());
         <span class="kw">return </span>();
     }
 
@@ -342,21 +343,21 @@
 
     <span class="comment">// Ask if user wants to create replica
     </span><span class="macro">println!</span>();
-    <span class="macro">println!</span>(<span class="string">&quot;Should a replication be created?&quot;</span>);
-    <span class="macro">println!</span>(<span class="string">&quot;[Y] - Replicate  [N] - Do not replicate&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">"Should a replication be created?"</span>);
+    <span class="macro">println!</span>(<span class="string">"[Y] - Replicate  [N] - Do not replicate"</span>);
 
     <span class="kw">let </span><span class="kw-2">mut </span>configuration_input: String = String::new();
 
     stdin()
         .read_line(<span class="kw-2">&amp;mut </span>configuration_input)
-        .expect(<span class="string">&quot;Failed to read from stdin&quot;</span>);
+        .expect(<span class="string">"Failed to read from stdin"</span>);
 
     configuration_input = configuration_input
         .to_lowercase()
         .split_whitespace()
         .collect();
 
-    <span class="kw">if </span>configuration_input == <span class="string">&quot;y&quot; </span>{
+    <span class="kw">if </span>configuration_input == <span class="string">"y" </span>{
         run_replicate(args);
     }
 
@@ -366,63 +367,63 @@
 <span class="doccomment">/// Start table selection dialog
 </span><span class="kw">fn </span>select_tables(new_config: <span class="kw-2">&amp;mut </span>Config) -&gt; bool {
     <span class="macro">println!</span>();
-    <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Use standard selected tables?&quot;</span>.green());
+    <span class="macro">println!</span>(<span class="string">"{}"</span>, <span class="string">"Use standard selected tables?"</span>.green());
     <span class="kw">for </span>table <span class="kw">in </span><span class="kw-2">&amp;</span>new_config.replicated {
-        <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, table);
+        <span class="macro">println!</span>(<span class="string">"{}"</span>, table);
     }
 
     <span class="macro">println!</span>();
-    <span class="macro">println!</span>(<span class="string">&quot;[Y] - Accept Selection  [N] - Select manually&quot;</span>);
+    <span class="macro">println!</span>(<span class="string">"[Y] - Accept Selection  [N] - Select manually"</span>);
 
     <span class="kw">let </span><span class="kw-2">mut </span>configuration_input: String = String::new();
 
     stdin()
         .read_line(<span class="kw-2">&amp;mut </span>configuration_input)
-        .expect(<span class="string">&quot;Failed to read from stdin&quot;</span>);
+        .expect(<span class="string">"Failed to read from stdin"</span>);
 
     configuration_input = configuration_input
         .to_lowercase()
         .split_whitespace()
         .collect();
 
-    <span class="kw">if </span>configuration_input != <span class="string">&quot;y&quot; </span>{
+    <span class="kw">if </span>configuration_input != <span class="string">"y" </span>{
         <span class="comment">// Connect to database
         // List all tables / collections
         </span><span class="kw">let </span>tables = get_tables(new_config).clone();
 
         <span class="macro">println!</span>();
-        <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Tables / Collections: &quot;</span>.green());
+        <span class="macro">println!</span>(<span class="string">"{}"</span>, <span class="string">"Tables / Collections: "</span>.green());
 
         <span class="kw">let </span><span class="kw-2">mut </span>index: i32 = <span class="number">0</span>;
         <span class="kw">for </span>table <span class="kw">in </span>tables.clone() {
             index += <span class="number">1</span>;
-            <span class="macro">println!</span>(<span class="string">&quot;({}) {}&quot;</span>, index, table);
+            <span class="macro">println!</span>(<span class="string">"({}) {}"</span>, index, table);
         }
 
         <span class="macro">println!</span>();
-        <span class="macro">println!</span>(<span class="string">&quot;Select tables/collections separated by &#39;,&#39;&quot;</span>);
+        <span class="macro">println!</span>(<span class="string">"Select tables/collections separated by ','"</span>);
 
         <span class="kw">let </span><span class="kw-2">mut </span>selected_tables: String = String::new();
-        <span class="macro">print!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Selected tables/collections:&quot;</span>.green());
+        <span class="macro">print!</span>(<span class="string">"{}"</span>, <span class="string">"Selected tables/collections:"</span>.green());
         <span class="kw">let _ </span>= stdout().flush();
         stdin()
             .read_line(<span class="kw-2">&amp;mut </span>selected_tables)
-            .expect(<span class="string">&quot;Did not enter a correct string&quot;</span>);
+            .expect(<span class="string">"Did not enter a correct string"</span>);
 
-        <span class="kw">let </span>regex = Regex::new(<span class="string">&quot;^[0-9]+(,[0-9]+)*$&quot;</span>).unwrap();
+        <span class="kw">let </span>regex = Regex::new(<span class="string">"^[0-9]+(,[0-9]+)*$"</span>).unwrap();
 
         selected_tables = selected_tables.to_lowercase().split_whitespace().collect();
 
         <span class="kw">if </span>!regex.is_match(<span class="kw-2">&amp;</span>selected_tables) {
             <span class="macro">println!</span>(
-                <span class="string">&quot;{}&quot;</span>,
-                <span class="string">&quot;Wrong format used for selecting tables/collections!&quot;</span>.red()
+                <span class="string">"{}"</span>,
+                <span class="string">"Wrong format used for selecting tables/collections!"</span>.red()
             );
             <span class="kw">return </span><span class="bool-val">false</span>;
         }
 
         <span class="kw">let </span><span class="kw-2">mut </span>named_selected_tables: Vec&lt;String&gt; = Vec::new();
-        <span class="kw">for </span>table_index <span class="kw">in </span>selected_tables.split(<span class="string">&quot;,&quot;</span>) {
+        <span class="kw">for </span>table_index <span class="kw">in </span>selected_tables.split(<span class="string">","</span>) {
             <span class="kw">let </span>index: usize = <span class="kw">match </span>table_index.parse() {
                 <span class="prelude-val">Ok</span>(value) =&gt; value,
                 <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="kw">continue</span>,
@@ -454,26 +455,26 @@
 
 <span class="doccomment">/// Override data manually
 </span><span class="kw">fn </span>override_config(new_config: <span class="kw-2">&amp;mut </span>Config) {
-    new_config.strapi_version = get_config_input(<span class="string">&quot;Strapi version:&quot;</span>.to_string());
+    new_config.strapi_version = get_config_input(<span class="string">"Strapi version:"</span>.to_string());
 
-    <span class="kw">let </span>database_type: String = get_config_input(<span class="string">&quot;Database type [mysql,mongodb]:&quot;</span>.to_string());
+    <span class="kw">let </span>database_type: String = get_config_input(<span class="string">"Database type [mysql,mongodb]:"</span>.to_string());
 
     new_config.database.database_type = <span class="kw">match </span>database_type.to_lowercase().as_str() {
-        <span class="string">&quot;mysql&quot; </span>=&gt; <span class="string">&quot;mysql&quot;</span>.to_string(),
-        <span class="string">&quot;mongodb&quot; </span>=&gt; <span class="string">&quot;mongodb&quot;</span>.to_string(),
-        <span class="kw">_ </span>=&gt; <span class="string">&quot;mysql&quot;</span>.to_string(),
+        <span class="string">"mysql" </span>=&gt; <span class="string">"mysql"</span>.to_string(),
+        <span class="string">"mongodb" </span>=&gt; <span class="string">"mongodb"</span>.to_string(),
+        <span class="kw">_ </span>=&gt; <span class="string">"mysql"</span>.to_string(),
     };
 
-    new_config.database.database_version = get_config_input(<span class="string">&quot;Database version:&quot;</span>.to_string());
-    new_config.database.database_name = get_config_input(<span class="string">&quot;Database name:&quot;</span>.to_string());
+    new_config.database.database_version = get_config_input(<span class="string">"Database version:"</span>.to_string());
+    new_config.database.database_name = get_config_input(<span class="string">"Database name:"</span>.to_string());
 
-    new_config.database.host_information.address = get_config_input(<span class="string">&quot;Address:&quot;</span>.to_string());
-    new_config.database.host_information.port = get_config_input(<span class="string">&quot;Port:&quot;</span>.to_string());
-    new_config.database.host_information.username = get_config_input(<span class="string">&quot;Username:&quot;</span>.to_string());
-    new_config.database.host_information.password = get_config_input(<span class="string">&quot;Password:&quot;</span>.to_string());
+    new_config.database.host_information.address = get_config_input(<span class="string">"Address:"</span>.to_string());
+    new_config.database.host_information.port = get_config_input(<span class="string">"Port:"</span>.to_string());
+    new_config.database.host_information.username = get_config_input(<span class="string">"Username:"</span>.to_string());
+    new_config.database.host_information.password = get_config_input(<span class="string">"Password:"</span>.to_string());
 
     new_config.database.host_information.ssl =
-        <span class="kw">match </span>get_config_input(<span class="string">&quot;Enable ssl [true,false]:&quot;</span>.to_string()).parse() {
+        <span class="kw">match </span>get_config_input(<span class="string">"Enable ssl [true,false]:"</span>.to_string()).parse() {
             <span class="prelude-val">Ok</span>(value) =&gt; value,
             <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="bool-val">false</span>,
         };
@@ -481,30 +482,30 @@
 
 <span class="doccomment">/// Print generated config
 </span><span class="kw">fn </span>print_generated_config(new_config: <span class="kw-2">&amp;mut </span>Config) {
-    <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Generated config:&quot;</span>.green());
+    <span class="macro">println!</span>(<span class="string">"{}"</span>, <span class="string">"Generated config:"</span>.green());
 
-    <span class="macro">println!</span>(<span class="string">&quot;Strapi version: {}&quot;</span>, new_config.strapi_version);
+    <span class="macro">println!</span>(<span class="string">"Strapi version: {}"</span>, new_config.strapi_version);
     <span class="macro">println!</span>();
 
-    <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Database Information&quot;</span>.blue());
-    <span class="macro">println!</span>(<span class="string">&quot;Type: {}&quot;</span>, new_config.database.database_type);
-    <span class="macro">println!</span>(<span class="string">&quot;Version: {}&quot;</span>, new_config.database.database_version);
-    <span class="macro">println!</span>(<span class="string">&quot;Name: {}&quot;</span>, new_config.database.database_name);
+    <span class="macro">println!</span>(<span class="string">"{}"</span>, <span class="string">"Database Information"</span>.blue());
+    <span class="macro">println!</span>(<span class="string">"Type: {}"</span>, new_config.database.database_type);
+    <span class="macro">println!</span>(<span class="string">"Version: {}"</span>, new_config.database.database_version);
+    <span class="macro">println!</span>(<span class="string">"Name: {}"</span>, new_config.database.database_name);
 
     <span class="macro">println!</span>();
 
-    <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="string">&quot;Hosting Information&quot;</span>.blue());
-    <span class="macro">println!</span>(<span class="string">&quot;Address: {}&quot;</span>, new_config.database.host_information.address);
-    <span class="macro">println!</span>(<span class="string">&quot;Port: {}&quot;</span>, new_config.database.host_information.port);
+    <span class="macro">println!</span>(<span class="string">"{}"</span>, <span class="string">"Hosting Information"</span>.blue());
+    <span class="macro">println!</span>(<span class="string">"Address: {}"</span>, new_config.database.host_information.address);
+    <span class="macro">println!</span>(<span class="string">"Port: {}"</span>, new_config.database.host_information.port);
     <span class="macro">println!</span>(
-        <span class="string">&quot;Username: {}&quot;</span>,
+        <span class="string">"Username: {}"</span>,
         new_config.database.host_information.username
     );
     <span class="macro">println!</span>(
-        <span class="string">&quot;Password: {}&quot;</span>,
+        <span class="string">"Password: {}"</span>,
         new_config.database.host_information.password
     );
-    <span class="macro">println!</span>(<span class="string">&quot;SSL Enabled: {}&quot;</span>, new_config.database.host_information.ssl);
+    <span class="macro">println!</span>(<span class="string">"SSL Enabled: {}"</span>, new_config.database.host_information.ssl);
 
     <span class="macro">println!</span>();
 }

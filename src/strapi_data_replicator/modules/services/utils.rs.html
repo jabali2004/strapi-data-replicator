@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/modules/services/utils.rs`."><title>utils.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="strapi_data_replicator" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/modules/services/utils.rs`."><title>utils.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-ac92e1bbe349e143.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="strapi_data_replicator" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-f2adc0d6ca4d09fb.js"></script><script defer src="../../../../static.files/src-script-39ed315d46fb705f.js"></script><script defer src="../../../../src-files.js"></script><script defer src="../../../../static.files/main-305769736d49e732.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-feafe1bb7466e4bd.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -252,7 +253,7 @@
 
     <span class="kw">let </span>last_path = legit_paths.last().unwrap();
 
-    version = Version::parse(last_path).expect(<span class="string">&quot;Could not parse version!&quot;</span>);
+    version = Version::parse(last_path).expect(<span class="string">"Could not parse version!"</span>);
 
     <span class="comment">// Increment version | 10 is max
     </span><span class="kw">if </span>version.patch == <span class="number">10 </span>{
@@ -279,7 +280,7 @@
 
     <span class="kw">let </span>last_path = legit_paths.last().unwrap();
 
-    version = Version::parse(last_path).expect(<span class="string">&quot;Could not parse version!&quot;</span>);
+    version = Version::parse(last_path).expect(<span class="string">"Could not parse version!"</span>);
 
     <span class="kw">return </span>version.to_string();
 }
@@ -291,7 +292,7 @@
 
     <span class="kw">for </span>legit_path <span class="kw">in </span>legit_paths {
         <span class="kw">if </span>legit_path == version {
-            Version::parse(legit_path.as_str()).expect(<span class="string">&quot;Could not parse version!&quot;</span>);
+            Version::parse(legit_path.as_str()).expect(<span class="string">"Could not parse version!"</span>);
             version_exists = <span class="bool-val">true</span>;
             <span class="kw">break</span>;
         }
@@ -302,7 +303,7 @@
 
 <span class="doccomment">/// Return ReadDir for all replications files of specific version
 </span><span class="kw">pub fn </span>read_replication_file_paths(version: String) -&gt; ReadDir {
-    <span class="kw">let </span>paths = read_dir(<span class="macro">format!</span>(<span class="string">&quot;{}{}&quot;</span>, DATA_PATH, version)).expect(<span class="string">&quot;Cannot read directory!&quot;</span>);
+    <span class="kw">let </span>paths = read_dir(<span class="macro">format!</span>(<span class="string">"{}{}"</span>, DATA_PATH, version)).expect(<span class="string">"Cannot read directory!"</span>);
 
     <span class="kw">return </span>paths;
 }
@@ -310,7 +311,7 @@
 <span class="doccomment">/// Create data dir if directory does not exist
 </span><span class="kw">pub fn </span>create_data_dir() {
     <span class="kw">if </span>!Path::new(DATA_PATH).exists() {
-        create_dir(DATA_PATH).expect(<span class="string">&quot;Could not create directory!&quot;</span>);
+        create_dir(DATA_PATH).expect(<span class="string">"Could not create directory!"</span>);
     }
 }
 
@@ -328,18 +329,18 @@
 <span class="doccomment">/// Read config file and return config
 </span><span class="kw">pub fn </span>read_config_file() -&gt; Config {
     <span class="comment">// Open the file in read-only mode with buffer.
-    // let file = File::open(CONFIG_FILE).expect(&quot;Unable to read file!&quot;);
+    // let file = File::open(CONFIG_FILE).expect("Unable to read file!");
     </span><span class="kw">let </span>file = File::open(CONFIG_FILE);
 
     <span class="kw">let </span>file = <span class="kw">match </span>file {
         <span class="prelude-val">Ok</span>(file) =&gt; file,
-        <span class="prelude-val">Err</span>(error) =&gt; <span class="macro">panic!</span>(<span class="string">&quot;Problem with opening the file: {:?}&quot;</span>, error),
+        <span class="prelude-val">Err</span>(error) =&gt; <span class="macro">panic!</span>(<span class="string">"Problem with opening the file: {:?}"</span>, error),
     };
 
     <span class="kw">let </span>reader = BufReader::new(file);
 
     <span class="comment">// Read the JSON contents of the file as an instance of `Config`.
-    </span><span class="kw">let </span>config: Config = serde_json::from_reader(reader).expect(<span class="string">&quot;Unable to parse string to json!&quot;</span>);
+    </span><span class="kw">let </span>config: Config = serde_json::from_reader(reader).expect(<span class="string">"Unable to parse string to json!"</span>);
 
     <span class="kw">return </span>config;
 }
@@ -350,17 +351,17 @@
     <span class="kw">let </span>file_config = read_config_file();
 
     <span class="kw">let </span><span class="kw-2">mut </span>config = Config {
-        strapi_version: <span class="string">&quot;&quot;</span>.to_string(),
+        strapi_version: <span class="string">""</span>.to_string(),
         database: DatabaseConfig {
-            database_type: get_config_string(<span class="string">&quot;DATABASE_TYPE&quot;</span>),
-            database_version: get_config_string(<span class="string">&quot;DATABASE_VERSION&quot;</span>),
-            database_name: get_config_string(<span class="string">&quot;DATABASE_NAME&quot;</span>),
+            database_type: get_config_string(<span class="string">"DATABASE_TYPE"</span>),
+            database_version: get_config_string(<span class="string">"DATABASE_VERSION"</span>),
+            database_name: get_config_string(<span class="string">"DATABASE_NAME"</span>),
             host_information: HostInformation {
-                address: get_config_string(<span class="string">&quot;DATABASE_HOST&quot;</span>),
-                port: get_config_string(<span class="string">&quot;DATABASE_PORT&quot;</span>),
-                username: get_config_string(<span class="string">&quot;DATABASE_USERNAME&quot;</span>),
-                password: get_config_string(<span class="string">&quot;DATABASE_PASSWORD&quot;</span>),
-                ssl: <span class="kw">match </span>get_config_string(<span class="string">&quot;DATABASE_SSL&quot;</span>).parse() {
+                address: get_config_string(<span class="string">"DATABASE_HOST"</span>),
+                port: get_config_string(<span class="string">"DATABASE_PORT"</span>),
+                username: get_config_string(<span class="string">"DATABASE_USERNAME"</span>),
+                password: get_config_string(<span class="string">"DATABASE_PASSWORD"</span>),
+                ssl: <span class="kw">match </span>get_config_string(<span class="string">"DATABASE_SSL"</span>).parse() {
                     <span class="prelude-val">Ok</span>(value) =&gt; value,
                     <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="bool-val">false</span>,
                 },
@@ -378,11 +379,11 @@
 /// and return it
 </span><span class="kw">pub fn </span>get_config_input(variable_text: String) -&gt; String {
     <span class="kw">let </span><span class="kw-2">mut </span>s = String::new();
-    <span class="macro">print!</span>(<span class="string">&quot;{}&quot;</span>, variable_text);
+    <span class="macro">print!</span>(<span class="string">"{}"</span>, variable_text);
     <span class="kw">let _ </span>= stdout().flush();
     stdin()
         .read_line(<span class="kw-2">&amp;mut </span>s)
-        .expect(<span class="string">&quot;Did not enter a correct string&quot;</span>);
+        .expect(<span class="string">"Did not enter a correct string"</span>);
 
     <span class="kw">return </span>s.split_whitespace().collect();
 }
@@ -408,8 +409,8 @@
     <span class="comment">// Check if path and file exists
     </span><span class="kw">if </span>!Path::new(path).exists() {
         <span class="kw">if </span>print_message {
-            <span class="kw">let </span>error_message = <span class="macro">format!</span>(<span class="string">&quot;Path {} does not exist!&quot;</span>, path);
-            <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, error_message.red());
+            <span class="kw">let </span>error_message = <span class="macro">format!</span>(<span class="string">"Path {} does not exist!"</span>, path);
+            <span class="macro">println!</span>(<span class="string">"{}"</span>, error_message.red());
         }
 
         <span class="kw">return </span><span class="bool-val">false</span>;
@@ -420,8 +421,8 @@
 
 <span class="doccomment">/// Get legit paths in data dir
 </span><span class="kw">fn </span>get_legit_paths() -&gt; Vec&lt;String&gt; {
-    <span class="kw">let </span>regex = Regex::new(<span class="string">&quot;^(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)$&quot;</span>).unwrap();
-    <span class="kw">let </span>paths = read_dir(DATA_PATH).expect(<span class="string">&quot;Cannot read directory!&quot;</span>);
+    <span class="kw">let </span>regex = Regex::new(<span class="string">"^(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)$"</span>).unwrap();
+    <span class="kw">let </span>paths = read_dir(DATA_PATH).expect(<span class="string">"Cannot read directory!"</span>);
     <span class="kw">let </span><span class="kw-2">mut </span>legit_paths: Vec&lt;String&gt; = <span class="macro">vec!</span>[];
 
     <span class="kw">for </span>path <span class="kw">in </span>paths {
