@@ -19,7 +19,7 @@ console = "0.15.0"
 mysql = "25.0.0"
 regex = "1.4.3"
 semver = "1.0.4"
-mongodb = { version = "2.0.0", features = ["sync"], default-features = false }
+mongodb = { version = "3.0.1", features = ["sync"], default-features = false }
 bson = "2.0.0"
 humanesort = "0.1.0-alpha"
 
